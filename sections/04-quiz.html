@@ -1,0 +1,79 @@
+<!-- 4. Interactive 'Find Your Sip' Flavor Mood Quiz (Inline Section) -->
+<section id="sip-quiz" class="py-16 sm:py-20 bg-citrusMist border-y border-leafBorder">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-suncream rounded-3xl border-2 border-leafBorder shadow-citrus p-6 sm:p-10 lg:p-12">
+      <div class="text-center max-w-2xl mx-auto mb-8">
+        <span class="inline-block bg-sunnyLemon/40 text-peelGreen text-xs font-extrabold uppercase tracking-widest px-3.5 py-1 rounded-full mb-3">2-Step Refreshment Matcher</span>
+        <h2 class="font-display font-black text-3xl sm:text-4xl text-peelGreen">Find Your Sip Mood</h2>
+        <p class="text-peelGreenLight text-sm sm:text-base mt-2">Tell us your current vibe and fizz preference—we’ll chill the perfect bottle for you.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <!-- Left: 2 Interactive Steps -->
+        <div class="lg:col-span-7 space-y-6">
+          <!-- Step 1: Vibe / Craving -->
+          <div>
+            <label class="block text-xs font-extrabold uppercase tracking-wider text-peelGreenLight mb-2.5">Step 1: What vibe are you craving?</label>
+            <div class="grid grid-cols-2 gap-2.5" id="inlineQuizMoodGroup">
+              <button type="button" data-mood="Zesty & Energizing" class="inline-mood-btn active border-2 border-peelGreen bg-peelGreen text-suncream rounded-2xl p-3.5 text-left transition">
+                <span class="block text-xs sm:text-sm font-extrabold">⚡ Zesty &amp; Energizing</span>
+                <span class="block text-[11px] opacity-85 mt-0.5">Bright citrus &amp; ginger kick</span>
+              </button>
+              <button type="button" data-mood="Crisp & Hydrating" class="inline-mood-btn border-2 border-leafBorder bg-white hover:border-peelGreen/50 text-peelGreen rounded-2xl p-3.5 text-left transition">
+                <span class="block text-xs sm:text-sm font-extrabold">💧 Crisp &amp; Hydrating</span>
+                <span class="block text-[11px] text-peelGreenLight mt-0.5">Cooling mint &amp; pomelo</span>
+              </button>
+              <button type="button" data-mood="Fruity & Sweet" class="inline-mood-btn border-2 border-leafBorder bg-white hover:border-peelGreen/50 text-peelGreen rounded-2xl p-3.5 text-left transition">
+                <span class="block text-xs sm:text-sm font-extrabold">🥭 Fruity &amp; Sweet</span>
+                <span class="block text-[11px] text-peelGreenLight mt-0.5">Lush sun-ripened tropicals</span>
+              </button>
+              <button type="button" data-mood="Herbal & Calm" class="inline-mood-btn border-2 border-leafBorder bg-white hover:border-peelGreen/50 text-peelGreen rounded-2xl p-3.5 text-left transition">
+                <span class="block text-xs sm:text-sm font-extrabold">🌺 Herbal &amp; Calm</span>
+                <span class="block text-[11px] text-peelGreenLight mt-0.5">Floral botanical steeped tea</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 2: Sweetness / Fizz Preference -->
+          <div>
+            <label class="block text-xs font-extrabold uppercase tracking-wider text-peelGreenLight mb-2.5">Step 2: Sweetness &amp; fizz preference?</label>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5" id="inlineQuizFizzGroup">
+              <button type="button" data-fizz="Sparkling & Bubbly" class="inline-fizz-btn active border-2 border-tangerine bg-tangerine text-white rounded-2xl p-3 text-left transition">
+                <span class="block text-xs font-extrabold">Sparkling &amp; Bubbly</span>
+                <span class="block text-[11px] opacity-90 mt-0.5">Effervescent micro-fizz</span>
+              </button>
+              <button type="button" data-fizz="Still & Pure Pressed" class="inline-fizz-btn border-2 border-leafBorder bg-white hover:border-tangerine/50 text-peelGreen rounded-2xl p-3 text-left transition">
+                <span class="block text-xs font-extrabold">Still &amp; Pure Pressed</span>
+                <span class="block text-[11px] text-peelGreenLight mt-0.5">100% cold-pressed juice</span>
+              </button>
+              <button type="button" data-fizz="Lightly Honey-Sweet" class="inline-fizz-btn border-2 border-leafBorder bg-white hover:border-tangerine/50 text-peelGreen rounded-2xl p-3 text-left transition">
+                <span class="block text-xs font-extrabold">Lightly Honey-Sweet</span>
+                <span class="block text-[11px] text-peelGreenLight mt-0.5">Hint of raw wildflower honey</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Live Recommended Drink Card -->
+        <div class="lg:col-span-5 bg-warmSand border-2 border-sunnyLemon rounded-3xl p-6 text-center">
+          <span class="text-[11px] font-extrabold uppercase tracking-widest text-tangerine">Your Perfect Sunsip Match</span>
+          <h3 id="inlineQuizMatchTitle" class="font-display font-black text-2xl text-peelGreen mt-1">Calamansi Honey Fizz</h3>
+          <p id="inlineQuizMatchNotes" class="text-xs font-bold text-peelGreenLight mt-1">Sparkling Cooler • Batangas Calamansi, Wildflower Honey, Sparkling Water</p>
+          <p id="inlineQuizMatchReason" class="text-xs text-peelGreen mt-3 leading-relaxed">
+            Zesty Batangas calamansi lifted with crisp bubbles and a touch of raw honey for instant afternoon revival.
+          </p>
+          <div class="mt-4 pt-4 border-t border-sunnyLemon/70 flex items-center justify-between">
+            <div class="text-left">
+              <span class="block text-[11px] text-peelGreenLight">Chilled Format</span>
+              <span class="text-xs font-extrabold text-peelGreen">330ml Glass Bottle</span>
+            </div>
+            <span id="inlineQuizMatchPrice" class="font-display font-black text-2xl text-peelGreen">₱145.00</span>
+          </div>
+          <button type="button" onclick="addQuizMatchToCart()" class="mt-4 w-full bg-peelGreen hover:bg-tangerine text-suncream font-extrabold text-sm py-3.5 px-5 rounded-full shadow-sm transition active:scale-95">
+            + Add Match to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

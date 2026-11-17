@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sunsip Refreshment | Cold-Pressed Philippine Juices & Botanical Coolers</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Brand Design Tokens -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            suncream: '#FFFDF7',
+            citrusMist: '#F4F9F4',
+            warmSand: '#FEF6E4',
+            peelGreen: '#1B4332',
+            peelGreenLight: '#2D6A4F',
+            tangerine: '#F97316',
+            tangerineDark: '#EA580C',
+            sunnyLemon: '#FACC15',
+            coralPop: '#FB7185',
+            leafBorder: '#D8E6DC'
+          },
+          fontFamily: {
+            display: ['"Outfit"', 'system-ui', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            'citrus': '0 12px 32px -6px rgba(27, 67, 50, 0.08)',
+            'citrus-lg': '0 22px 48px -10px rgba(27, 67, 50, 0.16)',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-suncream text-peelGreen font-sans antialiased selection:bg-sunnyLemon selection:text-peelGreen overflow-x-hidden">
+
+  <!-- 1. Top Announcement Bar -->
+  <div class="bg-peelGreen text-suncream text-xs sm:text-sm py-2.5 px-4 text-center font-semibold tracking-wide">
+    <span>🧊 Free chilled delivery in Metro Manila &amp; Davao for orders </span>
+    <span class="text-sunnyLemon font-extrabold">₱1,200+</span>
+    <span class="hidden sm:inline"> • Same-day dispatch before 2 PM</span>
+  </div>
+
+  <!-- 2. Sticky Navigation Header -->
+  <header class="sticky top-0 z-40 bg-suncream/95 backdrop-blur-md border-b border-leafBorder transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20 gap-3 sm:gap-5">
+
+        <!-- Custom Sunsip Refreshment Radiant Sun-and-Citrus SVG Logo -->
+        <a href="#" class="flex items-center gap-3 group shrink-0">
+          <svg class="w-12 h-12 sm:w-14 sm:h-14 transition-transform duration-300 group-hover:rotate-6 group-hover:scale-105" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Sunsip Refreshment Emblem">
+            <!-- Sunburst Rays -->
+            <g stroke="#F97316" stroke-width="4" stroke-linecap="round">
+              <line x1="60" y1="8" x2="60" y2="18"/>
+              <line x1="60" y1="102" x2="60" y2="112"/>
+              <line x1="8" y1="60" x2="18" y2="60"/>
+              <line x1="102" y1="60" x2="112" y2="60"/>
+              <line x1="23" y1="23" x2="30" y2="30"/>
+              <line x1="90" y1="90" x2="97" y2="97"/>
+              <line x1="97" y1="23" x2="90" y2="30"/>
+              <line x1="30" y1="90" x2="23" y2="97"/>
+            </g>
+            <!-- Citrus Rind Circle -->
+            <circle cx="60" cy="60" r="36" fill="#FACC15" stroke="#1B4332" stroke-width="4"/>
+            <circle cx="60" cy="60" r="29" fill="#FFFDF7" stroke="#F97316" stroke-width="2.5"/>
+            <!-- Citrus Segments -->
+            <path d="M60 31V89M31 60H89M39.5 39.5L80.5 80.5M80.5 39.5L39.5 80.5" stroke="#FACC15" stroke-width="3" stroke-linecap="round"/>
+            <!-- Center Refreshment Drop & Leaf -->
+            <circle cx="60" cy="60" r="13" fill="#1B4332"/>
+            <path d="M60 51C60 51 67 58.5 67 63C67 66.866 63.866 70 60 70C56.134 70 53 66.866 53 63C53 58.5 60 51 60 51Z" fill="#FACC15"/>
+            <path d="M84 26C92 24 99 28 98 36C90 38 83 34 84 26Z" fill="#2D6A4F" stroke="#1B4332" stroke-width="2"/>
+          </svg>
+          <div>
+            <span class="font-display font-black text-xl sm:text-2xl tracking-tight text-peelGreen block leading-none">Sunsip</span>
+            <span class="text-[11px] uppercase tracking-widest text-tangerine font-extrabold">Refreshment PH</span>
+          </div>
+        </a>
+
+        <!-- Live Search Input (Desktop) -->
+        <div class="hidden md:flex flex-1 max-w-md mx-3 relative">
+          <svg class="w-4 h-4 text-peelGreenLight absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+          </svg>
+          <input
+            type="text"
+            id="searchInputDesktop"
+            placeholder="Search calamansi, mango, pomelo, fizz..."
+            class="w-full bg-citrusMist border border-leafBorder rounded-full pl-11 pr-9 py-2.5 text-sm text-peelGreen placeholder-peelGreenLight/70 focus:outline-none focus:ring-2 focus:ring-tangerine focus:bg-white transition"
+          />
+          <button id="clearSearchDesktop" type="button" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-peelGreenLight hover:text-peelGreen text-xs font-extrabold px-1.5 py-0.5 rounded-full" aria-label="Clear search">✕</button>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav class="hidden lg:flex items-center gap-7 text-sm font-bold text-peelGreen">
+          <a href="#drink-menu" class="hover:text-tangerine transition">Menu</a>
+          <a href="#drink-menu" onclick="filterByCategory('Party Packs')" class="hover:text-tangerine transition">Bundles</a>
+          <a href="#our-story" class="hover:text-tangerine transition">Our Story</a>
+          <a href="#subscriptions" class="hover:text-tangerine transition">Subscriptions</a>
+        </nav>
+
+        <!-- Quiz Trigger, Cart Button & Mobile Menu Toggle -->
+        <div class="flex items-center gap-2.5">
+          <button type="button" onclick="openQuizModal()" class="hidden sm:inline-flex items-center gap-1.5 bg-warmSand hover:bg-sunnyLemon/40 text-peelGreen border border-sunnyLemon px-3.5 py-2 rounded-full text-xs font-extrabold transition">
+            <span>🍋 Sip Quiz</span>
+          </button>
+
+          <button type="button" onclick="toggleCartDrawer(true)" class="relative inline-flex items-center gap-2 bg-peelGreen hover:bg-peelGreenLight text-suncream px-4 sm:px-5 py-2.5 rounded-full text-sm font-extrabold shadow-sm transition active:scale-95" aria-label="Open Cart">
+            <svg class="w-4 h-4 text-sunnyLemon" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+            <span>Cart</span>
+            <span id="cartBadge" class="bg-tangerine text-white text-xs font-extrabold w-5 h-5 rounded-full flex items-center justify-center">0</span>
+          </button>
+
+          <button id="mobileMenuBtn" type="button" class="lg:hidden p-2.5 rounded-xl border border-leafBorder text-peelGreen hover:bg-citrusMist" aria-label="Open Menu">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Dropdown Menu + Search -->
+      <div id="mobileMenu" class="hidden lg:hidden pb-4 pt-2 border-t border-leafBorder space-y-3">
+        <div class="relative md:hidden">
+          <svg class="w-4 h-4 text-peelGreenLight absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+          </svg>
+          <input
+            type="text"
+            id="searchInputMobile"
+            placeholder="Search calamansi, mango, pomelo, fizz..."
+            class="w-full bg-citrusMist border border-leafBorder rounded-full pl-11 pr-4 py-2.5 text-sm text-peelGreen placeholder-peelGreenLight/70 focus:outline-none focus:ring-2 focus:ring-tangerine"
+          />
+        </div>
+        <div class="grid grid-cols-2 gap-2 text-sm font-bold">
+          <a href="#drink-menu" onclick="closeMobileMenu()" class="px-3.5 py-2.5 rounded-xl hover:bg-citrusMist">Menu</a>
+          <a href="#drink-menu" onclick="filterByCategory('Party Packs'); closeMobileMenu();" class="px-3.5 py-2.5 rounded-xl hover:bg-citrusMist">Bundles</a>
+          <a href="#our-story" onclick="closeMobileMenu()" class="px-3.5 py-2.5 rounded-xl hover:bg-citrusMist">Our Story</a>
+          <a href="#subscriptions" onclick="closeMobileMenu()" class="px-3.5 py-2.5 rounded-xl hover:bg-citrusMist">Subscriptions</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3. Hero Banner -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-warmSand via-suncream to-citrusMist border-b border-leafBorder">
+    <!-- Decorative Botanical Leaves & Sun Glow -->
+    <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-sunnyLemon/25 blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-tangerine/15 blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+
+        <!-- Hero Headline & CTAs (7 cols) -->
+        <div class="lg:col-span-7 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 bg-white border border-sunnyLemon rounded-full px-4 py-1.5 mb-5 shadow-xs">
+            <span class="w-2.5 h-2.5 rounded-full bg-tangerine animate-ping"></span>
+            <span class="text-xs font-extrabold uppercase tracking-widest text-peelGreen">100% Real Philippine Orchard Harvests</span>
+          </div>
+
+          <h1 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl xl:text-[64px] text-peelGreen tracking-tight leading-[1.05]">
+            Pure Sunshine, <span class="text-tangerine underline decoration-sunnyLemon decoration-8 underline-offset-4">Bottled Fresh.</span>
+          </h1>
+
+          <p class="mt-5 text-base sm:text-lg lg:text-xl text-peelGreenLight leading-relaxed max-w-2xl mx-auto lg:mx-0">
+            Cold-pressed Philippine fruits, wildflower-infused botanical iced teas, and zesty sparkling coolers—pressed at dawn and delivered ice-chilled straight to your door.
+          </p>
+
+          <!-- Primary & Secondary CTA Buttons -->
+          <div class="mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            <a href="#drink-menu" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-tangerine hover:bg-tangerineDark text-white font-extrabold text-sm sm:text-base px-8 py-4 rounded-full shadow-citrus-lg transition transform hover:-translate-y-0.5">
+              <span>Shop Refreshments</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
+              </svg>
+            </a>
+            <button type="button" onclick="openQuizModal()" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-peelGreen hover:bg-peelGreenLight text-suncream font-extrabold text-sm sm:text-base px-8 py-4 rounded-full shadow-citrus transition">
+              <span>🍹 Find Your Sip Quiz</span>
+            </button>
+          </div>
+
+          <!-- Trust Highlights -->
+          <div class="mt-9 pt-6 border-t border-leafBorder flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2.5 text-xs sm:text-sm font-bold text-peelGreen">
+            <span class="inline-flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-sunnyLemon/50 flex items-center justify-center text-xs">❄️</span>
+              Delivered Ice-Chilled
+            </span>
+            <span class="inline-flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-coralPop/25 flex items-center justify-center text-xs">🌿</span>
+              Zero Refined Sugar
+            </span>
+            <span class="inline-flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-peelGreen/15 flex items-center justify-center text-xs">♻️</span>
+              Reusable Glass Bottles
+            </span>
+          </div>
+        </div>
+
+        <!-- Visual Showcase: Custom SVG Chilled Bottles with Floating Ice & Citrus Slices (5 cols) -->
+        <div class="lg:col-span-5">
+          <div class="relative bg-white/80 backdrop-blur-xs border-2 border-leafBorder rounded-[36px] p-6 sm:p-8 shadow-citrus-lg">
+            <div class="absolute -top-4 -right-3 bg-coralPop text-white font-display font-extrabold text-xs uppercase tracking-wider px-4 py-1.5 rounded-full shadow-md rotate-3">
+              Pressed Today!
+            </div>
+
+            <!-- Custom Illustrated Chilled Bottle Trio SVG -->
+            <svg viewBox="0 0 380 310" class="w-full h-auto drop-shadow-md" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Chilled Sunsip Refreshment Bottles with Ice and Citrus">
+              <!-- Soft Sun Halo Behind Bottles -->
+              <circle cx="190" cy="155" r="118" fill="#FEF6E4"/>
+              <circle cx="190" cy="155" r="92" fill="#FACC15" fill-opacity="0.25"/>
+
+              <!-- Tropical Leaves Backdrop -->
+              <path d="M68 215C32 180 28 125 65 95C82 135 84 175 68 215Z" fill="#2D6A4F" stroke="#1B4332" stroke-width="2.5"/>
+              <path d="M312 215C348 180 352 125 315 95C298 135 296 175 312 215Z" fill="#2D6A4F" stroke="#1B4332" stroke-width="2.5"/>
+
+              <!-- Floating Calamansi / Lemon Slice Left -->
+              <circle cx="62" cy="84" r="24" fill="#FACC15" stroke="#1B4332" stroke-width="2.5"/>
+              <circle cx="62" cy="84" r="18" fill="#FFFDF7"/>
+              <path d="M62 66V102M44 84H80M49 71L75 97M75 71L49 97" stroke="#FACC15" stroke-width="2.5"/>
+
+              <!-- Floating Hibiscus / Berry Slice Right -->
+              <circle cx="322" cy="78" r="22" fill="#FB7185" stroke="#1B4332" stroke-width="2.5"/>
+              <circle cx="322" cy="78" r="15" fill="#FFFDF7" fill-opacity="0.85"/>
+              <circle cx="322" cy="78" r="6" fill="#F97316"/>
+
+              <!-- Left Bottle: Calamansi Honey Fizz (Sunny Lemon) -->
+              <g transform="translate(68, 56)">
+                <rect x="24" y="0" width="26" height="12" rx="4" fill="#1B4332"/>
+                <path d="M27 12H47L53 46C61 54 64 64 64 78V186C64 196 56 204 46 204H28C18 204 10 196 10 186V78C10 64 13 54 21 46L27 12Z" fill="#FACC15" stroke="#1B4332" stroke-width="3"/>
+                <rect x="16" y="92" width="42" height="66" rx="8" fill="#FFFDF7" stroke="#1B4332" stroke-width="2"/>
+                <circle cx="37" cy="114" r="10" fill="#F97316"/>
+                <text x="37" y="136" text-anchor="middle" fill="#1B4332" font-family="Outfit, sans-serif" font-weight="800" font-size="8.5">CALAMANSI</text>
+                <text x="37" y="147" text-anchor="middle" fill="#F97316" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="7">HONEY FIZZ</text>
+                <!-- Condensation Drops -->
+                <circle cx="20" cy="72" r="2.5" fill="#FFFDF7"/>
+                <circle cx="54" cy="172" r="3" fill="#FFFDF7"/>
+              </g>
+
+              <!-- Right Bottle: Hibiscus Berry Cooler (Coral Pink) -->
+              <g transform="translate(238, 56)">
+                <rect x="24" y="0" width="26" height="12" rx="4" fill="#1B4332"/>
+                <path d="M27 12H47L53 46C61 54 64 64 64 78V186C64 196 56 204 46 204H28C18 204 10 196 10 186V78C10 64 13 54 21 46L27 12Z" fill="#FB7185" stroke="#1B4332" stroke-width="3"/>
+                <rect x="16" y="92" width="42" height="66" rx="8" fill="#FFFDF7" stroke="#1B4332" stroke-width="2"/>
+                <circle cx="37" cy="114" r="10" fill="#2D6A4F"/>
+                <text x="37" y="136" text-anchor="middle" fill="#1B4332" font-family="Outfit, sans-serif" font-weight="800" font-size="8.5">HIBISCUS</text>
+                <text x="37" y="147" text-anchor="middle" fill="#FB7185" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="7">ICED TEA</text>
+                <circle cx="52" cy="68" r="2.5" fill="#FFFDF7"/>
+                <circle cx="22" cy="176" r="3" fill="#FFFDF7"/>
+              </g>
+
+              <!-- Center Hero Bottle: Guimaras Mango Sunset (Vibrant Tangerine) -->
+              <g transform="translate(148, 32)">
+                <rect x="28" y="0" width="30" height="14" rx="5" fill="#F97316" stroke="#1B4332" stroke-width="2.5"/>
+                <path d="M31 14H55L62 52C71 61 75 73 75 88V212C75 224 65 234 53 234H33C21 234 11 224 11 212V88C11 73 15 61 24 52L31 14Z" fill="#F97316" stroke="#1B4332" stroke-width="3.5"/>
+                <!-- Glass Highlight -->
+                <path d="M21 86V204" stroke="#FFFDF7" stroke-width="3.5" stroke-linecap="round" stroke-opacity="0.55"/>
+                <!-- Label -->
+                <rect x="18" y="102" width="50" height="80" rx="10" fill="#FFFDF7" stroke="#1B4332" stroke-width="2.2"/>
+                <circle cx="43" cy="127" r="12" fill="#FACC15" stroke="#1B4332" stroke-width="1.8"/>
+                <text x="43" y="153" text-anchor="middle" fill="#1B4332" font-family="Outfit, sans-serif" font-weight="900" font-size="10">SUNSIP</text>
+                <text x="43" y="165" text-anchor="middle" fill="#F97316" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="7.5">MANGO SUNSET</text>
+                <text x="43" y="175" text-anchor="middle" fill="#2D6A4F" font-family="Plus Jakarta Sans, sans-serif" font-weight="700" font-size="6.5">COLD-PRESSED 500ML</text>
+                <!-- Condensation Droplets -->
+                <ellipse cx="62" cy="76" rx="3" ry="4.5" fill="#FFFDF7"/>
+                <ellipse cx="24" cy="196" rx="3" ry="4" fill="#FFFDF7"/>
+                <circle cx="64" cy="192" r="2.5" fill="#FFFDF7"/>
+              </g>
+
+              <!-- Floating Ice Cubes at Base -->
+              <rect x="44" y="250" width="26" height="26" rx="6" transform="rotate(-14 44 250)" fill="#E0F2FE" stroke="#1B4332" stroke-width="2"/>
+              <rect x="306" y="246" width="28" height="28" rx="6" transform="rotate(16 306 246)" fill="#E0F2FE" stroke="#1B4332" stroke-width="2"/>
+              <ellipse cx="190" cy="278" rx="135" ry="10" fill="#1B4332" fill-opacity="0.12"/>
+            </svg>
+
+            <div class="mt-3 flex items-center justify-between bg-warmSand border border-sunnyLemon/70 rounded-2xl px-4 py-3">
+              <div>
+                <p class="text-xs font-extrabold text-peelGreen">Sunsip Barkada 6-Bottle Taster Box</p>
+                <p class="text-[11px] text-peelGreenLight">All 5 signature flavors + bonus ginger shot</p>
+              </div>
+              <button type="button" onclick="addToCart('barkada-taster-box')" class="bg-peelGreen hover:bg-tangerine text-suncream text-xs font-extrabold px-4 py-2 rounded-full transition shrink-0">
+                + ₱850
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Refreshment Catalog with Live Category Filter & Search -->
+  <section id="drink-menu" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
+      <div>
+        <span class="text-xs font-extrabold uppercase tracking-widest text-tangerine">Pressed Every Morning</span>
+        <h2 class="font-display font-black text-3xl sm:text-4xl text-peelGreen mt-1">Chilled Refreshment Menu</h2>
+        <p class="text-peelGreenLight mt-2 max-w-xl text-sm sm:text-base">
+          Crafted with sun-ripened Guimaras mangoes, Davao pomelos, and Batangas calamansi. Pick your bottle size or tap any bottle for ingredients &amp; nutrition.
+        </p>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div id="filterTabs" class="flex flex-wrap gap-2" role="tablist">
+        <button type="button" data-filter="All" class="filter-btn active bg-peelGreen text-suncream px-4 py-2 rounded-full text-xs sm:text-sm font-extrabold transition">All Drinks</button>
+        <button type="button" data-filter="Cold-Pressed Juices" class="filter-btn bg-citrusMist hover:bg-sunnyLemon/40 text-peelGreen px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition">Cold-Pressed Juices</button>
+        <button type="button" data-filter="Sparkling Coolers" class="filter-btn bg-citrusMist hover:bg-sunnyLemon/40 text-peelGreen px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition">Sparkling Coolers</button>
+        <button type="button" data-filter="Botanical Iced Teas" class="filter-btn bg-citrusMist hover:bg-sunnyLemon/40 text-peelGreen px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition">Botanical Iced Teas</button>
+        <button type="button" data-filter="Party Packs" class="filter-btn bg-citrusMist hover:bg-sunnyLemon/40 text-peelGreen px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition">Party Packs</button>
+      </div>
+    </div>
+
+    <!-- Active Search Status Banner -->
+    <div id="searchStatusBanner" class="hidden mb-6 bg-warmSand border border-sunnyLemon rounded-2xl px-5 py-3 flex items-center justify-between">
+      <p class="text-sm text-peelGreen">Showing refreshments matching "<span id="searchQueryDisplay" class="font-extrabold"></span>"</p>
+      <button type="button" onclick="resetFilters()" class="text-xs font-extrabold text-tangerine hover:underline">Reset Filters</button>
+    </div>
+
+    <!-- Product Grid -->
+    <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Populated dynamically via JS -->
+    </div>
+
+    <!-- Empty Search State -->
+    <div id="emptyState" class="hidden text-center py-16 bg-citrusMist rounded-3xl border border-leafBorder">
+      <p class="font-display text-2xl font-extrabold text-peelGreen">No drinks matched that craving</p>
+      <p class="text-peelGreenLight text-sm mt-2">Try searching for "Calamansi", "Mango", "Pomelo", "Hibiscus", or reset your filters.</p>
+      <button type="button" onclick="resetFilters()" class="mt-5 bg-peelGreen text-suncream px-6 py-2.5 rounded-full text-sm font-extrabold hover:bg-tangerine transition">View All Drinks</button>
+    </div>
+  </section>
+
+  <!-- 4. Interactive 'Find Your Sip' Flavor Mood Quiz (Inline Section) -->
+  <section id="sip-quiz" class="py-16 sm:py-20 bg-citrusMist border-y border-leafBorder">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-suncream rounded-3xl border-2 border-leafBorder shadow-citrus p-6 sm:p-10 lg:p-12">
+        <div class="text-center max-w-2xl mx-auto mb-8">
+          <span class="inline-block bg-sunnyLemon/40 text-peelGreen text-xs font-extrabold uppercase tracking-widest px-3.5 py-1 rounded-full mb-3">2-Step Refreshment Matcher</span>
+          <h2 class="font-display font-black text-3xl sm:text-4xl text-peelGreen">Find Your Sip Mood</h2>
+          <p class="text-peelGreenLight text-sm sm:text-base mt-2">Tell us your current vibe and fizz preference—we’ll chill the perfect bottle for you.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <!-- Left: 2 Interactive Steps -->
+          <div class="lg:col-span-7 space-y-6">
+            <!-- Step 1: Vibe / Craving -->
+            <div>
+              <label class="block text-xs font-extrabold uppercase tracking-wider text-peelGreenLight mb-2.5">Step 1: What vibe are you craving?</label>
+              <div class="grid grid-cols-2 gap-2.5" id="inlineQuizMoodGroup">
+                <button type="button" data-mood="Zesty & Energizing" class="inline-mood-btn active border-2 border-peelGreen bg-peelGreen text-suncream rounded-2xl p-3.5 text-left transition">
+                  <span class="block text-xs sm:text-sm font-extrabold">⚡ Zesty &amp; Energizing</span>
+                  <span class="block text-[11px] opacity-85 mt-0.5">Bright citrus &amp; ginger kick</span>
+                </button>
+                <button type="button" data-mood="Crisp & Hydrating" class="inline-mood-btn border-2 border-leafBorder bg-white hover:border-peelGreen/50 text-peelGreen rounded-2xl p-3.5 text-left transition">
+                  <span class="block text-xs sm:text-sm font-extrabold">💧 Crisp &amp; Hydrating</span>
+                  <span class="block text-[11px] text-peelGreenLight mt-0.5">Cooling mint &amp; pomelo</span>
+                </button>
+                <button type="button" data-mood="Fruity & Sweet" class="inline-mood-btn border-2 border-leafBorder bg-white hover:border-peelGreen/50 text-peelGreen rounded-2xl p-3.5 text-left transition">
+                  <span class="block text-xs sm:text-sm font-extrabold">🥭 Fruity &amp; Sweet</span>
+                  <span class="block text-[11px] text-peelGreenLight mt-0.5">Lush sun-ripened tropicals</span>
+                </button>
+                <button type="button" data-mood="Herbal & Calm" class="inline-mood-btn border-2 border-leafBorder bg-white hover:border-peelGreen/50 text-peelGreen rounded-2xl p-3.5 text-left transition">
+                  <span class="block text-xs sm:text-sm font-extrabold">🌺 Herbal &amp; Calm</span>
+                  <span class="block text-[11px] text-peelGreenLight mt-0.5">Floral botanical steeped tea</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Step 2: Sweetness / Fizz Preference -->
+            <div>
+              <label class="block text-xs font-extrabold uppercase tracking-wider text-peelGreenLight mb-2.5">Step 2: Sweetness &amp; fizz preference?</label>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5" id="inlineQuizFizzGroup">
+                <button type="button" data-fizz="Sparkling & Bubbly" class="inline-fizz-btn active border-2 border-tangerine bg-tangerine text-white rounded-2xl p-3 text-left transition">
+                  <span class="block text-xs font-extrabold">Sparkling &amp; Bubbly</span>
+                  <span class="block text-[11px] opacity-90 mt-0.5">Effervescent micro-fizz</span>
+                </button>
+                <button type="button" data-fizz="Still & Pure Pressed" class="inline-fizz-btn border-2 border-leafBorder bg-white hover:border-tangerine/50 text-peelGreen rounded-2xl p-3 text-left transition">
+                  <span class="block text-xs font-extrabold">Still &amp; Pure Pressed</span>
+                  <span class="block text-[11px] text-peelGreenLight mt-0.5">100% cold-pressed juice</span>
+                </button>
+                <button type="button" data-fizz="Lightly Honey-Sweet" class="inline-fizz-btn border-2 border-leafBorder bg-white hover:border-tangerine/50 text-peelGreen rounded-2xl p-3 text-left transition">
+                  <span class="block text-xs font-extrabold">Lightly Honey-Sweet</span>
+                  <span class="block text-[11px] text-peelGreenLight mt-0.5">Hint of raw wildflower honey</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Live Recommended Drink Card -->
+          <div class="lg:col-span-5 bg-warmSand border-2 border-sunnyLemon rounded-3xl p-6 text-center">
+            <span class="text-[11px] font-extrabold uppercase tracking-widest text-tangerine">Your Perfect Sunsip Match</span>
+            <h3 id="inlineQuizMatchTitle" class="font-display font-black text-2xl text-peelGreen mt-1">Calamansi Honey Fizz</h3>
+            <p id="inlineQuizMatchNotes" class="text-xs font-bold text-peelGreenLight mt-1">Sparkling Cooler • Batangas Calamansi, Wildflower Honey, Sparkling Water</p>
+            <p id="inlineQuizMatchReason" class="text-xs text-peelGreen mt-3 leading-relaxed">
+              Zesty Batangas calamansi lifted with crisp bubbles and a touch of raw honey for instant afternoon revival.
+            </p>
+            <div class="mt-4 pt-4 border-t border-sunnyLemon/70 flex items-center justify-between">
+              <div class="text-left">
+                <span class="block text-[11px] text-peelGreenLight">Chilled Format</span>
+                <span class="text-xs font-extrabold text-peelGreen">330ml Glass Bottle</span>
+              </div>
+              <span id="inlineQuizMatchPrice" class="font-display font-black text-2xl text-peelGreen">₱145.00</span>
+            </div>
+            <button type="button" onclick="addQuizMatchToCart()" class="mt-4 w-full bg-peelGreen hover:bg-tangerine text-suncream font-extrabold text-sm py-3.5 px-5 rounded-full shadow-sm transition active:scale-95">
+              + Add Match to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. 'Build Your Chilled Box' Weekly Hydration Subscription Section -->
+  <section id="subscriptions" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-peelGreen text-suncream rounded-[36px] p-8 sm:p-12 lg:p-14 shadow-citrus-lg relative overflow-hidden">
+      <div class="absolute -right-20 -top-20 w-80 h-80 rounded-full bg-sunnyLemon/15 pointer-events-none"></div>
+      <div class="absolute -left-20 -bottom-20 w-80 h-80 rounded-full bg-tangerine/20 pointer-events-none"></div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
+        <div class="lg:col-span-6 space-y-5">
+          <span class="inline-block bg-sunnyLemon text-peelGreen text-xs font-extrabold uppercase tracking-widest px-3.5 py-1 rounded-full">Save 15% Automatically</span>
+          <h2 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl leading-tight">
+            Build Your Chilled Box — Hydration on Autopilot
+          </h2>
+          <p class="text-citrusMist/90 text-sm sm:text-base leading-relaxed">
+            Keep your fridge stocked with cold-pressed Philippine juices and sparkling coolers. Choose your box size and recurring schedule—skip, swap flavors, or pause anytime.
+          </p>
+          <ul class="space-y-2 text-xs sm:text-sm text-sunnyLemon font-semibold">
+            <li class="flex items-center gap-2"><span>✓</span> Instant 15% subscriber savings on every chilled drop</li>
+            <li class="flex items-center gap-2"><span>✓</span> Pressed the morning of delivery with insulated ice packs</li>
+            <li class="flex items-center gap-2"><span>✓</span> Free chilled delivery unlocked on 12-Bottle Boxes</li>
+          </ul>
+        </div>
+
+        <!-- Interactive Chilled Box Configurator -->
+        <div class="lg:col-span-6 bg-suncream text-peelGreen rounded-3xl p-6 sm:p-8 shadow-xl space-y-5">
+          <!-- Box Size Selector -->
+          <div>
+            <label class="block text-xs font-extrabold uppercase tracking-wider text-peelGreenLight mb-2">1. Select Chilled Box Size</label>
+            <div class="grid grid-cols-2 gap-3" id="subSizeGroup">
+              <button type="button" data-size="6-Bottle Box" data-price="790" data-orig="930" class="sub-size-btn active border-2 border-peelGreen bg-peelGreen text-suncream rounded-2xl p-3.5 text-left transition">
+                <span class="block text-sm font-extrabold">6-Bottle Box</span>
+                <span class="block text-xs opacity-90 mt-0.5">₱790 / delivery</span>
+              </button>
+              <button type="button" data-size="12-Bottle Box" data-price="1490" data-orig="1760" class="sub-size-btn border-2 border-leafBorder bg-citrusMist hover:border-peelGreen/50 text-peelGreen rounded-2xl p-3.5 text-left transition">
+                <span class="block text-sm font-extrabold">12-Bottle Box</span>
+                <span class="block text-xs text-peelGreenLight mt-0.5">₱1,490 / delivery</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Delivery Frequency Toggle -->
+          <div>
+            <label class="block text-xs font-extrabold uppercase tracking-wider text-peelGreenLight mb-2">2. Delivery Schedule</label>
+            <div class="grid grid-cols-2 gap-3" id="subCadenceGroup">
+              <button type="button" data-cadence="Weekly Delivery" class="sub-cadence-btn active border-2 border-tangerine bg-tangerine text-white rounded-xl py-2.5 px-3 text-xs sm:text-sm font-extrabold transition">
+                Weekly
+              </button>
+              <button type="button" data-cadence="Bi-Weekly Delivery" class="sub-cadence-btn border-2 border-leafBorder bg-citrusMist hover:border-tangerine/50 text-peelGreen rounded-xl py-2.5 px-3 text-xs sm:text-sm font-extrabold transition">
+                Bi-Weekly
+              </button>
+            </div>
+          </div>
+
+          <!-- Curated Mix Selector -->
+          <div>
+            <label for="subMixSelect" class="block text-xs font-extrabold uppercase tracking-wider text-peelGreenLight mb-2">3. Flavor Lineup</label>
+            <select id="subMixSelect" class="w-full bg-citrusMist border border-leafBorder rounded-xl px-4 py-3 text-sm font-bold text-peelGreen focus:outline-none focus:ring-2 focus:ring-tangerine">
+              <option value="Sunshine Signature Variety Mix">Sunshine Signature Variety Mix</option>
+              <option value="All Cold-Pressed Citrus & Tropicals">All Cold-Pressed Citrus &amp; Tropicals</option>
+              <option value="Sparkling Coolers & Botanical Teas">Sparkling Coolers &amp; Botanical Teas</option>
+              <option value="Morning Immunity (Calamansi & Ginger)">Morning Immunity (Calamansi &amp; Ginger)</option>
+            </select>
+          </div>
+
+          <!-- Summary & Start Subscription CTA -->
+          <div class="pt-3 border-t border-leafBorder flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <span class="text-xs text-peelGreenLight block">Subscriber Price (Save 15%)</span>
+              <div class="flex items-baseline gap-2">
+                <span id="subDisplayPrice" class="font-display font-black text-2xl text-peelGreen">₱790.00</span>
+                <span id="subDisplayOrig" class="text-xs text-peelGreenLight line-through">₱930.00</span>
+              </div>
+            </div>
+            <button type="button" onclick="addSubscriptionToCart()" class="bg-tangerine hover:bg-tangerineDark text-white font-extrabold text-sm px-6 py-3.5 rounded-full shadow-md transition active:scale-95">
+              Add Chilled Box
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Brand Story & Why Sunsip Section -->
+  <section id="our-story" class="py-16 sm:py-24 bg-warmSand/70 border-t border-leafBorder">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center">
+        <span class="text-xs font-extrabold uppercase tracking-widest text-tangerine">Why Sunsip Refreshment</span>
+        <h2 class="font-display font-black text-3xl sm:text-4xl text-peelGreen mt-2">Real Philippine Fruit. Zero Shortcuts.</h2>
+        <p class="mt-4 text-peelGreenLight text-sm sm:text-base leading-relaxed">
+          We started Sunsip in Davao &amp; Metro Manila with one simple rule: bottled drinks should taste just like slicing open fresh orchard fruit on a sunny morning—never syrupy, never heat-pasteurized into flatness.
+        </p>
+      </div>
+
+      <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-suncream border border-leafBorder rounded-3xl p-7 shadow-citrus">
+          <div class="w-12 h-12 rounded-2xl bg-sunnyLemon/40 text-peelGreen flex items-center justify-center text-2xl mb-4">🍊</div>
+          <h3 class="font-display font-extrabold text-lg text-peelGreen">100% Philippine Orchard Fruits</h3>
+          <p class="text-xs sm:text-sm text-peelGreenLight mt-2 leading-relaxed">
+            Sourced directly from partner farms in Guimaras, Davao, and Batangas at peak ripeness.
+          </p>
+        </div>
+
+        <div class="bg-suncream border border-leafBorder rounded-3xl p-7 shadow-citrus">
+          <div class="w-12 h-12 rounded-2xl bg-coralPop/20 text-peelGreen flex items-center justify-center text-2xl mb-4">🚫</div>
+          <h3 class="font-display font-extrabold text-lg text-peelGreen">Zero Artificial Preservatives</h3>
+          <p class="text-xs sm:text-sm text-peelGreenLight mt-2 leading-relaxed">
+            No concentrates, synthetic dyes, or refined cane syrups—sweetened only with fruit and raw honey.
+          </p>
+        </div>
+
+        <div class="bg-suncream border border-leafBorder rounded-3xl p-7 shadow-citrus">
+          <div class="w-12 h-12 rounded-2xl bg-tangerine/20 text-peelGreen flex items-center justify-center text-2xl mb-4">❄️</div>
+          <h3 class="font-display font-extrabold text-lg text-peelGreen">Cold-Pressed Freshness</h3>
+          <p class="text-xs sm:text-sm text-peelGreenLight mt-2 leading-relaxed">
+            Hydraulic cold-pressing locks in natural Vitamin C, live enzymes, and crisp aromatic zest.
+          </p>
+        </div>
+
+        <div class="bg-suncream border border-leafBorder rounded-3xl p-7 shadow-citrus">
+          <div class="w-12 h-12 rounded-2xl bg-peelGreen/15 text-peelGreen flex items-center justify-center text-2xl mb-4">♻️</div>
+          <h3 class="font-display font-extrabold text-lg text-peelGreen">Eco-Friendly Glass Bottles</h3>
+          <p class="text-xs sm:text-sm text-peelGreenLight mt-2 leading-relaxed">
+            Bottled in recyclable amber-tinted and flint glass—return 6 empty bottles on your next order for ₱50 credit!
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Clean Footer -->
+  <footer class="bg-peelGreen text-suncream border-t border-peelGreenLight">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
+        <!-- Brand & Newsletter (5 cols) -->
+        <div class="lg:col-span-5 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-sunnyLemon text-peelGreen flex items-center justify-center font-display font-black text-xl">S</div>
+            <span class="font-display font-black text-2xl text-suncream">Sunsip Refreshment</span>
+          </div>
+          <p class="text-sm text-citrusMist/85 leading-relaxed max-w-md">
+            Cold-pressed Philippine juices, sparkling coolers, and botanical iced teas delivered ice-chilled. Subscribe for 10% off your first order.
+          </p>
+          <form id="newsletterForm" class="flex flex-col sm:flex-row gap-2.5 pt-2 max-w-md">
+            <input
+              type="email"
+              id="newsletterEmail"
+              required
+              placeholder="Enter your email address..."
+              class="flex-1 bg-peelGreenLight/70 border border-sunnyLemon/30 rounded-full px-4 py-3 text-sm text-suncream placeholder-citrusMist/60 focus:outline-none focus:ring-2 focus:ring-sunnyLemon"
+            />
+            <button type="submit" class="bg-sunnyLemon hover:bg-tangerine hover:text-white text-peelGreen font-extrabold text-xs uppercase tracking-wider px-6 py-3 rounded-full transition shrink-0">
+              Get 10% Off
+            </button>
+          </form>
+        </div>
+
+        <!-- Delivery Coverage Info (4 cols) -->
+        <div class="lg:col-span-4">
+          <h4 class="font-display font-extrabold text-lg text-sunnyLemon mb-4">Chilled Delivery Coverage</h4>
+          <ul class="space-y-2.5 text-sm text-citrusMist/90">
+            <li>🧊 <strong>Metro Manila:</strong> Same-day chilled rider (Order before 2 PM)</li>
+            <li>🧊 <strong>Davao City &amp; Panabo:</strong> Same-day insulated van delivery</li>
+            <li>🚚 <strong>Free Delivery:</strong> Orders ₱1,200+ (₱99 flat rate below ₱1,200)</li>
+            <li>📱 <strong>Concierge:</strong> +63 (917) 630-8821 • hello@sunsip.ph</li>
+          </ul>
+        </div>
+
+        <!-- Shop & Social Links (3 cols) -->
+        <div class="lg:col-span-3">
+          <h4 class="font-display font-extrabold text-lg text-sunnyLemon mb-4">Explore &amp; Connect</h4>
+          <ul class="space-y-2.5 text-sm text-citrusMist/90">
+            <li><a href="#drink-menu" onclick="filterByCategory('All')" class="hover:text-sunnyLemon transition">Shop All Refreshments</a></li>
+            <li><a href="#sip-quiz" class="hover:text-sunnyLemon transition">Find Your Sip Quiz</a></li>
+            <li><a href="#subscriptions" class="hover:text-sunnyLemon transition">Weekly Chilled Box</a></li>
+            <li class="pt-2 flex items-center gap-3">
+              <a href="#drink-menu" class="px-3 py-1.5 rounded-full bg-peelGreenLight text-xs font-bold hover:bg-tangerine transition">Instagram</a>
+              <a href="#drink-menu" class="px-3 py-1.5 rounded-full bg-peelGreenLight text-xs font-bold hover:bg-tangerine transition">TikTok</a>
+              <a href="#drink-menu" class="px-3 py-1.5 rounded-full bg-peelGreenLight text-xs font-bold hover:bg-tangerine transition">Facebook</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-12 pt-6 border-t border-peelGreenLight flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-citrusMist/75">
+        <p>© 2026 Sunsip Refreshment Philippines. All rights reserved.</p>
+        <p>Cold-Pressed Daily • Metro Manila &amp; Davao Chilled Delivery</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive 'Find Your Sip' Modal (Triggered from Header or Hero) -->
+  <div id="quizModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+    <div onclick="closeQuizModal()" class="fixed inset-0 bg-peelGreen/65 backdrop-blur-xs"></div>
+    <div class="relative z-10 bg-suncream border-2 border-leafBorder rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <button type="button" onclick="closeQuizModal()" class="absolute right-5 top-5 w-9 h-9 rounded-full bg-citrusMist border border-leafBorder text-peelGreen hover:bg-peelGreen hover:text-suncream flex items-center justify-center text-sm font-extrabold" aria-label="Close quiz">✕</button>
+      <span class="inline-block bg-sunnyLemon/50 text-peelGreen text-[11px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full">2-Step Sip Quiz</span>
+      <h3 class="font-display font-black text-2xl sm:text-3xl text-peelGreen mt-2">Match Your Refreshment Mood</h3>
+      <p class="text-xs sm:text-sm text-peelGreenLight mt-1">Select a mood and fizz level to see our top chilled pick.</p>
+
+      <div class="mt-5 space-y-4">
+        <div>
+          <label class="block text-xs font-extrabold uppercase tracking-wider text-peelGreenLight mb-2">1. Pick Your Mood</label>
+          <div class="grid grid-cols-2 gap-2">
+            <button type="button" onclick="setQuizMood('Zesty & Energizing')" data-mood="Zesty & Energizing" class="modal-mood-btn border-2 border-peelGreen bg-peelGreen text-suncream rounded-xl p-2.5 text-xs font-extrabold text-left">⚡ Zesty &amp; Energizing</button>
+            <button type="button" onclick="setQuizMood('Crisp & Hydrating')" data-mood="Crisp & Hydrating" class="modal-mood-btn border-2 border-leafBorder bg-white text-peelGreen rounded-xl p-2.5 text-xs font-extrabold text-left">💧 Crisp &amp; Hydrating</button>
+            <button type="button" onclick="setQuizMood('Fruity & Sweet')" data-mood="Fruity & Sweet" class="modal-mood-btn border-2 border-leafBorder bg-white text-peelGreen rounded-xl p-2.5 text-xs font-extrabold text-left">🥭 Fruity &amp; Sweet</button>
+            <button type="button" onclick="setQuizMood('Herbal & Calm')" data-mood="Herbal & Calm" class="modal-mood-btn border-2 border-leafBorder bg-white text-peelGreen rounded-xl p-2.5 text-xs font-extrabold text-left">🌺 Herbal &amp; Calm</button>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-extrabold uppercase tracking-wider text-peelGreenLight mb-2">2. Sweetness &amp; Fizz</label>
+          <div class="grid grid-cols-3 gap-2">
+            <button type="button" onclick="setQuizFizz('Sparkling & Bubbly')" data-fizz="Sparkling & Bubbly" class="modal-fizz-btn border-2 border-tangerine bg-tangerine text-white rounded-xl p-2.5 text-xs font-extrabold">Sparkling</button>
+            <button type="button" onclick="setQuizFizz('Still & Pure Pressed')" data-fizz="Still & Pure Pressed" class="modal-fizz-btn border-2 border-leafBorder bg-white text-peelGreen rounded-xl p-2.5 text-xs font-extrabold">Still Pressed</button>
+            <button type="button" onclick="setQuizFizz('Lightly Honey-Sweet')" data-fizz="Lightly Honey-Sweet" class="modal-fizz-btn border-2 border-leafBorder bg-white text-peelGreen rounded-xl p-2.5 text-xs font-extrabold">Honey-Sweet</button>
+          </div>
+        </div>
+
+        <div class="bg-warmSand border-2 border-sunnyLemon rounded-2xl p-4 flex items-center justify-between gap-4">
+          <div>
+            <span class="text-[10px] font-extrabold uppercase tracking-widest text-tangerine">Recommended Bottle</span>
+            <h4 id="modalQuizTitle" class="font-display font-black text-xl text-peelGreen">Calamansi Honey Fizz</h4>
+            <p id="modalQuizNotes" class="text-xs text-peelGreenLight">Batangas Calamansi • Wildflower Honey</p>
+          </div>
+          <span id="modalQuizPrice" class="font-display font-black text-xl text-peelGreen shrink-0">₱145.00</span>
+        </div>
+
+        <button type="button" onclick="addQuizMatchToCart(); closeQuizModal();" class="w-full bg-tangerine hover:bg-tangerineDark text-white font-extrabold text-sm py-3.5 rounded-full shadow-md transition">
+          + Add Recommended Sip to Cart
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick-View Ingredients & Nutrition Modal -->
+  <div id="quickViewModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+    <div onclick="closeQuickView()" class="fixed inset-0 bg-peelGreen/65 backdrop-blur-xs"></div>
+    <div class="relative z-10 bg-suncream border-2 border-leafBorder rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <button type="button" onclick="closeQuickView()" class="absolute right-5 top-5 w-9 h-9 rounded-full bg-citrusMist border border-leafBorder text-peelGreen hover:bg-peelGreen hover:text-suncream flex items-center justify-center text-sm font-extrabold" aria-label="Close modal">✕</button>
+      <div id="quickViewContent">
+        <!-- Populated dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. Slide-Over Shopping Cart Drawer -->
+  <div id="cartOverlay" class="fixed inset-0 z-50 hidden">
+    <div onclick="toggleCartDrawer(false)" class="fixed inset-0 bg-peelGreen/60 backdrop-blur-xs transition-opacity"></div>
+    <aside class="fixed right-0 top-0 bottom-0 w-full max-w-md bg-suncream shadow-2xl border-l border-leafBorder flex flex-col z-10">
+      <!-- Drawer Header -->
+      <div class="px-6 py-5 border-b border-leafBorder flex items-center justify-between bg-citrusMist">
+        <div>
+          <h3 class="font-display font-black text-xl text-peelGreen">Your Chilled Cooler</h3>
+          <p class="text-xs text-peelGreenLight">Packed with insulated ice packs</p>
+        </div>
+        <button type="button" onclick="toggleCartDrawer(false)" class="w-9 h-9 rounded-full bg-suncream border border-leafBorder flex items-center justify-center text-peelGreen hover:bg-peelGreen hover:text-suncream transition" aria-label="Close Cart">✕</button>
+      </div>
+
+      <!-- Live Free-Shipping Progress Bar toward ₱1,200 -->
+      <div class="px-6 py-3.5 bg-warmSand border-b border-leafBorder">
+        <p id="shippingProgressText" class="text-xs font-bold text-peelGreen mb-2">
+          Add <span class="text-tangerine font-extrabold">₱1,200.00</span> more for <span class="underline">FREE Chilled Delivery</span>!
+        </p>
+        <div class="w-full h-2.5 bg-white rounded-full overflow-hidden border border-leafBorder">
+          <div id="shippingProgressBar" class="h-full bg-tangerine transition-all duration-300" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- Cart Items List -->
+      <div id="cartItemsContainer" class="flex-1 overflow-y-auto p-6 space-y-4">
+        <!-- Injected dynamically -->
+      </div>
+
+      <!-- Cart Footer -->
+      <div class="p-6 border-t border-leafBorder bg-citrusMist space-y-4">
+        <div class="space-y-1.5 text-sm">
+          <div class="flex justify-between text-peelGreenLight">
+            <span>Subtotal</span>
+            <span id="cartSubtotal" class="font-bold text-peelGreen">₱0.00</span>
+          </div>
+          <div class="flex justify-between text-peelGreenLight">
+            <span>Chilled Delivery (MM &amp; Davao)</span>
+            <span id="cartShippingCost" class="font-bold text-peelGreen">₱99.00</span>
+          </div>
+          <div class="flex justify-between text-base font-extrabold text-peelGreen pt-2 border-t border-leafBorder">
+            <span>Estimated Total</span>
+            <span id="cartTotal" class="font-display text-xl">₱0.00</span>
+          </div>
+        </div>
+        <button id="checkoutBtn" type="button" onclick="openCheckoutModal()" disabled class="w-full bg-peelGreen disabled:opacity-40 hover:bg-tangerine text-suncream font-extrabold py-3.5 px-6 rounded-full shadow-md transition">
+          Checkout Chilled Order
+        </button>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Simulated Checkout & Philippine Peso Receipt Modal -->
+  <div id="checkoutModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+    <div onclick="closeCheckoutModal()" class="fixed inset-0 bg-peelGreen/65 backdrop-blur-xs"></div>
+    <div class="relative z-10 bg-suncream border-2 border-leafBorder rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl text-center">
+      <div class="w-14 h-14 rounded-full bg-sunnyLemon/50 text-peelGreen flex items-center justify-center mx-auto mb-3 text-2xl font-black">☀️</div>
+      <span class="text-[11px] font-extrabold uppercase tracking-widest text-tangerine">Sunsip Order Receipt</span>
+      <h3 class="font-display font-black text-2xl text-peelGreen mt-1">Salamat! Your Cooler is Packing</h3>
+      <p class="text-xs sm:text-sm text-peelGreenLight mt-2 leading-relaxed">
+        We’re cold-pressing and chilling your <strong class="text-peelGreen">Sunsip Refreshment</strong> order now for dispatch.
+      </p>
+      <div id="checkoutReceiptBox" class="mt-4 bg-citrusMist border border-leafBorder rounded-2xl p-4 text-left text-xs space-y-1.5">
+        <!-- Receipt injected dynamically -->
+      </div>
+      <button type="button" onclick="completeDemoOrder()" class="mt-6 w-full bg-peelGreen hover:bg-tangerine text-suncream font-extrabold text-sm py-3.5 rounded-full transition">
+        Done &amp; Continue Shopping
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="bg-peelGreen text-suncream px-5 py-3.5 rounded-2xl shadow-citrus-lg border border-sunnyLemon/40 flex items-center gap-3 text-sm font-bold">
+      <span class="text-sunnyLemon text-lg">🍋</span>
+      <span id="toastMessage">Added to your chilled cooler!</span>
+    </div>
+  </div>
+
+  <!-- Interactive Storefront Script -->
+  <script>
+    // Format numbers in Philippine Pesos (₱)
+    function formatPHP(amount) {
+      return '₱' + amount.toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    // 6 Curated Philippine-Inspired Refreshment Products
+    const products = [
+      {
+        id: 'calamansi-honey-fizz',
+        name: 'Calamansi Honey Fizz',
+        category: 'Sparkling Coolers',
+        badge: 'Best Seller',
+        flavorNotes: 'Batangas Calamansi • Wildflower Honey • Crisp Fizz',
+        basePrice: 145.00,
+        bottleColor: '#FACC15',
+        accentColor: '#F97316',
+        isPackOnly: false,
+        ingredients: 'Cold-pressed Batangas calamansi juice (28%), Bukidnon raw wildflower honey, triple-filtered sparkling mountain water, calamansi peel oil.',
+        nutrition: '68 kcal • 14g Natural Honey Sugars • 140% Daily Vitamin C • 0g Fat'
+      },
+      {
+        id: 'davao-pomelo-mint',
+        name: 'Davao Pomelo & Mint Splash',
+        category: 'Cold-Pressed Juices',
+        badge: 'Hydrating',
+        flavorNotes: 'Pink Davao Pomelo • Garden Spearmint • Lime Zest',
+        basePrice: 165.00,
+        bottleColor: '#FB7185',
+        accentColor: '#1B4332',
+        isPackOnly: false,
+        ingredients: '100% cold-pressed Davao ruby pomelo juice, crushed Tagaytay spearmint leaves, splash of dayap lime juice.',
+        nutrition: '75 kcal • 16g Fruit Sugars • High Potassium & Electrolytes • 0g Added Sugar'
+      },
+      {
+        id: 'guimaras-mango-sunset',
+        name: 'Guimaras Mango Sunset',
+        category: 'Cold-Pressed Juices',
+        badge: 'Fan Favorite',
+        flavorNotes: 'Sweet Guimaras Mango • Valencia Orange • Passionfruit',
+        basePrice: 175.00,
+        bottleColor: '#F97316',
+        accentColor: '#FACC15',
+        isPackOnly: false,
+        ingredients: 'Cold-pressed Guimaras Carabao mango puree, fresh Valencia orange juice, wild Mindanao passionfruit pulp.',
+        nutrition: '110 kcal • 22g Natural Fruit Sugars • Rich in Vitamin A & C • 0g Preservatives'
+      },
+      {
+        id: 'hibiscus-berry-cooler',
+        name: 'Hibiscus Berry Cooler',
+        category: 'Botanical Iced Teas',
+        badge: 'Caffeine-Free',
+        flavorNotes: 'Organic Roselle Hibiscus • Benguet Strawberry • Lemon',
+        basePrice: 150.00,
+        bottleColor: '#E11D48',
+        accentColor: '#FACC15',
+        isPackOnly: false,
+        ingredients: 'Slow-steeped Philippine roselle hibiscus petals, cold-pressed La Trinidad strawberries, lemon juice, organic coco nectar.',
+        nutrition: '55 kcal • 11g Coco Nectar • Rich in Antioxidants & Anthocyanins • 0mg Caffeine'
+      },
+      {
+        id: 'pineapple-ginger-zest',
+        name: 'Pineapple Ginger Zest',
+        category: 'Cold-Pressed Juices',
+        badge: 'Immunity Boost',
+        flavorNotes: 'Bukidnon Queen Pineapple • Native Ginger • Turmeric',
+        basePrice: 160.00,
+        bottleColor: '#EAB308',
+        accentColor: '#2D6A4F',
+        isPackOnly: false,
+        ingredients: 'Cold-pressed Bukidnon sweet pineapple, raw native ginger root (8%), fresh yellow turmeric juice, pinch of black pepper.',
+        nutrition: '85 kcal • 18g Natural Fruit Sugars • Anti-inflammatory Gingerol • 0g Added Sugar'
+      },
+      {
+        id: 'barkada-taster-box',
+        name: 'Sunsip Barkada 6-Bottle Taster Box',
+        category: 'Party Packs',
+        badge: 'Save ₱90',
+        flavorNotes: 'All 5 Signature Flavors + Bonus Calamansi Ginger Shot',
+        basePrice: 850.00,
+        bottleColor: '#2D6A4F',
+        accentColor: '#F97316',
+        isPackOnly: true,
+        ingredients: 'Includes 1× Calamansi Honey Fizz, 1× Davao Pomelo & Mint, 1× Guimaras Mango Sunset, 1× Hibiscus Berry Cooler, 1× Pineapple Ginger Zest, plus 1× Bonus 330ml Bottle.',
+        nutrition: 'Assorted 330ml Glass Bottles • Delivered in an Insulated Sunsip Carrier Box'
+      }
+    ];
+
+    // Size Options & Multipliers
+    const sizeOptions = [
+      { label: '330ml Bottle', multiplier: 1.0 },
+      { label: '500ml Bottle', multiplier: 1.35 },
+      { label: '6-Pack', multiplier: 5.4 }
+    ];
+
+    // App State
+    let activeCategory = 'All';
+    let searchQuery = '';
+    let selectedSizes = {};
+    let cart = []; // { key, id, name, variant, price, qty }
+    let quizState = { mood: 'Zesty & Energizing', fizz: 'Sparkling & Bubbly' };
+    let subState = { size: '6-Bottle Box', price: 790, orig: 930, cadence: 'Weekly Delivery' };
+
+    products.forEach(p => {
+      selectedSizes[p.id] = p.isPackOnly ? '6-Bottle Box (330ml)' : '330ml Bottle';
+    });
+
+    function getProductPrice(product) {
+      if (product.isPackOnly) return product.basePrice;
+      const chosen = selectedSizes[product.id];
+      const opt = sizeOptions.find(s => s.label === chosen) || sizeOptions[0];
+      return Math.round(product.basePrice * opt.multiplier);
+    }
+
+    // Custom Illustrated Chilled Bottle / Party Box SVG
+    function getDrinkSVG(product, sizeClass = 'w-40 h-48') {
+      if (product.isPackOnly) {
+        return `
+          <svg viewBox="0 0 220 220" class="${sizeClass} mx-auto drop-shadow-md transition-transform duration-300 group-hover:scale-105" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="110" cy="204" rx="78" ry="9" fill="#1B4332" fill-opacity="0.14"/>
+            <!-- 3 Bottles Peeking Out -->
+            <rect x="52" y="34" width="28" height="75" rx="10" fill="#FACC15" stroke="#1B4332" stroke-width="2.5"/>
+            <rect x="96" y="26" width="28" height="82" rx="10" fill="#F97316" stroke="#1B4332" stroke-width="2.5"/>
+            <rect x="140" y="34" width="28" height="75" rx="10" fill="#FB7185" stroke="#1B4332" stroke-width="2.5"/>
+            <!-- Carrier Box -->
+            <rect x="34" y="88" width="152" height="108" rx="16" fill="#2D6A4F" stroke="#1B4332" stroke-width="3"/>
+            <rect x="46" y="102" width="128" height="80" rx="10" fill="#FFFDF7" stroke="#1B4332" stroke-width="2"/>
+            <circle cx="110" cy="126" r="14" fill="#FACC15" stroke="#1B4332" stroke-width="2"/>
+            <text x="110" y="154" text-anchor="middle" fill="#1B4332" font-family="Outfit, sans-serif" font-weight="900" font-size="11">BARKADA BOX</text>
+            <text x="110" y="168" text-anchor="middle" fill="#F97316" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="8">6 CHILLED BOTTLES</text>
+          </svg>
+        `;
+      }
+
+      return `
+        <svg viewBox="0 0 200 230" class="${sizeClass} mx-auto drop-shadow-md transition-transform duration-300 group-hover:scale-105" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="100" cy="216" rx="54" ry="8" fill="#1B4332" fill-opacity="0.14"/>
+          <!-- Decorative Citrus Slice Behind Bottle -->
+          <circle cx="142" cy="176" r="24" fill="${product.accentColor}" stroke="#1B4332" stroke-width="2.2"/>
+          <circle cx="142" cy="176" r="18" fill="#FFFDF7" fill-opacity="0.9"/>
+          <path d="M142 158V194M124 176H160" stroke="${product.accentColor}" stroke-width="2.2"/>
+          <!-- Tropical Leaf -->
+          <path d="M56 184C34 166 32 136 52 118C64 140 66 162 56 184Z" fill="#2D6A4F" stroke="#1B4332" stroke-width="2"/>
+          <!-- Bottle Cap -->
+          <rect x="85" y="14" width="30" height="13" rx="4" fill="#1B4332"/>
+          <!-- Glass Bottle Body -->
+          <path d="M88 27H112L119 62C128 71 132 82 132 96V194C132 205 123 214 112 214H88C77 214 68 205 68 194V96C68 82 72 71 81 62L88 27Z" fill="${product.bottleColor}" stroke="#1B4332" stroke-width="3"/>
+          <!-- Glass Shine -->
+          <path d="M77 92V188" stroke="#FFFDF7" stroke-width="3.2" stroke-linecap="round" stroke-opacity="0.6"/>
+          <!-- Bottle Label -->
+          <rect x="74" y="104" width="52" height="74" rx="9" fill="#FFFDF7" stroke="#1B4332" stroke-width="2"/>
+          <circle cx="100" cy="124" r="10" fill="${product.accentColor}"/>
+          <text x="100" y="146" text-anchor="middle" fill="#1B4332" font-family="Outfit, sans-serif" font-weight="900" font-size="9">SUNSIP</text>
+          <text x="100" y="157" text-anchor="middle" fill="#2D6A4F" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="6.4">COLD-PRESSED</text>
+          <text x="100" y="168" text-anchor="middle" fill="#F97316" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="6.2">100% PH FRUIT</text>
+          <!-- Chilled Condensation Drops -->
+          <ellipse cx="120" cy="84" rx="2.5" ry="4" fill="#FFFDF7"/>
+          <circle cx="79" cy="76" r="2.2" fill="#FFFDF7"/>
+          <circle cx="121" cy="188" r="2.5" fill="#FFFDF7"/>
+        </svg>
+      `;
+    }
+
+    // Render Product Grid
+    function renderProducts() {
+      const grid = document.getElementById('productGrid');
+      const emptyState = document.getElementById('emptyState');
+      const searchBanner = document.getElementById('searchStatusBanner');
+      const searchQueryDisplay = document.getElementById('searchQueryDisplay');
+
+      const filtered = products.filter(p => {
+        const matchesCat = activeCategory === 'All' || p.category === activeCategory;
+        const q = searchQuery.trim().toLowerCase();
+        const matchesSearch = !q ||
+          p.name.toLowerCase().includes(q) ||
+          p.flavorNotes.toLowerCase().includes(q) ||
+          p.ingredients.toLowerCase().includes(q) ||
+          p.category.toLowerCase().includes(q);
+        return matchesCat && matchesSearch;
+      });
+
+      if (searchQuery.trim() !== '') {
+        searchBanner.classList.remove('hidden');
+        searchQueryDisplay.textContent = searchQuery;
+      } else {
+        searchBanner.classList.add('hidden');
+      }
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+
+      grid.innerHTML = filtered.map(product => {
+        const currentPrice = getProductPrice(product);
+        const currentSize = selectedSizes[product.id];
+
+        return `
+          <article class="group bg-white border-2 border-leafBorder rounded-3xl p-6 shadow-citrus hover:shadow-citrus-lg transition flex flex-col justify-between">
+            <div>
+              <!-- Category & Promo Badges -->
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="text-[11px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full bg-citrusMist text-peelGreen border border-leafBorder">
+                  ${product.category}
+                </span>
+                <span class="text-[11px] font-extrabold px-3 py-1 rounded-full bg-sunnyLemon/45 text-peelGreen">
+                  ${product.badge}
+                </span>
+              </div>
+
+              <!-- Clickable Illustrated Bottle Showcase -->
+              <div onclick="openQuickView('${product.id}')" class="cursor-pointer bg-gradient-to-b from-warmSand/75 to-citrusMist/80 hover:from-warmSand rounded-2xl py-5 px-4 mb-5 border border-leafBorder relative overflow-hidden transition">
+                ${getDrinkSVG(product)}
+                <span class="absolute bottom-2.5 right-2.5 bg-white/95 border border-leafBorder text-peelGreen text-[10px] font-extrabold px-2.5 py-1 rounded-full">
+                  Ingredients &amp; Info
+                </span>
+              </div>
+
+              <!-- Title, Price & Flavor Notes -->
+              <div class="flex items-start justify-between gap-2">
+                <h3 onclick="openQuickView('${product.id}')" class="cursor-pointer font-display font-extrabold text-xl text-peelGreen hover:text-tangerine transition leading-snug">${product.name}</h3>
+                <span class="font-display font-black text-xl text-peelGreen shrink-0">${formatPHP(currentPrice)}</span>
+              </div>
+              <p class="text-xs font-bold text-tangerine mt-1">${product.flavorNotes}</p>
+            </div>
+
+            <!-- Size Selector & Add to Cart -->
+            <div class="mt-5 pt-4 border-t border-leafBorder space-y-3">
+              <div>
+                <label class="block text-[11px] font-extrabold uppercase tracking-wider text-peelGreenLight mb-1.5">Bottle Format</label>
+                ${product.isPackOnly ? `
+                  <div class="text-xs font-extrabold py-2 px-3 rounded-xl bg-citrusMist border border-leafBorder text-peelGreen text-center">
+                    6-Bottle Taster Box (6 × 330ml)
+                  </div>
+                ` : `
+                  <div class="grid grid-cols-3 gap-1.5">
+                    ${sizeOptions.map(opt => `
+                      <button
+                        type="button"
+                        onclick="selectSize('${product.id}', '${opt.label}')"
+                        class="text-[11px] font-extrabold py-1.5 px-1.5 rounded-xl border transition ${
+                          currentSize === opt.label
+                            ? 'bg-peelGreen text-suncream border-peelGreen'
+                            : 'bg-suncream text-peelGreen border-leafBorder hover:border-peelGreen/40'
+                        }">
+                        ${opt.label}
+                      </button>
+                    `).join('')}
+                  </div>
+                `}
+              </div>
+
+              <button
+                type="button"
+                onclick="addToCart('${product.id}')"
+                class="w-full bg-tangerine hover:bg-tangerineDark text-white font-extrabold text-sm py-3.5 px-5 rounded-full shadow-sm transition active:scale-95 flex items-center justify-center gap-2">
+                <span>Add to Cart</span>
+                <span>•</span>
+                <span>${formatPHP(currentPrice)}</span>
+              </button>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function selectSize(productId, sizeLabel) {
+      selectedSizes[productId] = sizeLabel;
+      renderProducts();
+    }
+
+    // Category Filter Logic
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => filterByCategory(btn.dataset.filter));
+    });
+
+    function filterByCategory(category) {
+      activeCategory = category;
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        const isActive = b.dataset.filter === category;
+        b.classList.toggle('active', isActive);
+        b.classList.toggle('bg-peelGreen', isActive);
+        b.classList.toggle('text-suncream', isActive);
+        b.classList.toggle('bg-citrusMist', !isActive);
+        b.classList.toggle('text-peelGreen', !isActive);
+      });
+      renderProducts();
+    }
+
+    // Real-time Search Logic
+    const searchDesktop = document.getElementById('searchInputDesktop');
+    const searchMobile = document.getElementById('searchInputMobile');
+    const clearSearchDesktop = document.getElementById('clearSearchDesktop');
+
+    function handleSearch(val) {
+      searchQuery = val;
+      if (searchDesktop.value !== val) searchDesktop.value = val;
+      if (searchMobile.value !== val) searchMobile.value = val;
+      clearSearchDesktop.classList.toggle('hidden', !val);
+      renderProducts();
+    }
+
+    searchDesktop.addEventListener('input', e => handleSearch(e.target.value));
+    searchMobile.addEventListener('input', e => handleSearch(e.target.value));
+    clearSearchDesktop.addEventListener('click', () => handleSearch(''));
+
+    function resetFilters() {
+      handleSearch('');
+      filterByCategory('All');
+    }
+
+    // Mobile Menu
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    function closeMobileMenu() { mobileMenu.classList.add('hidden'); }
+
+    // Quick-View Modal
+    function openQuickView(productId) {
+      const product = products.find(p => p.id === productId);
+      if (!product) return;
+      const currentPrice = getProductPrice(product);
+      const currentSize = selectedSizes[product.id];
+
+      document.getElementById('quickViewContent').innerHTML = `
+        <div class="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center">
+          <div class="sm:col-span-5 bg-warmSand rounded-2xl p-5 border border-leafBorder">
+            ${getDrinkSVG(product, 'w-36 h-44')}
+          </div>
+          <div class="sm:col-span-7 space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="text-[11px] font-extrabold uppercase px-3 py-1 rounded-full bg-citrusMist border border-leafBorder text-peelGreen">${product.category}</span>
+              <span class="text-[11px] font-extrabold px-3 py-1 rounded-full bg-sunnyLemon/50 text-peelGreen">${product.badge}</span>
+            </div>
+            <h3 class="font-display font-black text-2xl sm:text-3xl text-peelGreen">${product.name}</h3>
+            <p class="font-display font-black text-2xl text-tangerine">${formatPHP(currentPrice)} <span class="text-xs font-sans font-bold text-peelGreenLight">(${currentSize})</span></p>
+            <p class="text-xs font-extrabold text-peelGreen">${product.flavorNotes}</p>
+            <div class="bg-citrusMist border border-leafBorder rounded-2xl p-3.5 text-xs space-y-2">
+              <p><strong class="text-peelGreen">Cold-Pressed Ingredients:</strong> <span class="text-peelGreenLight">${product.ingredients}</span></p>
+              <p><strong class="text-peelGreen">Nutrition Highlights:</strong> <span class="text-peelGreenLight">${product.nutrition}</span></p>
+            </div>
+            <button type="button" onclick="addToCart('${product.id}'); closeQuickView();" class="w-full bg-tangerine hover:bg-tangerineDark text-white font-extrabold text-sm py-3.5 rounded-full shadow-md transition">
+              + Add Chilled Drink to Cart • ${formatPHP(currentPrice)}
+            </button>
+          </div>
+        </div>
+      `;
+
+      const modal = document.getElementById('quickViewModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeQuickView() {
+      const modal = document.getElementById('quickViewModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // 2-Step 'Find Your Sip' Mood Quiz Logic (Synced Inline + Modal)
+    function updateQuizMatch() {
+      let match = products[0]; // Calamansi Honey Fizz
+      let reason = 'Zesty Batangas calamansi lifted with crisp bubbles and a touch of raw honey for instant afternoon revival.';
+
+      if (quizState.mood === 'Herbal & Calm') {
+        match = products.find(p => p.id === 'hibiscus-berry-cooler');
+        reason = 'Caffeine-free organic roselle hibiscus steeped with Benguet strawberries for a soothing botanical cool-down.';
+      } else if (quizState.mood === 'Crisp & Hydrating') {
+        match = products.find(p => p.id === 'davao-pomelo-mint');
+        reason = 'Juicy pink Davao pomelo paired with cooling Tagaytay spearmint to replenish electrolytes fast.';
+      } else if (quizState.mood === 'Fruity & Sweet') {
+        match = products.find(p => p.id === 'guimaras-mango-sunset');
+        reason = 'Lush, sun-ripened Guimaras Carabao mango blended with passionfruit for pure tropical sweetness.';
+      } else if (quizState.fizz === 'Still & Pure Pressed') {
+        match = products.find(p => p.id === 'pineapple-ginger-zest');
+        reason = 'Cold-pressed Bukidnon pineapple with a bright native ginger & turmeric kick—zero bubbles, maximum zing.';
+      } else {
+        match = products.find(p => p.id === 'calamansi-honey-fizz');
+        reason = 'Zesty Batangas calamansi lifted with crisp bubbles and a touch of raw honey for instant afternoon revival.';
+      }
+
+      // Sync Inline Quiz Card
+      document.getElementById('inlineQuizMatchTitle').textContent = match.name;
+      document.getElementById('inlineQuizMatchNotes').textContent = `${match.category} • ${match.flavorNotes}`;
+      document.getElementById('inlineQuizMatchReason').textContent = reason;
+      document.getElementById('inlineQuizMatchPrice').textContent = formatPHP(match.basePrice);
+
+      // Sync Modal Quiz Card
+      document.getElementById('modalQuizTitle').textContent = match.name;
+      document.getElementById('modalQuizNotes').textContent = match.flavorNotes;
+      document.getElementById('modalQuizPrice').textContent = formatPHP(match.basePrice);
+
+      return match;
+    }
+
+    function setQuizMood(mood) {
+      quizState.mood = mood;
+      document.querySelectorAll('.inline-mood-btn, .modal-mood-btn').forEach(btn => {
+        const text = btn.dataset.mood || btn.textContent;
+        const active = text.includes(mood);
+        btn.classList.toggle('bg-peelGreen', active);
+        btn.classList.toggle('text-suncream', active);
+        btn.classList.toggle('border-peelGreen', active);
+        btn.classList.toggle('bg-white', !active);
+        btn.classList.toggle('text-peelGreen', !active);
+        btn.classList.toggle('border-leafBorder', !active);
+      });
+      updateQuizMatch();
+    }
+
+    function setQuizFizz(fizz) {
+      quizState.fizz = fizz;
+      document.querySelectorAll('.inline-fizz-btn, .modal-fizz-btn').forEach(btn => {
+        const key = btn.dataset.fizz || btn.textContent.trim();
+        const active = fizz.includes(key);
+        btn.classList.toggle('bg-tangerine', active);
+        btn.classList.toggle('text-white', active);
+        btn.classList.toggle('border-tangerine', active);
+        btn.classList.toggle('bg-white', !active);
+        btn.classList.toggle('text-peelGreen', !active);
+        btn.classList.toggle('border-leafBorder', !active);
+      });
+      updateQuizMatch();
+    }
+
+    document.querySelectorAll('.inline-mood-btn').forEach(btn => {
+      btn.addEventListener('click', () => setQuizMood(btn.dataset.mood));
+    });
+
+    document.querySelectorAll('.inline-fizz-btn').forEach(btn => {
+      btn.addEventListener('click', () => setQuizFizz(btn.dataset.fizz));
+    });
+
+    function addQuizMatchToCart() {
+      const match = updateQuizMatch();
+      addToCart(match.id, '330ml Bottle', match.basePrice, match.name);
+    }
+
+    function openQuizModal() {
+      const modal = document.getElementById('quizModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeQuizModal() {
+      const modal = document.getElementById('quizModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // Subscription Box Configurator Logic
+    document.querySelectorAll('.sub-size-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        subState.size = btn.dataset.size;
+        subState.price = parseFloat(btn.dataset.price);
+        subState.orig = parseFloat(btn.dataset.orig);
+
+        document.querySelectorAll('.sub-size-btn').forEach(b => {
+          const active = b.dataset.size === subState.size;
+          b.classList.toggle('bg-peelGreen', active);
+          b.classList.toggle('text-suncream', active);
+          b.classList.toggle('border-peelGreen', active);
+          b.classList.toggle('bg-citrusMist', !active);
+          b.classList.toggle('text-peelGreen', !active);
+        });
+
+        document.getElementById('subDisplayPrice').textContent = formatPHP(subState.price);
+        document.getElementById('subDisplayOrig').textContent = formatPHP(subState.orig);
+      });
+    });
+
+    document.querySelectorAll('.sub-cadence-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        subState.cadence = btn.dataset.cadence;
+        document.querySelectorAll('.sub-cadence-btn').forEach(b => {
+          const active = b.dataset.cadence === subState.cadence;
+          b.classList.toggle('bg-tangerine', active);
+          b.classList.toggle('text-white', active);
+          b.classList.toggle('border-tangerine', active);
+          b.classList.toggle('bg-citrusMist', !active);
+          b.classList.toggle('text-peelGreen', !active);
+        });
+      });
+    });
+
+    function addSubscriptionToCart() {
+      const mix = document.getElementById('subMixSelect').value;
+      const title = `Chilled Subscription (${subState.size} • ${subState.cadence})`;
+      addToCart('chilled-sub', mix, subState.price, title);
+      toggleCartDrawer(true);
+    }
+
+    // Cart Operations
+    function addToCart(productId, customVariant = null, customPrice = null, customName = null) {
+      const product = products.find(p => p.id === productId);
+      const variant = customVariant || (product ? selectedSizes[product.id] : '330ml Bottle');
+      const price = customPrice !== null ? customPrice : getProductPrice(product);
+      const name = customName || product.name;
+      const key = `${productId}__${variant}__${name}`;
+
+      const existing = cart.find(item => item.key === key);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ key, id: productId, name, variant, price, qty: 1 });
+      }
+
+      updateCartUI();
+      showToast(`Chilled & added: ${name}`);
+    }
+
+    function updateItemQty(key, delta) {
+      const idx = cart.findIndex(item => item.key === key);
+      if (idx === -1) return;
+      cart[idx].qty += delta;
+      if (cart[idx].qty <= 0) cart.splice(idx, 1);
+      updateCartUI();
+    }
+
+    function removeCartItem(key) {
+      cart = cart.filter(item => item.key !== key);
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const badge = document.getElementById('cartBadge');
+      const container = document.getElementById('cartItemsContainer');
+      const subtotalEl = document.getElementById('cartSubtotal');
+      const shippingEl = document.getElementById('cartShippingCost');
+      const totalEl = document.getElementById('cartTotal');
+      const progressText = document.getElementById('shippingProgressText');
+      const progressBar = document.getElementById('shippingProgressBar');
+      const checkoutBtn = document.getElementById('checkoutBtn');
+
+      const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      const threshold = 1200;
+      const shipping = subtotal === 0 ? 0 : (subtotal >= threshold ? 0 : 99);
+
+      badge.textContent = totalQty;
+
+      // Free Chilled Delivery Progress Bar toward ₱1,200
+      const pct = Math.min(100, (subtotal / threshold) * 100);
+      progressBar.style.width = `${pct}%`;
+
+      if (subtotal >= threshold) {
+        progressText.innerHTML = `🧊 You unlocked <span class="text-peelGreenLight font-extrabold">FREE Chilled Delivery!</span>`;
+        shippingEl.textContent = 'FREE';
+        shippingEl.classList.add('text-tangerine');
+      } else {
+        const remaining = threshold - subtotal;
+        progressText.innerHTML = `Add <span class="text-tangerine font-extrabold">${formatPHP(remaining)}</span> more for <span class="underline">FREE Chilled Delivery</span>!`;
+        shippingEl.textContent = subtotal === 0 ? '₱0.00' : formatPHP(shipping);
+        shippingEl.classList.remove('text-tangerine');
+      }
+
+      subtotalEl.textContent = formatPHP(subtotal);
+      totalEl.textContent = formatPHP(subtotal + shipping);
+      checkoutBtn.disabled = cart.length === 0;
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-14 space-y-3">
+            <div class="w-16 h-16 rounded-full bg-warmSand border border-sunnyLemon flex items-center justify-center mx-auto text-2xl">🍹</div>
+            <p class="font-display font-extrabold text-xl text-peelGreen">Your chilled cooler is empty</p>
+            <p class="text-xs text-peelGreenLight max-w-xs mx-auto">Add ₱1,200 worth of cold-pressed juices and coolers for free chilled delivery in Metro Manila &amp; Davao.</p>
+            <button type="button" onclick="toggleCartDrawer(false)" class="mt-2 inline-block bg-peelGreen text-suncream text-xs font-extrabold px-5 py-2.5 rounded-full">Explore Refreshments</button>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = cart.map(item => `
+        <div class="bg-white border border-leafBorder rounded-2xl p-4 flex items-center justify-between gap-3">
+          <div class="min-w-0">
+            <h4 class="font-display font-extrabold text-base text-peelGreen truncate">${item.name}</h4>
+            <p class="text-xs text-peelGreenLight truncate">Format: <span class="font-bold text-peelGreen">${item.variant}</span></p>
+            <p class="text-sm font-extrabold text-tangerine mt-1">${formatPHP(item.price * item.qty)}</p>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <div class="flex items-center bg-citrusMist border border-leafBorder rounded-full">
+              <button type="button" onclick="updateItemQty('${item.key}', -1)" class="w-7 h-7 flex items-center justify-center font-extrabold text-peelGreen hover:text-tangerine">−</button>
+              <span class="px-2 text-xs font-extrabold text-peelGreen">${item.qty}</span>
+              <button type="button" onclick="updateItemQty('${item.key}', 1)" class="w-7 h-7 flex items-center justify-center font-extrabold text-peelGreen hover:text-tangerine">+</button>
+            </div>
+            <button type="button" onclick="removeCartItem('${item.key}')" class="text-xs text-peelGreenLight hover:text-red-600 p-1" aria-label="Remove item">✕</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function toggleCartDrawer(open) {
+      const overlay = document.getElementById('cartOverlay');
+      overlay.classList.toggle('hidden', !open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+
+    // Simulated Checkout & Itemized Philippine Peso Receipt
+    function openCheckoutModal() {
+      toggleCartDrawer(false);
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      const shipping = subtotal >= 1200 ? 0 : 99;
+      const orderNum = 'SUN-' + Math.floor(100000 + Math.random() * 900000);
+
+      document.getElementById('checkoutReceiptBox').innerHTML = `
+        <div class="flex justify-between font-extrabold text-peelGreen pb-1.5 border-b border-leafBorder">
+          <span>Order #${orderNum}</span>
+          <span class="text-tangerine">Chilled Dispatch</span>
+        </div>
+        ${cart.map(i => `
+          <div class="flex justify-between text-peelGreenLight">
+            <span class="truncate pr-2">${i.qty}× ${i.name} (${i.variant})</span>
+            <span class="shrink-0 font-bold text-peelGreen">${formatPHP(i.price * i.qty)}</span>
+          </div>
+        `).join('')}
+        <div class="flex justify-between text-peelGreenLight pt-1 border-t border-leafBorder/60">
+          <span>Chilled Delivery</span>
+          <span>${shipping === 0 ? 'FREE' : formatPHP(shipping)}</span>
+        </div>
+        <div class="flex justify-between font-extrabold text-sm text-peelGreen pt-1.5 border-t border-leafBorder">
+          <span>Total Paid (PHP)</span>
+          <span class="font-display text-base text-tangerine">${formatPHP(subtotal + shipping)}</span>
+        </div>
+      `;
+
+      const modal = document.getElementById('checkoutModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeCheckoutModal() {
+      const modal = document.getElementById('checkoutModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function completeDemoOrder() {
+      cart = [];
+      updateCartUI();
+      closeCheckoutModal();
+      showToast('Salamat! Your chilled Sunsip cooler is on the way.');
+    }
+
+    // Newsletter Form
+    document.getElementById('newsletterForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const input = document.getElementById('newsletterEmail');
+      if (!input.value.trim()) return;
+      showToast('Welcome to Sunsip! Use code SUNSHINE10 for 10% off.');
+      input.value = '';
+    });
+
+    // Toast Notification
+    let toastTimer;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMessage').textContent = msg;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 3200);
+    }
+
+    // Initialize Storefront
+    renderProducts();
+    updateCartUI();
+    updateQuizMatch();
+  </script>
+</body>
+</html>

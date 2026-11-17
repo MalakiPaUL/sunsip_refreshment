@@ -1,0 +1,60 @@
+<!-- 9. Clean Footer -->
+<footer class="bg-peelGreen text-suncream border-t border-peelGreenLight">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
+      <!-- Brand & Newsletter (5 cols) -->
+      <div class="lg:col-span-5 space-y-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-sunnyLemon text-peelGreen flex items-center justify-center font-display font-black text-xl">S</div>
+          <span class="font-display font-black text-2xl text-suncream">Sunsip Refreshment</span>
+        </div>
+        <p class="text-sm text-citrusMist/85 leading-relaxed max-w-md">
+          Cold-pressed Philippine juices, sparkling coolers, and botanical iced teas delivered ice-chilled. Subscribe for 10% off your first order.
+        </p>
+        <form id="newsletterForm" class="flex flex-col sm:flex-row gap-2.5 pt-2 max-w-md">
+          <input
+            type="email"
+            id="newsletterEmail"
+            required
+            placeholder="Enter your email address..."
+            class="flex-1 bg-peelGreenLight/70 border border-sunnyLemon/30 rounded-full px-4 py-3 text-sm text-suncream placeholder-citrusMist/60 focus:outline-none focus:ring-2 focus:ring-sunnyLemon"
+          />
+          <button type="submit" class="bg-sunnyLemon hover:bg-tangerine hover:text-white text-peelGreen font-extrabold text-xs uppercase tracking-wider px-6 py-3 rounded-full transition shrink-0">
+            Get 10% Off
+          </button>
+        </form>
+      </div>
+
+      <!-- Delivery Coverage Info (4 cols) -->
+      <div class="lg:col-span-4">
+        <h4 class="font-display font-extrabold text-lg text-sunnyLemon mb-4">Chilled Delivery Coverage</h4>
+        <ul class="space-y-2.5 text-sm text-citrusMist/90">
+          <li>🧊 <strong>Metro Manila:</strong> Same-day chilled rider (Order before 2 PM)</li>
+          <li>🧊 <strong>Davao City &amp; Panabo:</strong> Same-day insulated van delivery</li>
+          <li>🚚 <strong>Free Delivery:</strong> Orders ₱1,200+ (₱99 flat rate below ₱1,200)</li>
+          <li>📱 <strong>Concierge:</strong> +63 (917) 630-8821 • hello@sunsip.ph</li>
+        </ul>
+      </div>
+
+      <!-- Shop & Social Links (3 cols) -->
+      <div class="lg:col-span-3">
+        <h4 class="font-display font-extrabold text-lg text-sunnyLemon mb-4">Explore &amp; Connect</h4>
+        <ul class="space-y-2.5 text-sm text-citrusMist/90">
+          <li><a href="#drink-menu" onclick="filterByCategory('All')" class="hover:text-sunnyLemon transition">Shop All Refreshments</a></li>
+          <li><a href="#sip-quiz" class="hover:text-sunnyLemon transition">Find Your Sip Quiz</a></li>
+          <li><a href="#subscriptions" class="hover:text-sunnyLemon transition">Weekly Chilled Box</a></li>
+          <li class="pt-2 flex items-center gap-3">
+            <a href="#drink-menu" class="px-3 py-1.5 rounded-full bg-peelGreenLight text-xs font-bold hover:bg-tangerine transition">Instagram</a>
+            <a href="#drink-menu" class="px-3 py-1.5 rounded-full bg-peelGreenLight text-xs font-bold hover:bg-tangerine transition">TikTok</a>
+            <a href="#drink-menu" class="px-3 py-1.5 rounded-full bg-peelGreenLight text-xs font-bold hover:bg-tangerine transition">Facebook</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 pt-6 border-t border-peelGreenLight flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-citrusMist/75">
+      <p>© 2026 Sunsip Refreshment Philippines. All rights reserved.</p>
+      <p>Cold-Pressed Daily • Metro Manila &amp; Davao Chilled Delivery</p>
+    </div>
+  </div>
+</footer>

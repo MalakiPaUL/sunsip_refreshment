@@ -1,0 +1,80 @@
+<!-- 6. 'Build Your Chilled Box' Weekly Hydration Subscription Section -->
+<section id="subscriptions" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="bg-peelGreen text-suncream rounded-[36px] p-8 sm:p-12 lg:p-14 shadow-citrus-lg relative overflow-hidden">
+    <div class="absolute -right-20 -top-20 w-80 h-80 rounded-full bg-sunnyLemon/15 pointer-events-none"></div>
+    <div class="absolute -left-20 -bottom-20 w-80 h-80 rounded-full bg-tangerine/20 pointer-events-none"></div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
+      <div class="lg:col-span-6 space-y-5">
+        <span class="inline-block bg-sunnyLemon text-peelGreen text-xs font-extrabold uppercase tracking-widest px-3.5 py-1 rounded-full">Save 15% Automatically</span>
+        <h2 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl leading-tight">
+          Build Your Chilled Box — Hydration on Autopilot
+        </h2>
+        <p class="text-citrusMist/90 text-sm sm:text-base leading-relaxed">
+          Keep your fridge stocked with cold-pressed Philippine juices and sparkling coolers. Choose your box size and recurring schedule—skip, swap flavors, or pause anytime.
+        </p>
+        <ul class="space-y-2 text-xs sm:text-sm text-sunnyLemon font-semibold">
+          <li class="flex items-center gap-2"><span>✓</span> Instant 15% subscriber savings on every chilled drop</li>
+          <li class="flex items-center gap-2"><span>✓</span> Pressed the morning of delivery with insulated ice packs</li>
+          <li class="flex items-center gap-2"><span>✓</span> Free chilled delivery unlocked on 12-Bottle Boxes</li>
+        </ul>
+      </div>
+
+      <!-- Interactive Chilled Box Configurator -->
+      <div class="lg:col-span-6 bg-suncream text-peelGreen rounded-3xl p-6 sm:p-8 shadow-xl space-y-5">
+        <!-- Box Size Selector -->
+        <div>
+          <label class="block text-xs font-extrabold uppercase tracking-wider text-peelGreenLight mb-2">1. Select Chilled Box Size</label>
+          <div class="grid grid-cols-2 gap-3" id="subSizeGroup">
+            <button type="button" data-size="6-Bottle Box" data-price="790" data-orig="930" class="sub-size-btn active border-2 border-peelGreen bg-peelGreen text-suncream rounded-2xl p-3.5 text-left transition">
+              <span class="block text-sm font-extrabold">6-Bottle Box</span>
+              <span class="block text-xs opacity-90 mt-0.5">₱790 / delivery</span>
+            </button>
+            <button type="button" data-size="12-Bottle Box" data-price="1490" data-orig="1760" class="sub-size-btn border-2 border-leafBorder bg-citrusMist hover:border-peelGreen/50 text-peelGreen rounded-2xl p-3.5 text-left transition">
+              <span class="block text-sm font-extrabold">12-Bottle Box</span>
+              <span class="block text-xs text-peelGreenLight mt-0.5">₱1,490 / delivery</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Delivery Frequency Toggle -->
+        <div>
+          <label class="block text-xs font-extrabold uppercase tracking-wider text-peelGreenLight mb-2">2. Delivery Schedule</label>
+          <div class="grid grid-cols-2 gap-3" id="subCadenceGroup">
+            <button type="button" data-cadence="Weekly Delivery" class="sub-cadence-btn active border-2 border-tangerine bg-tangerine text-white rounded-xl py-2.5 px-3 text-xs sm:text-sm font-extrabold transition">
+              Weekly
+            </button>
+            <button type="button" data-cadence="Bi-Weekly Delivery" class="sub-cadence-btn border-2 border-leafBorder bg-citrusMist hover:border-tangerine/50 text-peelGreen rounded-xl py-2.5 px-3 text-xs sm:text-sm font-extrabold transition">
+              Bi-Weekly
+            </button>
+          </div>
+        </div>
+
+        <!-- Curated Mix Selector -->
+        <div>
+          <label for="subMixSelect" class="block text-xs font-extrabold uppercase tracking-wider text-peelGreenLight mb-2">3. Flavor Lineup</label>
+          <select id="subMixSelect" class="w-full bg-citrusMist border border-leafBorder rounded-xl px-4 py-3 text-sm font-bold text-peelGreen focus:outline-none focus:ring-2 focus:ring-tangerine">
+            <option value="Sunshine Signature Variety Mix">Sunshine Signature Variety Mix</option>
+            <option value="All Cold-Pressed Citrus & Tropicals">All Cold-Pressed Citrus &amp; Tropicals</option>
+            <option value="Sparkling Coolers & Botanical Teas">Sparkling Coolers &amp; Botanical Teas</option>
+            <option value="Morning Immunity (Calamansi & Ginger)">Morning Immunity (Calamansi &amp; Ginger)</option>
+          </select>
+        </div>
+
+        <!-- Summary & Start Subscription CTA -->
+        <div class="pt-3 border-t border-leafBorder flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <span class="text-xs text-peelGreenLight block">Subscriber Price (Save 15%)</span>
+            <div class="flex items-baseline gap-2">
+              <span id="subDisplayPrice" class="font-display font-black text-2xl text-peelGreen">₱790.00</span>
+              <span id="subDisplayOrig" class="text-xs text-peelGreenLight line-through">₱930.00</span>
+            </div>
+          </div>
+          <button type="button" onclick="addSubscriptionToCart()" class="bg-tangerine hover:bg-tangerineDark text-white font-extrabold text-sm px-6 py-3.5 rounded-full shadow-md transition active:scale-95">
+            Add Chilled Box
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

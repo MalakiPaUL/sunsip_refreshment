@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sunsip Refreshment | Create Account</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Brand Design Tokens -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            suncream: '#FFFDF7',
+            citrusMist: '#F4F9F4',
+            warmSand: '#FEF6E4',
+            peelGreen: '#1B4332',
+            peelGreenLight: '#2D6A4F',
+            tangerine: '#F97316',
+            tangerineDark: '#EA580C',
+            sunnyLemon: '#FACC15',
+            coralPop: '#FB7185',
+            leafBorder: '#D8E6DC'
+          },
+          fontFamily: {
+            display: ['"Outfit"', 'system-ui', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            'citrus': '0 12px 32px -6px rgba(27, 67, 50, 0.08)',
+            'citrus-lg': '0 22px 48px -10px rgba(27, 67, 50, 0.16)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-gradient-to-br from-warmSand via-suncream to-citrusMist min-h-screen font-sans antialiased overflow-x-hidden">
+
+  <!-- Decorative Glows -->
+  <div class="fixed -top-24 -right-24 w-96 h-96 rounded-full bg-sunnyLemon/20 blur-3xl pointer-events-none"></div>
+  <div class="fixed -bottom-24 -left-24 w-96 h-96 rounded-full bg-tangerine/15 blur-3xl pointer-events-none"></div>
+  <div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 rounded-full bg-peelGreen/10 blur-2xl pointer-events-none"></div>
+
+  <div class="relative z-10 min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12">
+
+    <div class="max-w-md w-full space-y-8">
+      <!-- Brand -->
+      <div class="text-center mb-8">
+        <a href="index.html" class="flex items-center justify-center gap-3">
+          <img src="jpgs/logo.png" class="w-10 h-10 sm:w-12 sm:h-12" alt="Sunsip Logo" />
+          <span class="font-display font-black text-2xl text-peelGreen">Sunsip</span>
+        </a>
+        <p class="mt-2 text-xs font-extrabold uppercase tracking-widest text-tangerine">Join the Chilled Club</p>
+      </div>
+
+      <!-- Signup Card -->
+      <div class="bg-white/80 backdrop-blur-md border border-leafBorder rounded-3xl p-8 sm:p-10 shadow-citrus-lg relative overflow-hidden">
+        <!-- Decorative accent -->
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-tangerine via-sunnyLemon to-peelGreen"></div>
+
+        <div class="text-center mb-6">
+          <h2 class="font-display font-black text-2xl sm:text-3xl text-peelGreen">Create Account</h2>
+          <p class="text-peelGreenLight text-sm mt-1">Join Sunsip for chilled delivery & rewards</p>
+        </div>
+
+        <form id="signupForm" class="space-y-5" novalidate>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-extrabold uppercase tracking-wider text-peelGreenLight mb-2">First Name</label>
+              <input
+                type="text"
+                id="signupFirstName"
+                required
+                placeholder="Juan"
+                class="w-full bg-citrusMist border border-leafBorder rounded-xl px-4 py-3 text-sm font-bold text-peelGreen placeholder-peelGreenLight/60 focus:outline-none focus:ring-2 focus:ring-tangerine focus:bg-white transition"
+              />
+            </div>
+            <div>
+              <label class="block text-xs font-extrabold uppercase tracking-wider text-peelGreenLight mb-2">Last Name</label>
+              <input
+                type="text"
+                id="signupLastName"
+                required
+                placeholder="Dela Cruz"
+                class="w-full bg-citrusMist border border-leafBorder rounded-xl px-4 py-3 text-sm font-bold text-peelGreen placeholder-peelGreenLight/60 focus:outline-none focus:ring-2 focus:ring-tangerine focus:bg-white transition"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-extrabold uppercase tracking-wider text-peelGreenLight mb-2">Email Address</label>
+            <input
+              type="email"
+              id="signupEmail"
+              required
+              placeholder="you@example.com"
+              class="w-full bg-citrusMist border border-leafBorder rounded-xl px-4 py-3 text-sm font-bold text-peelGreen placeholder-peelGreenLight/60 focus:outline-none focus:ring-2 focus:ring-tangerine focus:bg-white transition"
+            />
+          </div>
+
+          <div class="relative">
+            <label class="block text-xs font-extrabold uppercase tracking-wider text-peelGreenLight mb-2">Password</label>
+            <input
+              type="password"
+              id="signupPassword"
+              required
+              placeholder="••••••••"
+              class="w-full bg-citrusMist border border-leafBorder rounded-xl px-4 py-3 text-sm font-bold text-peelGreen placeholder-peelGreenLight/60 focus:outline-none focus:ring-2 focus:ring-tangerine focus:bg-white transition pr-10"
+            />
+            <button type="button" id="togglePassword" class="absolute right-3 top-1/2 -translate-y-1/2 text-peelGreenLight hover:text-peelGreen text-sm">
+              👁️
+            </button>
+          </div>
+
+          <div class="relative">
+            <label class="block text-xs font-extrabold uppercase tracking-wider text-peelGreenLight mb-2">Confirm Password</label>
+            <input
+              type="password"
+              id="signupConfirmPassword"
+              required
+              placeholder="••••••••"
+              class="w-full bg-citrusMist border border-leafBorder rounded-xl px-4 py-3 text-sm font-bold text-peelGreen placeholder-peelGreenLight/60 focus:outline-none focus:ring-2 focus:ring-tangerine focus:bg-white transition pr-10"
+            />
+            <button type="button" id="toggleConfirmPassword" class="absolute right-3 top-1/2 -translate-y-1/2 text-peelGreenLight hover:text-peelGreen text-sm">
+              👁️
+            </button>
+          </div>
+
+          <div class="flex items-start gap-2">
+            <input type="checkbox" id="termsAgree" required class="w-4 h-4 rounded border-leafBorder text-tangerine focus:ring-tangerine bg-citrusMist mt-0.5">
+            <label for="termsAgree" class="text-xs text-peelGreenLight leading-relaxed">
+              I agree to the <a href="#" class="text-tangerine font-extrabold hover:underline">Terms of Service</a> and <a href="#" class="text-tangerine font-extrabold hover:underline">Privacy Policy</a>
+            </label>
+          </div>
+
+          <button
+            type="submit"
+            id="signupBtn"
+            class="w-full bg-tangerine hover:bg-tangerineDark text-white font-extrabold text-sm py-3.5 px-5 rounded-full shadow-citrus-lg transition transform active:scale-95 flex items-center justify-center gap-2">
+            <span>Create Account</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </button>
+        </form>
+
+        <div class="mt-8 text-center">
+          <p class="text-xs text-peelGreenLight">Already have an account?</p>
+          <a href="login.html" class="text-xs font-extrabold text-tangerine hover:underline">Sign in here</a>
+        </div>
+      </div>
+
+      <!-- Trust note -->
+      <div class="text-center mt-6">
+        <p class="text-[10px] text-peelGreenLight uppercase tracking-widest">
+          🔒 Secure connection • Your chilled data is protected
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Password toggles
+    function setupToggle(btnId, inputId) {
+      const btn = document.getElementById(btnId);
+      const input = document.getElementById(inputId);
+      btn.addEventListener('click', () => {
+        const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+        input.setAttribute('type', type);
+        btn.textContent = type === 'password' ? '👁️' : '🙈';
+      });
+    }
+    setupToggle('togglePassword', 'signupPassword');
+    setupToggle('toggleConfirmPassword', 'signupConfirmPassword');
+
+    // Form submission
+    document.getElementById('signupForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('signupBtn');
+      const original = btn.innerHTML;
+      btn.innerHTML = '<span class="flex items-center gap-2">Creating account<svg class="w-4 h-4 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg></span>';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.innerHTML = original;
+        btn.disabled = false;
+        const firstName = document.getElementById('signupFirstName').value;
+        alert(`Welcome to Sunsip, ${firstName}! Your account is ready.`);
+        window.location.href = 'index.html';
+      }, 1500);
+    });
+  </script>
+
+  <!-- Custom Cursor & Magnetic Effects -->
+  <style>
+    .cursor-dot,
+    .cursor-ring {
+      position: fixed;
+      top: 0;
+      left: 0;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      z-index: 99999;
+      pointer-events: none;
+    }
+    .cursor-dot {
+      width: 8px;
+      height: 8px;
+      background: #F97316;
+    }
+    .cursor-ring {
+      width: 30px;
+      height: 30px;
+      border: 2px solid rgba(27, 67, 50, 0.3);
+      transition: transform 0.15s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.3s ease;
+      mix-blend-mode: difference;
+    }
+    .cursor-ring.active {
+      transform: translate(-50%, -50%) scale(2.5);
+      border-color: #F97316;
+      background: rgba(249, 115, 22, 0.15);
+    }
+    .cursor-hidden {
+      cursor: none !important;
+    }
+    .magnetic {
+      transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+      will-change: transform;
+    }
+    .signup-glow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(249, 115, 22, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 50;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease-out;
+      will-change: transform;
+    }
+  </style>
+
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+  <div class="signup-glow"></div>
+
+  <script>
+    const cursorDot = document.querySelector('.cursor-dot');
+    const cursorRing = document.querySelector('.cursor-ring');
+    const signupGlow = document.querySelector('.signup-glow');
+    let mouseX = 0, mouseY = 0;
+    let ringX = 0, ringY = 0;
+    let dotX = 0, dotY = 0;
+
+    document.body.classList.add('cursor-hidden');
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      signupGlow.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+    });
+
+    function animateCursor() {
+      dotX += (mouseX - dotX) * 0.2;
+      dotY += (mouseY - dotY) * 0.2;
+      cursorDot.style.transform = `translate(${dotX}px, ${dotY}px)`;
+
+      ringX += (mouseX - ringX) * 0.1;
+      ringY += (mouseY - ringY) * 0.1;
+      cursorRing.style.transform = `translate(${ringX}px, ${ringY}px)`;
+
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    document.querySelectorAll('a, button').forEach(el => {
+      el.classList.add('magnetic');
+      el.addEventListener('mouseenter', () => cursorRing.classList.add('active'));
+      el.addEventListener('mouseleave', () => cursorRing.classList.remove('active'));
+      el.addEventListener('mousemove', (e) => {
+        const rect = el.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        el.style.transform = `translate(${x * 0.4}px, ${y * 0.4}px)`;
+      });
+      el.addEventListener('mouseleave', () => {
+        el.style.transform = 'translate(0, 0)';
+      });
+    });
+  </script>
+</body>
+</html>

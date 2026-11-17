@@ -1,0 +1,139 @@
+<!-- 3. Hero Banner -->
+<section class="relative overflow-hidden bg-gradient-to-br from-warmSand via-suncream to-citrusMist border-b border-leafBorder">
+  <!-- Decorative Botanical Leaves & Sun Glow -->
+  <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-sunnyLemon/25 blur-3xl pointer-events-none"></div>
+  <div class="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-tangerine/15 blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+
+      <!-- Hero Headline & CTAs (7 cols) -->
+      <div class="lg:col-span-7 text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 bg-white border border-sunnyLemon rounded-full px-4 py-1.5 mb-5 shadow-xs">
+          <span class="w-2.5 h-2.5 rounded-full bg-tangerine animate-ping"></span>
+          <span class="text-xs font-extrabold uppercase tracking-widest text-peelGreen">100% Real Philippine Orchard Harvests</span>
+        </div>
+
+        <h1 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl xl:text-[64px] text-peelGreen tracking-tight leading-[1.05]">
+          Pure Sunshine, <span class="text-tangerine underline decoration-sunnyLemon decoration-8 underline-offset-4">Bottled Fresh.</span>
+        </h1>
+
+        <p class="mt-5 text-base sm:text-lg lg:text-xl text-peelGreenLight leading-relaxed max-w-2xl mx-auto lg:mx-0">
+          Cold-pressed Philippine fruits, wildflower-infused botanical iced teas, and zesty sparkling coolers—pressed at dawn and delivered ice-chilled straight to your door.
+        </p>
+
+        <!-- Primary & Secondary CTA Buttons -->
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+          <a href="#drink-menu" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-tangerine hover:bg-tangerineDark text-white font-extrabold text-sm sm:text-base px-8 py-4 rounded-full shadow-citrus-lg transition transform hover:-translate-y-0.5">
+            <span>Shop Refreshments</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
+            </svg>
+          </a>
+          <button type="button" onclick="openQuizModal()" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-peelGreen hover:bg-peelGreenLight text-suncream font-extrabold text-sm sm:text-base px-8 py-4 rounded-full shadow-citrus transition">
+            <span>🍹 Find Your Sip Quiz</span>
+          </button>
+        </div>
+
+        <!-- Trust Highlights -->
+        <div class="mt-9 pt-6 border-t border-leafBorder flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2.5 text-xs sm:text-sm font-bold text-peelGreen">
+          <span class="inline-flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-sunnyLemon/50 flex items-center justify-center text-xs">❄️</span>
+            Delivered Ice-Chilled
+          </span>
+          <span class="inline-flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-coralPop/25 flex items-center justify-center text-xs">🌿</span>
+            Zero Refined Sugar
+          </span>
+          <span class="inline-flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-peelGreen/15 flex items-center justify-center text-xs">♻️</span>
+            Reusable Glass Bottles
+          </span>
+        </div>
+      </div>
+
+      <!-- Visual Showcase: Custom SVG Chilled Bottles with Floating Ice & Citrus Slices (5 cols) -->
+      <div class="lg:col-span-5">
+        <div class="relative bg-white/80 backdrop-blur-xs border-2 border-leafBorder rounded-[36px] p-6 sm:p-8 shadow-citrus-lg">
+          <div class="absolute -top-4 -right-3 bg-coralPop text-white font-display font-extrabold text-xs uppercase tracking-wider px-4 py-1.5 rounded-full shadow-md rotate-3">
+            Pressed Today!
+          </div>
+
+          <!-- Custom Illustrated Chilled Bottle Trio SVG -->
+          <svg viewBox="0 0 380 310" class="w-full h-auto drop-shadow-md" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Chilled Sunsip Refreshment Bottles with Ice and Citrus">
+            <circle cx="190" cy="155" r="118" fill="#FEF6E4"/>
+            <circle cx="190" cy="155" r="92" fill="#FACC15" fill-opacity="0.25"/>
+
+            <!-- Tropical Leaves Backdrop -->
+            <path d="M68 215C32 180 28 125 65 95C82 135 84 175 68 215Z" fill="#2D6A4F" stroke="#1B4332" stroke-width="2.5"/>
+            <path d="M312 215C348 180 352 125 315 95C298 135 296 175 312 215Z" fill="#2D6A4F" stroke="#1B4332" stroke-width="2.5"/>
+
+            <!-- Floating Calamansi / Lemon Slice Left -->
+            <circle cx="62" cy="84" r="24" fill="#FACC15" stroke="#1B4332" stroke-width="2.5"/>
+            <circle cx="62" cy="84" r="18" fill="#FFFDF7"/>
+            <path d="M62 66V102M44 84H80M49 71L75 97M75 71L49 97" stroke="#FACC15" stroke-width="2.5"/>
+
+            <!-- Floating Hibiscus / Berry Slice Right -->
+            <circle cx="322" cy="78" r="22" fill="#FB7185" stroke="#1B4332" stroke-width="2.5"/>
+            <circle cx="322" cy="78" r="15" fill="#FFFDF7" fill-opacity="0.85"/>
+            <circle cx="322" cy="78" r="6" fill="#F97316"/>
+
+            <!-- Left Bottle: Calamansi Honey Fizz -->
+            <g transform="translate(68, 56)">
+              <rect x="24" y="0" width="26" height="12" rx="4" fill="#1B4332"/>
+              <path d="M27 12H47L53 46C61 54 64 64 64 78V186C64 196 56 204 46 204H28C18 204 10 196 10 186V78C10 64 13 54 21 46L27 12Z" fill="#FACC15" stroke="#1B4332" stroke-width="3"/>
+              <rect x="16" y="92" width="42" height="66" rx="8" fill="#FFFDF7" stroke="#1B4332" stroke-width="2"/>
+              <circle cx="37" cy="114" r="10" fill="#F97316"/>
+              <text x="37" y="136" text-anchor="middle" fill="#1B4332" font-family="Outfit, sans-serif" font-weight="800" font-size="8.5">CALAMANSI</text>
+              <text x="37" y="147" text-anchor="middle" fill="#F97316" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="7">HONEY FIZZ</text>
+              <circle cx="20" cy="72" r="2.5" fill="#FFFDF7"/>
+              <circle cx="54" cy="172" r="3" fill="#FFFDF7"/>
+            </g>
+
+            <!-- Right Bottle: Hibiscus Berry Cooler -->
+            <g transform="translate(238, 56)">
+              <rect x="24" y="0" width="26" height="12" rx="4" fill="#1B4332"/>
+              <path d="M27 12H47L53 46C61 54 64 64 64 78V186C64 196 56 204 46 204H28C18 204 10 196 10 186V78C10 64 13 54 21 46L27 12Z" fill="#FB7185" stroke="#1B4332" stroke-width="3"/>
+              <rect x="16" y="92" width="42" height="66" rx="8" fill="#FFFDF7" stroke="#1B4332" stroke-width="2"/>
+              <circle cx="37" cy="114" r="10" fill="#2D6A4F"/>
+              <text x="37" y="136" text-anchor="middle" fill="#1B4332" font-family="Outfit, sans-serif" font-weight="800" font-size="8.5">HIBISCUS</text>
+              <text x="37" y="147" text-anchor="middle" fill="#FB7185" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="7">ICED TEA</text>
+              <circle cx="52" cy="68" r="2.5" fill="#FFFDF7"/>
+              <circle cx="22" cy="176" r="3" fill="#FFFDF7"/>
+            </g>
+
+            <!-- Center Hero Bottle: Guimaras Mango Sunset -->
+            <g transform="translate(148, 32)">
+              <rect x="28" y="0" width="30" height="14" rx="5" fill="#F97316" stroke="#1B4332" stroke-width="2.5"/>
+              <path d="M31 14H55L62 52C71 61 75 73 75 88V212C75 224 65 234 53 234H33C21 234 11 224 11 212V88C11 73 15 61 24 52L31 14Z" fill="#F97316" stroke="#1B4332" stroke-width="3.5"/>
+              <path d="M21 86V204" stroke="#FFFDF7" stroke-width="3.5" stroke-linecap="round" stroke-opacity="0.55"/>
+              <rect x="18" y="102" width="50" height="80" rx="10" fill="#FFFDF7" stroke="#1B4332" stroke-width="2.2"/>
+              <circle cx="43" cy="127" r="12" fill="#FACC15" stroke="#1B4332" stroke-width="1.8"/>
+              <text x="43" y="153" text-anchor="middle" fill="#1B4332" font-family="Outfit, sans-serif" font-weight="900" font-size="10">SUNSIP</text>
+              <text x="43" y="165" text-anchor="middle" fill="#F97316" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="7.5">MANGO SUNSET</text>
+              <text x="43" y="175" text-anchor="middle" fill="#2D6A4F" font-family="Plus Jakarta Sans, sans-serif" font-weight="700" font-size="6.5">COLD-PRESSED 500ML</text>
+              <ellipse cx="62" cy="76" rx="3" ry="4.5" fill="#FFFDF7"/>
+              <ellipse cx="24" cy="196" rx="3" ry="4" fill="#FFFDF7"/>
+              <circle cx="64" cy="192" r="2.5" fill="#FFFDF7"/>
+            </g>
+
+            <!-- Floating Ice Cubes at Base -->
+            <rect x="44" y="250" width="26" height="26" rx="6" transform="rotate(-14 44 250)" fill="#E0F2FE" stroke="#1B4332" stroke-width="2"/>
+            <rect x="306" y="246" width="28" height="28" rx="6" transform="rotate(16 306 246)" fill="#E0F2FE" stroke="#1B4332" stroke-width="2"/>
+            <ellipse cx="190" cy="278" rx="135" ry="10" fill="#1B4332" fill-opacity="0.12"/>
+          </svg>
+
+          <div class="mt-3 flex items-center justify-between bg-warmSand border border-sunnyLemon/70 rounded-2xl px-4 py-3">
+            <div>
+              <p class="text-xs font-extrabold text-peelGreen">Sunsip Barkada 6-Bottle Taster Box</p>
+              <p class="text-[11px] text-peelGreenLight">All 5 signature flavors + bonus ginger shot</p>
+            </div>
+            <button type="button" onclick="addToCart('barkada-taster-box')" class="bg-peelGreen hover:bg-tangerine text-suncream text-xs font-extrabold px-4 py-2 rounded-full transition shrink-0">
+              + ₱850
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

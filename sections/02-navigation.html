@@ -1,0 +1,80 @@
+<!-- 2. Sticky Navigation Header -->
+<header class="sticky top-0 z-40 bg-suncream/95 backdrop-blur-md border-b border-leafBorder transition-all">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20 gap-3 sm:gap-5">
+
+      <!-- Custom Sunsip Refreshment Radiant Sun-and-Citrus SVG Logo -->
+      <a href="#" class="flex items-center gap-3 group shrink-0">
+        <img src="logo.png" class="w-12 h-12 sm:w-14 sm:h-14 transition-transform duration-300 group-hover:rotate-6 group-hover:scale-105" alt="Sunsip Logo" />
+        <div>
+          <span class="font-display font-black text-xl sm:text-2xl tracking-tight text-peelGreen block leading-none">Sunsip</span>
+          <span class="text-[11px] uppercase tracking-widest text-tangerine font-extrabold">Refreshment PH</span>
+        </div>
+      </a>
+
+      <!-- Live Search Input (Desktop) -->
+      <div class="hidden md:flex flex-1 max-w-md mx-3 relative">
+        <svg class="w-4 h-4 text-peelGreenLight absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+        </svg>
+        <input
+          type="text"
+          id="searchInputDesktop"
+          placeholder="Search calamansi, mango, pomelo, fizz..."
+          class="w-full bg-citrusMist border border-leafBorder rounded-full pl-11 pr-9 py-2.5 text-sm text-peelGreen placeholder-peelGreenLight/70 focus:outline-none focus:ring-2 focus:ring-tangerine focus:bg-white transition"
+        />
+        <button id="clearSearchDesktop" type="button" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-peelGreenLight hover:text-peelGreen text-xs font-extrabold px-1.5 py-0.5 rounded-full" aria-label="Clear search">✕</button>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-7 text-sm font-bold text-peelGreen">
+        <a href="#drink-menu" class="hover:text-tangerine transition">Menu</a>
+        <a href="#drink-menu" onclick="filterByCategory('Party Packs')" class="hover:text-tangerine transition">Bundles</a>
+        <a href="#our-story" class="hover:text-tangerine transition">Our Story</a>
+        <a href="#subscriptions" class="hover:text-tangerine transition">Subscriptions</a>
+      </nav>
+
+      <!-- Quiz Trigger, Cart Button & Mobile Menu Toggle -->
+      <div class="flex items-center gap-2.5">
+        <button type="button" onclick="openQuizModal()" class="hidden sm:inline-flex items-center gap-1.5 bg-warmSand hover:bg-sunnyLemon/40 text-peelGreen border border-sunnyLemon px-3.5 py-2 rounded-full text-xs font-extrabold transition">
+          <span>🍋 Sip Quiz</span>
+        </button>
+
+        <button type="button" onclick="toggleCartDrawer(true)" class="relative inline-flex items-center gap-2 bg-peelGreen hover:bg-peelGreenLight text-suncream px-4 sm:px-5 py-2.5 rounded-full text-sm font-extrabold shadow-sm transition active:scale-95" aria-label="Open Cart">
+          <svg class="w-4 h-4 text-sunnyLemon" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+          <span>Cart</span>
+          <span id="cartBadge" class="bg-tangerine text-white text-xs font-extrabold w-5 h-5 rounded-full flex items-center justify-center">0</span>
+        </button>
+
+        <button id="mobileMenuBtn" type="button" class="lg:hidden p-2.5 rounded-xl border border-leafBorder text-peelGreen hover:bg-citrusMist" aria-label="Open Menu">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu + Search -->
+    <div id="mobileMenu" class="hidden lg:hidden pb-4 pt-2 border-t border-leafBorder space-y-3">
+      <div class="relative md:hidden">
+        <svg class="w-4 h-4 text-peelGreenLight absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+        </svg>
+        <input
+          type="text"
+          id="searchInputMobile"
+          placeholder="Search calamansi, mango, pomelo, fizz..."
+          class="w-full bg-citrusMist border border-leafBorder rounded-full pl-11 pr-4 py-2.5 text-sm text-peelGreen placeholder-peelGreenLight/70 focus:outline-none focus:ring-2 focus:ring-tangerine"
+        />
+      </div>
+      <div class="grid grid-cols-2 gap-2 text-sm font-bold">
+        <a href="#drink-menu" onclick="closeMobileMenu()" class="px-3.5 py-2.5 rounded-xl hover:bg-citrusMist">Menu</a>
+        <a href="#drink-menu" onclick="filterByCategory('Party Packs'); closeMobileMenu();" class="px-3.5 py-2.5 rounded-xl hover:bg-citrusMist">Bundles</a>
+        <a href="#our-story" onclick="closeMobileMenu()" class="px-3.5 py-2.5 rounded-xl hover:bg-citrusMist">Our Story</a>
+        <a href="#subscriptions" onclick="closeMobileMenu()" class="px-3.5 py-2.5 rounded-xl hover:bg-citrusMist">Subscriptions</a>
+      </div>
+    </div>
+  </div>
+</header>
