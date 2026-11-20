@@ -122,13 +122,13 @@ let quizMatchId = null;
     const savedUser = localStorage.getItem(STORAGE_KEYS.USER);
     if (savedUser) {
       currentUser = JSON.parse(savedUser);
-      renderAuthHeader();
     }
     const savedQuizMatch = localStorage.getItem(STORAGE_KEYS.QUIZ_MATCH);
     if (savedQuizMatch) quizMatchId = savedQuizMatch;
   } catch (e) {
     console.warn('Failed to load state from localStorage', e);
   }
+  renderAuthHeader();
 }
 
  function saveCart() {
