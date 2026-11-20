@@ -1,10 +1,10 @@
 // Format numbers in Philippine Pesos (₱)
-export function formatPHP(amount) {
+ function formatPHP(amount) {
   return '₱' + amount.toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
 // 6 Curated Philippine-Inspired Refreshment Products
-export const products = [
+ const products = [
   {
     id: 'calamansi-honey-fizz',
     name: 'Calamansi Honey Fizz',
@@ -86,19 +86,19 @@ export const products = [
 ];
 
 // Size Options & Multipliers
-export const sizeOptions = [
+ const sizeOptions = [
   { label: '330ml Bottle', multiplier: 1.0 },
   { label: '500ml Bottle', multiplier: 1.35 },
   { label: '6-Pack', multiplier: 5.4 }
 ];
 
 // App State
-export let activeCategory = 'All';
-export let searchQuery = '';
-export let selectedSizes = {};
-export let cart = []; // { key, id, name, variant, price, qty }
-export let quizState = { mood: 'Zesty & Energizing', fizz: 'Sparkling & Bubbly' };
-export let subState = { size: '6-Bottle Box', price: 790, orig: 930, cadence: 'Weekly Delivery' };
+ let activeCategory = 'All';
+ let searchQuery = '';
+ let selectedSizes = {};
+ let cart = []; // { key, id, name, variant, price, qty }
+ let quizState = { mood: 'Zesty & Energizing', fizz: 'Sparkling & Bubbly' };
+ let subState = { size: '6-Bottle Box', price: 790, orig: 930, cadence: 'Weekly Delivery' };
 
 products.forEach(p => {
   selectedSizes[p.id] = p.isPackOnly ? '6-Bottle Box (330ml)' : '330ml Bottle';
@@ -115,7 +115,7 @@ const STORAGE_KEYS = {
 let currentUser = null;
 let quizMatchId = null;
 
-export function loadState() {
+ function loadState() {
   try {
     const savedCart = localStorage.getItem(STORAGE_KEYS.CART);
     if (savedCart) cart = JSON.parse(savedCart);
@@ -131,37 +131,37 @@ export function loadState() {
   }
 }
 
-export function saveCart() {
+ function saveCart() {
   try { localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify(cart)); } catch (e) {}
 }
 
-export function saveUser(user) {
+ function saveUser(user) {
   currentUser = user;
   try { localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(user)); } catch (e) {}
   renderAuthHeader();
 }
 
-export function logout() {
+ function logout() {
   currentUser = null;
   try { localStorage.removeItem(STORAGE_KEYS.USER); } catch (e) {}
   renderAuthHeader();
   showToast('Signed out');
 }
 
-export function saveQuizMatchId(productId) {
+ function saveQuizMatchId(productId) {
   quizMatchId = productId;
   try { localStorage.setItem(STORAGE_KEYS.QUIZ_MATCH, productId); } catch (e) {}
 }
 
-export function getCurrentUser() {
+ function getCurrentUser() {
   return currentUser;
 }
 
-export function isLoggedIn() {
+ function isLoggedIn() {
   return !!currentUser;
 }
 
-export function renderAuthHeader() {
+ function renderAuthHeader() {
   const authHeader = document.getElementById('authHeader');
   const userName = document.getElementById('userName');
   const orderHistoryBtn = document.getElementById('orderHistoryBtn');
@@ -186,7 +186,7 @@ export function renderAuthHeader() {
   }
 }
 
-export function getProductPrice(product) {
+ function getProductPrice(product) {
   if (product.isPackOnly) return product.basePrice;
   const chosen = selectedSizes[product.id];
   const opt = sizeOptions.find(s => s.label === chosen) || sizeOptions[0];
@@ -194,7 +194,7 @@ export function getProductPrice(product) {
 }
 
 // Custom Illustrated Chilled Bottle / Party Box SVG
-export function getDrinkSVG(product, sizeClass = 'w-40 h-48') {
+ function getDrinkSVG(product, sizeClass = 'w-40 h-48') {
   if (product.isPackOnly) {
     return `
       <svg viewBox="0 0 220 220" class="${sizeClass} mx-auto drop-shadow-md transition-transform duration-300 group-hover:scale-105" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -243,7 +243,7 @@ export function getDrinkSVG(product, sizeClass = 'w-40 h-48') {
 }
 
 // Render Product Grid
-export function renderProducts() {
+ function renderProducts() {
   const grid = document.getElementById('productGrid');
   const emptyState = document.getElementById('emptyState');
   const searchBanner = document.getElementById('searchStatusBanner');
@@ -348,14 +348,14 @@ export function renderProducts() {
   }).join('');
 }
 
-export function selectSize(productId, sizeLabel) {
+ function selectSize(productId, sizeLabel) {
   selectedSizes[productId] = sizeLabel;
   renderProducts();
 }
 
 // Category Filter Logic
 
-export function filterByCategory(category) {
+ function filterByCategory(category) {
   activeCategory = category;
   document.querySelectorAll('.filter-btn').forEach(b => {
     const isActive = b.dataset.filter === category;
@@ -385,7 +385,7 @@ searchDesktop.addEventListener('input', e => handleSearch(e.target.value));
 searchMobile.addEventListener('input', e => handleSearch(e.target.value));
 clearSearchDesktop.addEventListener('click', () => handleSearch(''));
 
-export function resetFilters() {
+ function resetFilters() {
   handleSearch('');
   filterByCategory('All');
 }
@@ -393,10 +393,10 @@ export function resetFilters() {
 // Mobile Menu
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
-export function closeMobileMenu() { mobileMenu.classList.add('hidden'); }
+ function closeMobileMenu() { mobileMenu.classList.add('hidden'); }
 
 // Quick-View Modal
-export function openQuickView(productId) {
+ function openQuickView(productId) {
   const product = products.find(p => p.id === productId);
   if (!product) return;
   const currentPrice = getProductPrice(product);
@@ -431,14 +431,14 @@ export function openQuickView(productId) {
   modal.classList.add('flex');
 }
 
-export function closeQuickView() {
+ function closeQuickView() {
   const modal = document.getElementById('quickViewModal');
   modal.classList.add('hidden');
   modal.classList.remove('flex');
 }
 
 // 2-Step 'Find Your Sip' Mood Quiz Logic (Synced Inline + Modal)
-export function updateQuizMatch() {
+ function updateQuizMatch() {
   let match = products[0]; // Calamansi Honey Fizz
   let reason = 'Zesty Batangas calamansi lifted with crisp bubbles and a touch of raw honey for instant afternoon revival.';
 
@@ -490,7 +490,7 @@ function setQuizMood(mood) {
   updateQuizMatch();
 }
 
-export function setQuizFizz(fizz) {
+ function setQuizFizz(fizz) {
   quizState.fizz = fizz;
   document.querySelectorAll('.inline-fizz-btn, .modal-fizz-btn').forEach(btn => {
     const key = btn.dataset.fizz || btn.textContent.trim();
@@ -505,7 +505,7 @@ export function setQuizFizz(fizz) {
   updateQuizMatch();
 }
 
-export function filterByQuizMatch() {
+ function filterByQuizMatch() {
   if (!quizMatchId) return;
   const product = products.find(p => p.id === quizMatchId);
   if (!product) return;
@@ -523,18 +523,18 @@ export function filterByQuizMatch() {
   showToast(`Showing ${product.category} drinks matching your sip quiz`);
 }
 
-export function addQuizMatchToCart() {
+ function addQuizMatchToCart() {
   const match = updateQuizMatch();
   addToCart(match.id, '330ml Bottle', match.basePrice, match.name);
 }
 
-export function openQuizModal() {
+ function openQuizModal() {
   const modal = document.getElementById('quizModal');
   modal.classList.remove('hidden');
   modal.classList.add('flex');
 }
 
-export function closeQuizModal() {
+ function closeQuizModal() {
   const modal = document.getElementById('quizModal');
   modal.classList.add('hidden');
   modal.classList.remove('flex');
@@ -575,7 +575,7 @@ document.querySelectorAll('.sub-cadence-btn').forEach(btn => {
   });
 });
 
-export function addSubscriptionToCart() {
+ function addSubscriptionToCart() {
   const mix = document.getElementById('subMixSelect').value;
   const title = `Chilled Subscription (${subState.size} • ${subState.cadence})`;
   addToCart('chilled-sub', mix, subState.price, title);
@@ -583,7 +583,7 @@ export function addSubscriptionToCart() {
 }
 
 // Cart Operations
-export function addToCart(productId, customVariant = null, customPrice = null, customName = null) {
+ function addToCart(productId, customVariant = null, customPrice = null, customName = null) {
   const product = products.find(p => p.id === productId);
   const variant = customVariant || (product ? selectedSizes[product.id] : '330ml Bottle');
   const price = customPrice !== null ? customPrice : getProductPrice(product);
@@ -602,7 +602,7 @@ export function addToCart(productId, customVariant = null, customPrice = null, c
   showToast(`Chilled & added: ${name}`);
 }
 
-export function updateItemQty(key, delta) {
+ function updateItemQty(key, delta) {
   const idx = cart.findIndex(item => item.key === key);
   if (idx === -1) return;
   cart[idx].qty += delta;
@@ -697,7 +697,7 @@ let checkoutState = {
   delivery: { name: '', city: '', phone: '', address: '' },
 };
 
-export function openCheckoutModal() {
+ function openCheckoutModal() {
   toggleCartDrawer(false);
   checkoutState.step = 1;
   checkoutState.payment = null;
@@ -725,13 +725,13 @@ export function openCheckoutModal() {
   modal.classList.add('flex');
 }
 
-export function closeCheckoutModal() {
+ function closeCheckoutModal() {
   const modal = document.getElementById('checkoutModal');
   modal.classList.add('hidden');
   modal.classList.remove('flex');
 }
 
-export function checkoutNextStep(fromStep) {
+ function checkoutNextStep(fromStep) {
   if (fromStep === 1) {
     const form = document.getElementById('checkoutDeliveryForm');
     if (!form.checkValidity()) {
@@ -768,7 +768,7 @@ export function checkoutNextStep(fromStep) {
   }
 }
 
-export function checkoutPrevStep() {
+ function checkoutPrevStep() {
   if (checkoutState.step <= 1) return;
   checkoutState.step -= 1;
   document.querySelectorAll('.checkout-panel').forEach(p => p.classList.add('hidden'));
@@ -780,7 +780,7 @@ export function checkoutPrevStep() {
   });
 }
 
-export function selectPayment(method) {
+ function selectPayment(method) {
   checkoutState.payment = method;
   document.querySelectorAll('.payment-option').forEach(b => {
     const isSelected = b.id === `payment-${method}`;
@@ -828,7 +828,7 @@ function renderCheckoutStep3() {
   `;
 }
 
-export function placeOrder() {
+ function placeOrder() {
   const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
   const shipping = subtotal >= 1200 ? 0 : 99;
   const total = subtotal + shipping;
@@ -870,7 +870,7 @@ export function placeOrder() {
   showOrderReceipt(order);
 }
 
-export function showOrderReceipt(order) {
+ function showOrderReceipt(order) {
   const modal = document.getElementById('checkoutModal');
 
   const dateStr = new Date(order.date).toLocaleString('en-PH', { timeZone: 'Asia/Manila' });
@@ -929,7 +929,7 @@ export function showOrderReceipt(order) {
   showToast(`Order ${order.id} placed!`);
 }
 
-export function printReceipt(orderId) {
+ function printReceipt(orderId) {
   const printContents = document.getElementById('checkoutReceiptBox').innerHTML;
   const popup = window.open('', '_blank', 'width=600,height=800');
   popup.document.write(`
@@ -957,7 +957,7 @@ export function printReceipt(orderId) {
 }
 
 // Order History
-export function openOrderHistoryModal() {
+ function openOrderHistoryModal() {
   const list = document.getElementById('orderHistoryList');
   const empty = document.getElementById('orderHistoryEmpty');
 
@@ -1001,7 +1001,7 @@ export function openOrderHistoryModal() {
   modal.classList.add('flex');
 }
 
-export function closeOrderHistoryModal() {
+ function closeOrderHistoryModal() {
   const modal = document.getElementById('orderHistoryModal');
   modal.classList.add('hidden');
   modal.classList.remove('flex');
@@ -1054,7 +1054,7 @@ document.querySelectorAll('button[aria-label="Close modal"]').forEach(btn => {
 });
 
 document.querySelectorAll('button[aria-label="Open Menu"]').forEach(btn => {
-  btn.addEventListener('click', closeMobileMenu);
+  btn.addEventListener('click', toggleMobileMenu);
 });
 
 document.querySelectorAll('button.modal-mood-btn, button.modal-fizz-btn').forEach(btn => {
@@ -1182,14 +1182,11 @@ function toggleMobileMenu() {
   mobileMenuBtn.setAttribute('aria-expanded', String(!isOpen));
 }
 
-export function closeMobileMenu() {
+ function closeMobileMenu() {
   mobileMenu.classList.add('hidden');
   mobileMenuBtn.setAttribute('aria-expanded', 'false');
   restoreFocus();
 }
-
-// Wire mobile menu button click (covers both inline and JS-bound)
-mobileMenuBtn.addEventListener('click', toggleMobileMenu);
 
 // --- Cart Drawer focus management ---
 const _toggleCartDrawer = toggleCartDrawer;
@@ -1274,3 +1271,4 @@ closeOrderHistoryModal = function() {
   _closeOrderHistoryModal.call(this);
   restoreFocus();
 };
+
