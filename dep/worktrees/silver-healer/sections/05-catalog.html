@@ -1,0 +1,39 @@
+<!-- 5. Refreshment Catalog with Live Category Filter & Search -->
+<section id="drink-menu" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
+    <div>
+      <span class="text-xs font-extrabold uppercase tracking-widest text-tangerine">Pressed Every Morning</span>
+      <h2 class="font-display font-black text-3xl sm:text-4xl text-peelGreen mt-1">Chilled Refreshment Menu</h2>
+      <p class="text-peelGreenLight mt-2 max-w-xl text-sm sm:text-base">
+        Crafted with sun-ripened Guimaras mangoes, Davao pomelos, and Batangas calamansi. Pick your bottle size or tap any bottle for ingredients &amp; nutrition.
+      </p>
+    </div>
+
+    <!-- Category Filter Pills -->
+    <div id="filterTabs" class="flex flex-wrap gap-2" role="tablist">
+      <button type="button" data-filter="All" class="filter-btn active bg-peelGreen text-suncream px-4 py-2 rounded-full text-xs sm:text-sm font-extrabold transition">All Drinks</button>
+      <button type="button" data-filter="Cold-Pressed Juices" class="filter-btn bg-citrusMist hover:bg-sunnyLemon/40 text-peelGreen px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition">Cold-Pressed Juices</button>
+      <button type="button" data-filter="Sparkling Coolers" class="filter-btn bg-citrusMist hover:bg-sunnyLemon/40 text-peelGreen px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition">Sparkling Coolers</button>
+      <button type="button" data-filter="Botanical Iced Teas" class="filter-btn bg-citrusMist hover:bg-sunnyLemon/40 text-peelGreen px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition">Botanical Iced Teas</button>
+      <button type="button" data-filter="Party Packs" class="filter-btn bg-citrusMist hover:bg-sunnyLemon/40 text-peelGreen px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition">Party Packs</button>
+    </div>
+  </div>
+
+  <!-- Active Search Status Banner -->
+  <div id="searchStatusBanner" class="hidden mb-6 bg-warmSand border border-sunnyLemon rounded-2xl px-5 py-3 flex items-center justify-between">
+    <p class="text-sm text-peelGreen">Showing refreshments matching "<span id="searchQueryDisplay" class="font-extrabold"></span>"</p>
+    <button type="button" onclick="resetFilters()" class="text-xs font-extrabold text-tangerine hover:underline">Reset Filters</button>
+  </div>
+
+  <!-- Product Grid -->
+  <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Populated dynamically via JS -->
+  </div>
+
+  <!-- Empty Search State -->
+  <div id="emptyState" class="hidden text-center py-16 bg-citrusMist rounded-3xl border border-leafBorder">
+    <p class="font-display text-2xl font-extrabold text-peelGreen">No drinks matched that craving</p>
+    <p class="text-peelGreenLight text-sm mt-2">Try searching for "Calamansi", "Mango", "Pomelo", "Hibiscus", or reset your filters.</p>
+    <button type="button" onclick="resetFilters()" class="mt-5 bg-peelGreen text-suncream px-6 py-2.5 rounded-full text-sm font-extrabold hover:bg-tangerine transition">View All Drinks</button>
+  </div>
+</section>

@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sunsip Refreshment | Cold-Pressed Philippine Juices & Botanical Coolers</title>
+
+  <!-- Tailwind CSS -->
+  <link rel="stylesheet" href="dist/output.css" />
+
+  <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-suncream text-peelGreen font-sans antialiased selection:bg-sunnyLemon selection:text-peelGreen overflow-x-hidden">
+
+  <!-- 1. Top Announcement Bar -->
+  <div class="bg-peelGreen text-suncream text-xs sm:text-sm py-2.5 px-4 text-center font-semibold tracking-wide">
+    <span>🧊 Free chilled delivery in Metro Manila &amp; Davao for orders </span>
+    <span class="text-sunnyLemon font-extrabold">₱1,200+</span>
+    <span class="hidden sm:inline"> • Same-day dispatch before 2 PM</span>
+  </div>
+
+  <!-- 2. Sticky Navigation Header -->
+  <header class="sticky top-0 z-40 bg-suncream/95 backdrop-blur-md border-b border-leafBorder transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20 gap-3 sm:gap-5">
+
+        <!-- Custom Sunsip Refreshment Logo -->
+        <a href="#" class="flex items-center gap-3 group shrink-0">
+          <img src="assets/images/sunsip-logo.png" class="w-12 h-12 sm:w-14 sm:h-14 transition-transform duration-300 group-hover:rotate-6 group-hover:scale-105" alt="Sunsip Logo" />
+          <div>
+            <span class="font-display font-black text-xl sm:text-2xl tracking-tight text-peelGreen block leading-none">Sunsip</span>
+            <span class="text-[11px] uppercase tracking-widest text-tangerine font-extrabold">Refreshment PH</span>
+          </div>
+        </a>
+
+        <!-- Live Search Input (Desktop) -->
+        <div class="hidden md:flex flex-1 max-w-md mx-3 relative">
+          <svg class="w-4 h-4 text-peelGreenLight absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+          </svg>
+          <input
+            type="text"
+            id="searchInputDesktop"
+            placeholder="Search calamansi, mango, pomelo, fizz..."
+            class="w-full bg-citrusMist border border-leafBorder rounded-full pl-11 pr-9 py-2.5 text-sm text-peelGreen placeholder-peelGreenLight/70 focus:outline-none focus:ring-2 focus:ring-tangerine focus:bg-white transition"
+          />
+          <button id="clearSearchDesktop" type="button" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-peelGreenLight hover:text-peelGreen text-xs font-extrabold px-1.5 py-0.5 rounded-full" aria-label="Clear search">✕</button>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav class="hidden lg:flex items-center gap-7 text-sm font-bold text-peelGreen">
+          <a href="#drink-menu" class="hover:text-tangerine transition">Menu</a>
+          <a href="#drink-menu" onclick="filterByCategory('Party Packs')" class="hover:text-tangerine transition">Bundles</a>
+          <a href="#our-story" class="hover:text-tangerine transition">Our Story</a>
+          <a href="#subscriptions" class="hover:text-tangerine transition">Subscriptions</a>
+        </nav>
+
+        <!-- Quiz Trigger, Cart Button & Mobile Menu Toggle -->
+        <div class="flex items-center gap-2.5">
+          <button type="button" class="hidden sm:inline-flex items-center gap-1.5 bg-warmSand hover:bg-sunnyLemon/40 text-peelGreen border border-sunnyLemon px-3.5 py-2 rounded-full text-xs font-extrabold transition js-open-quiz-modal">
+            <span>🍋 Sip Quiz</span>
+          </button>
+
+          <button type="button" class="relative inline-flex items-center gap-2 bg-peelGreen hover:bg-peelGreenLight text-suncream px-4 sm:px-5 py-2.5 rounded-full text-sm font-extrabold shadow-sm transition active:scale-95 js-toggle-cart" aria-label="Open Cart">
+            <svg class="w-4 h-4 text-sunnyLemon" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+            <span>Cart</span>
+            <span id="cartBadge" class="bg-tangerine text-white text-xs font-extrabold w-5 h-5 rounded-full flex items-center justify-center">0</span>
+          </button>
+
+          <a href="login.html" class="hidden sm:inline-flex items-center justify-center gap-2 bg-warmSand hover:bg-sunnyLemon/40 text-peelGreen border border-sunnyLemon px-4 sm:px-5 py-2.5 rounded-full text-sm font-extrabold transition">
+            Sign In
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+          <a href="signup.html" class="hidden sm:inline-flex items-center justify-center gap-2 bg-tangerine hover:bg-tangerineDark text-white px-4 sm:px-5 py-2.5 rounded-full text-sm font-extrabold shadow-sm transition active:scale-95">
+            Sign Up
+          </a>
+
+          <button id="mobileMenuBtn" type="button" class="lg:hidden p-2.5 rounded-xl border border-leafBorder text-peelGreen hover:bg-citrusMist" aria-label="Open Menu">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Dropdown Menu + Search -->
+      <div id="mobileMenu" class="hidden lg:hidden pb-4 pt-2 border-t border-leafBorder space-y-3">
+        <div class="relative md:hidden">
+          <svg class="w-4 h-4 text-peelGreenLight absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+          </svg>
+          <input
+            type="text"
+            id="searchInputMobile"
+            placeholder="Search calamansi, mango, pomelo, fizz..."
+            class="w-full bg-citrusMist border border-leafBorder rounded-full pl-11 pr-4 py-2.5 text-sm text-peelGreen placeholder-peelGreenLight/70 focus:outline-none focus:ring-2 focus:ring-tangerine"
+          />
+        </div>
+        <div class="grid grid-cols-2 gap-2 text-sm font-bold">
+          <a href="#drink-menu" onclick="closeMobileMenu()" class="px-3.5 py-2.5 rounded-xl hover:bg-citrusMist">Menu</a>
+          <a href="#drink-menu" onclick="filterByCategory('Party Packs'); closeMobileMenu();" class="px-3.5 py-2.5 rounded-xl hover:bg-citrusMist">Bundles</a>
+          <a href="#our-story" onclick="closeMobileMenu()" class="px-3.5 py-2.5 rounded-xl hover:bg-citrusMist">Our Story</a>
+          <a href="#subscriptions" onclick="closeMobileMenu()" class="px-3.5 py-2.5 rounded-xl hover:bg-citrusMist">Subscriptions</a>
+          <a href="login.html" onclick="closeMobileMenu()" class="px-3.5 py-2.5 rounded-xl hover:bg-citrusMist border border-leafBorder text-tangerine font-extrabold">Sign In</a>
+          <a href="signup.html" onclick="closeMobileMenu()" class="px-3.5 py-2.5 rounded-xl bg-tangerine text-white font-extrabold shadow-sm">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3. Hero Banner -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-warmSand via-suncream to-citrusMist border-b border-leafBorder hero-banner-parallax">
+    <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-sunnyLemon/25 blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-tangerine/15 blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+
+        <!-- Hero Headline & CTAs (7 cols) -->
+        <div class="lg:col-span-7 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 bg-white border border-sunnyLemon rounded-full px-4 py-1.5 mb-5 shadow-sm">
+            <span class="w-2.5 h-2.5 rounded-full bg-tangerine animate-ping"></span>
+            <span class="text-xs font-extrabold uppercase tracking-widest text-peelGreen">100% Real Philippine Orchard Harvests</span>
+          </div>
+
+          <h1 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl xl:text-[64px] text-peelGreen tracking-tight leading-[1.05]">
+            Pure Sunshine, <span class="text-tangerine underline decoration-sunnyLemon decoration-8 underline-offset-4">Bottled Fresh.</span>
+          </h1>
+
+          <p class="mt-5 text-base sm:text-lg lg:text-xl text-peelGreenLight leading-relaxed max-w-2xl mx-auto lg:mx-0">
+            Cold-pressed Philippine fruits, wildflower-infused botanical iced teas, and zesty sparkling coolers—pressed at dawn and delivered ice-chilled straight to your door.
+          </p>
+
+          <!-- Primary & Secondary CTA Buttons -->
+          <div class="mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            <a href="#drink-menu" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-tangerine hover:bg-tangerineDark text-white font-extrabold text-sm sm:text-base px-8 py-4 rounded-full shadow-citrus-lg transition transform hover:-translate-y-0.5">
+              <span>Shop Refreshments</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
+              </svg>
+            </a>
+            <button type="button" onclick="openQuizModal()" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-peelGreen hover:bg-peelGreenLight text-suncream font-extrabold text-sm sm:text-base px-8 py-4 rounded-full shadow-citrus transition">
+              <span>🍹 Find Your Sip Quiz</span>
+            </button>
+          </div>
+
+          <!-- Trust Highlights -->
+          <div class="mt-9 pt-6 border-t border-leafBorder flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2.5 text-xs sm:text-sm font-bold text-peelGreen">
+            <span class="inline-flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-sunnyLemon/50 flex items-center justify-center text-xs">❄️</span>
+              Delivered Ice-Chilled
+            </span>
+            <span class="inline-flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-coralPop/25 flex items-center justify-center text-xs">🌿</span>
+              Zero Refined Sugar
+            </span>
+            <span class="inline-flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-peelGreen/15 flex items-center justify-center text-xs">♻️</span>
+              Reusable Glass Bottles
+            </span>
+          </div>
+        </div>
+
+        <!-- Visual Showcase: Custom SVG Chilled Bottles with Floating Ice & Citrus Slices (5 cols) -->
+        <div class="lg:col-span-5">
+          <div class="relative backdrop-blur-sm border-2 border-leafBorder rounded-[36px] p-6 sm:p-8 shadow-citrus-lg">
+            <div class="absolute -top-4 -right-3 bg-coralPop text-white font-display font-extrabold text-xs uppercase tracking-wider px-4 py-1.5 rounded-full shadow-md rotate-3">
+              Pressed Today!
+            </div>
+
+            <!-- Custom Illustrated Chilled Bottle Trio SVG -->
+            <svg viewBox="0 0 380 310" class="w-full h-auto drop-shadow-md" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Chilled Sunsip Refreshment Bottles with Ice and Citrus">
+              <circle cx="190" cy="155" r="118" fill="#FEF6E4"/>
+              <circle cx="190" cy="155" r="92" fill="#FACC15" fill-opacity="0.25"/>
+
+              <!-- Tropical Leaves Backdrop -->
+              <path d="M68 215C32 180 28 125 65 95C82 135 84 175 68 215Z" fill="#2D6A4F" stroke="#1B4332" stroke-width="2.5"/>
+              <path d="M312 215C348 180 352 125 315 95C298 135 296 175 312 215Z" fill="#2D6A4F" stroke="#1B4332" stroke-width="2.5"/>
+
+              <!-- Floating Calamansi / Lemon Slice Left -->
+              <circle cx="62" cy="84" r="24" fill="#FACC15" stroke="#1B4332" stroke-width="2.5"/>
+              <circle cx="62" cy="84" r="18" fill="#FFFDF7"/>
+              <path d="M62 66V102M44 84H80M49 71L75 97M75 71L49 97" stroke="#FACC15" stroke-width="2.5"/>
+
+              <!-- Floating Hibiscus / Berry Slice Right -->
+              <circle cx="322" cy="78" r="22" fill="#FB7185" stroke="#1B4332" stroke-width="2.5"/>
+              <circle cx="322" cy="78" r="15" fill="#FFFDF7" fill-opacity="0.85"/>
+              <circle cx="322" cy="78" r="6" fill="#F97316"/>
+
+              <!-- Left Bottle: Calamansi Honey Fizz -->
+              <g transform="translate(68, 56)">
+                <rect x="24" y="0" width="26" height="12" rx="4" fill="#1B4332"/>
+                <path d="M27 12H47L53 46C61 54 64 64 64 78V186C64 196 56 204 46 204H28C18 204 10 196 10 186V78C10 64 13 54 21 46L27 12Z" fill="#FACC15" stroke="#1B4332" stroke-width="3"/>
+                <rect x="16" y="92" width="42" height="66" rx="8" fill="#FFFDF7" stroke="#1B4332" stroke-width="2"/>
+                <circle cx="37" cy="114" r="10" fill="#F97316"/>
+                <text x="37" y="136" text-anchor="middle" fill="#1B4332" font-family="Outfit, sans-serif" font-weight="800" font-size="8.5">CALAMANSI</text>
+                <text x="37" y="147" text-anchor="middle" fill="#F97316" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="7">HONEY FIZZ</text>
+                <circle cx="20" cy="72" r="2.5" fill="#FFFDF7"/>
+                <circle cx="54" cy="172" r="3" fill="#FFFDF7"/>
+              </g>
+
+              <!-- Right Bottle: Hibiscus Berry Cooler -->
+              <g transform="translate(238, 56)">
+                <rect x="24" y="0" width="26" height="12" rx="4" fill="#1B4332"/>
+                <path d="M27 12H47L53 46C61 54 64 64 64 78V186C64 196 56 204 46 204H28C18 204 10 196 10 186V78C10 64 13 54 21 46L27 12Z" fill="#FB7185" stroke="#1B4332" stroke-width="3"/>
+                <rect x="16" y="92" width="42" height="66" rx="8" fill="#FFFDF7" stroke="#1B4332" stroke-width="2"/>
+                <circle cx="37" cy="114" r="10" fill="#2D6A4F"/>
+                <text x="37" y="136" text-anchor="middle" fill="#1B4332" font-family="Outfit, sans-serif" font-weight="800" font-size="8.5">HIBISCUS</text>
+                <text x="37" y="147" text-anchor="middle" fill="#FB7185" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="7">ICED TEA</text>
+                <circle cx="52" cy="68" r="2.5" fill="#FFFDF7"/>
+                <circle cx="22" cy="176" r="3" fill="#FFFDF7"/>
+              </g>
+
+              <!-- Center Hero Bottle: Guimaras Mango Sunset -->
+              <g transform="translate(148, 32)">
+                <rect x="28" y="0" width="30" height="14" rx="5" fill="#F97316" stroke="#1B4332" stroke-width="2.5"/>
+                <path d="M31 14H55L62 52C71 61 75 73 75 88V212C75 224 65 234 53 234H33C21 234 11 224 11 212V88C11 73 15 61 24 52L31 14Z" fill="#F97316" stroke="#1B4332" stroke-width="3.5"/>
+                <path d="M21 86V204" stroke="#FFFDF7" stroke-width="3.5" stroke-linecap="round" stroke-opacity="0.55"/>
+                <rect x="18" y="102" width="50" height="80" rx="10" fill="#FFFDF7" stroke="#1B4332" stroke-width="2.2"/>
+                <circle cx="43" cy="127" r="12" fill="#FACC15" stroke="#1B4332" stroke-width="1.8"/>
+                <text x="43" y="153" text-anchor="middle" fill="#1B4332" font-family="Outfit, sans-serif" font-weight="900" font-size="10">SUNSIP</text>
+                <text x="43" y="165" text-anchor="middle" fill="#F97316" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="7.5">MANGO SUNSET</text>
+                <text x="43" y="175" text-anchor="middle" fill="#2D6A4F" font-family="Plus Jakarta Sans, sans-serif" font-weight="700" font-size="6.5">COLD-PRESSED 500ML</text>
+                <ellipse cx="62" cy="76" rx="3" ry="4.5" fill="#FFFDF7"/>
+                <ellipse cx="24" cy="196" rx="3" ry="4" fill="#FFFDF7"/>
+                <circle cx="64" cy="192" r="2.5" fill="#FFFDF7"/>
+              </g>
+
+              <!-- Floating Ice Cubes at Base -->
+              <rect x="44" y="250" width="26" height="26" rx="6" transform="rotate(-14 44 250)" fill="#E0F2FE" stroke="#1B4332" stroke-width="2"/>
+              <rect x="306" y="246" width="28" height="28" rx="6" transform="rotate(16 306 246)" fill="#E0F2FE" stroke="#1B4332" stroke-width="2"/>
+              <ellipse cx="190" cy="278" rx="135" ry="10" fill="#1B4332" fill-opacity="0.12"/>
+            </svg>
+
+            <div class="mt-3 flex items-center justify-between bg-warmSand border border-sunnyLemon/70 rounded-2xl px-4 py-3">
+              <div>
+                <p class="text-xs font-extrabold text-peelGreen">Sunsip Barkada 6-Bottle Taster Box</p>
+                <p class="text-[11px] text-peelGreenLight">All 5 signature flavors + bonus ginger shot</p>
+              </div>
+              <button type="button" onclick="addToCart('barkada-taster-box')" class="bg-peelGreen hover:bg-tangerine text-suncream text-xs font-extrabold px-4 py-2 rounded-full transition shrink-0">
+                + ₱850
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Refreshment Catalog with Live Category Filter & Search -->
+  <section id="drink-menu" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
+      <div>
+        <span class="text-xs font-extrabold uppercase tracking-widest text-tangerine">Pressed Every Morning</span>
+        <h2 class="font-display font-black text-3xl sm:text-4xl text-peelGreen mt-1">Chilled Refreshment Menu</h2>
+        <p class="text-peelGreenLight mt-2 max-w-xl text-sm sm:text-base">
+          Crafted with sun-ripened Guimaras mangoes, Davao pomelos, and Batangas calamansi. Pick your bottle size or tap any bottle for ingredients &amp; nutrition.
+        </p>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div id="filterTabs" class="flex flex-wrap gap-2" role="tablist">
+        <button type="button" data-filter="All" class="filter-btn active bg-peelGreen text-suncream px-4 py-2 rounded-full text-xs sm:text-sm font-extrabold transition">All Drinks</button>
+        <button type="button" data-filter="Cold-Pressed Juices" class="filter-btn bg-citrusMist hover:bg-sunnyLemon/40 text-peelGreen px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition">Cold-Pressed Juices</button>
+        <button type="button" data-filter="Sparkling Coolers" class="filter-btn bg-citrusMist hover:bg-sunnyLemon/40 text-peelGreen px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition">Sparkling Coolers</button>
+        <button type="button" data-filter="Botanical Iced Teas" class="filter-btn bg-citrusMist hover:bg-sunnyLemon/40 text-peelGreen px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition">Botanical Iced Teas</button>
+        <button type="button" data-filter="Party Packs" class="filter-btn bg-citrusMist hover:bg-sunnyLemon/40 text-peelGreen px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition">Party Packs</button>
+      </div>
+    </div>
+
+    <!-- Active Search Status Banner -->
+    <div id="searchStatusBanner" class="hidden mb-6 bg-warmSand border border-sunnyLemon rounded-2xl px-5 py-3 flex items-center justify-between">
+      <p class="text-sm text-peelGreen">Showing refreshments matching "<span id="searchQueryDisplay" class="font-extrabold"></span>"</p>
+      <button type="button" onclick="resetFilters()" class="text-xs font-extrabold text-tangerine hover:underline">Reset Filters</button>
+    </div>
+
+    <!-- Product Grid -->
+    <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Populated dynamically via JS -->
+    </div>
+
+    <!-- Empty Search State -->
+    <div id="emptyState" class="hidden text-center py-16 bg-citrusMist rounded-3xl border border-leafBorder">
+      <p class="font-display text-2xl font-extrabold text-peelGreen">No drinks matched that craving</p>
+      <p class="text-peelGreenLight text-sm mt-2">Try searching for "Calamansi", "Mango", "Pomelo", "Hibiscus", or reset your filters.</p>
+      <button type="button" onclick="resetFilters()" class="mt-5 bg-peelGreen text-suncream px-6 py-2.5 rounded-full text-sm font-extrabold hover:bg-tangerine transition">View All Drinks</button>
+    </div>
+  </section>
+
+  <!-- 4. Interactive 'Find Your Sip' Flavor Mood Quiz (Inline Section) -->
+  <section id="sip-quiz" class="py-16 sm:py-20 bg-citrusMist border-y border-leafBorder">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-suncream rounded-3xl border-2 border-leafBorder shadow-citrus p-6 sm:p-10 lg:p-12">
+        <div class="text-center max-w-2xl mx-auto mb-8">
+          <span class="inline-block bg-sunnyLemon/40 text-peelGreen text-xs font-extrabold uppercase tracking-widest px-3.5 py-1 rounded-full mb-3">2-Step Refreshment Matcher</span>
+          <h2 class="font-display font-black text-3xl sm:text-4xl text-peelGreen">Find Your Sip Mood</h2>
+          <p class="text-peelGreenLight text-sm sm:text-base mt-2">Tell us your current vibe and fizz preference—we’ll chill the perfect bottle for you.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <!-- Left: 2 Interactive Steps -->
+          <div class="lg:col-span-7 space-y-6">
+            <!-- Step 1: Vibe / Craving -->
+            <div>
+              <label class="block text-xs font-extrabold uppercase tracking-wider text-peelGreenLight mb-2.5">Step 1: What vibe are you craving?</label>
+              <div class="grid grid-cols-2 gap-2.5" id="inlineQuizMoodGroup">
+                <button type="button" data-mood="Zesty & Energizing" class="inline-mood-btn active border-2 border-peelGreen bg-peelGreen text-suncream rounded-2xl p-3.5 text-left transition">
+                  <span class="block text-xs sm:text-sm font-extrabold">⚡ Zesty &amp; Energizing</span>
+                  <span class="block text-[11px] opacity-85 mt-0.5">Bright citrus &amp; ginger kick</span>
+                </button>
+                <button type="button" data-mood="Crisp & Hydrating" class="inline-mood-btn border-2 border-leafBorder bg-white hover:border-peelGreen/50 text-peelGreen rounded-2xl p-3.5 text-left transition">
+                  <span class="block text-xs sm:text-sm font-extrabold">💧 Crisp &amp; Hydrating</span>
+                  <span class="block text-[11px] text-peelGreenLight mt-0.5">Cooling mint &amp; pomelo</span>
+                </button>
+                <button type="button" data-mood="Fruity & Sweet" class="inline-mood-btn border-2 border-leafBorder bg-white hover:border-peelGreen/50 text-peelGreen rounded-2xl p-3.5 text-left transition">
+                  <span class="block text-xs sm:text-sm font-extrabold">🥭 Fruity &amp; Sweet</span>
+                  <span class="block text-[11px] text-peelGreenLight mt-0.5">Lush sun-ripened tropicals</span>
+                </button>
+                <button type="button" data-mood="Herbal & Calm" class="inline-mood-btn border-2 border-leafBorder bg-white hover:border-peelGreen/50 text-peelGreen rounded-2xl p-3.5 text-left transition">
+                  <span class="block text-xs sm:text-sm font-extrabold">🌺 Herbal &amp; Calm</span>
+                  <span class="block text-[11px] text-peelGreenLight mt-0.5">Floral botanical steeped tea</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Step 2: Sweetness / Fizz Preference -->
+            <div>
+              <label class="block text-xs font-extrabold uppercase tracking-wider text-peelGreenLight mb-2.5">Step 2: Sweetness &amp; fizz preference?</label>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5" id="inlineQuizFizzGroup">
+                <button type="button" data-fizz="Sparkling & Bubbly" class="inline-fizz-btn active border-2 border-tangerine bg-tangerine text-white rounded-2xl p-3 text-left transition">
+                  <span class="block text-xs font-extrabold">Sparkling &amp; Bubbly</span>
+                  <span class="block text-[11px] opacity-90 mt-0.5">Effervescent micro-fizz</span>
+                </button>
+                <button type="button" data-fizz="Still & Pure Pressed" class="inline-fizz-btn border-2 border-leafBorder bg-white hover:border-tangerine/50 text-peelGreen rounded-2xl p-3 text-left transition">
+                  <span class="block text-xs font-extrabold">Still &amp; Pure Pressed</span>
+                  <span class="block text-[11px] text-peelGreenLight mt-0.5">100% cold-pressed juice</span>
+                </button>
+                <button type="button" data-fizz="Lightly Honey-Sweet" class="inline-fizz-btn border-2 border-leafBorder bg-white hover:border-tangerine/50 text-peelGreen rounded-2xl p-3 text-left transition">
+                  <span class="block text-xs font-extrabold">Lightly Honey-Sweet</span>
+                  <span class="block text-[11px] text-peelGreenLight mt-0.5">Hint of raw wildflower honey</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Live Recommended Drink Card -->
+          <div class="lg:col-span-5 bg-warmSand border-2 border-sunnyLemon rounded-3xl p-6 text-center">
+            <span class="text-[11px] font-extrabold uppercase tracking-widest text-tangerine">Your Perfect Sunsip Match</span>
+            <h3 id="inlineQuizMatchTitle" class="font-display font-black text-2xl text-peelGreen mt-1">Calamansi Honey Fizz</h3>
+            <p id="inlineQuizMatchNotes" class="text-xs font-bold text-peelGreenLight mt-1">Sparkling Cooler • Batangas Calamansi, Wildflower Honey, Sparkling Water</p>
+            <p id="inlineQuizMatchReason" class="text-xs text-peelGreen mt-3 leading-relaxed">
+              Zesty Batangas calamansi lifted with crisp bubbles and a touch of raw honey for instant afternoon revival.
+            </p>
+            <div class="mt-4 pt-4 border-t border-sunnyLemon/70 flex items-center justify-between">
+              <div class="text-left">
+                <span class="block text-[11px] text-peelGreenLight">Chilled Format</span>
+                <span class="text-xs font-extrabold text-peelGreen">330ml Glass Bottle</span>
+              </div>
+              <span id="inlineQuizMatchPrice" class="font-display font-black text-2xl text-peelGreen">₱145.00</span>
+            </div>
+            <button type="button" onclick="addQuizMatchToCart()" class="mt-4 w-full bg-peelGreen hover:bg-tangerine text-suncream font-extrabold text-sm py-3.5 px-5 rounded-full shadow-sm transition active:scale-95">
+              + Add Match to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. 'Build Your Chilled Box' Weekly Hydration Subscription Section -->
+  <section id="subscriptions" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-peelGreen text-suncream rounded-[36px] p-8 sm:p-12 lg:p-14 shadow-citrus-lg relative overflow-hidden">
+      <div class="absolute -right-20 -top-20 w-80 h-80 rounded-full bg-sunnyLemon/15 pointer-events-none"></div>
+      <div class="absolute -left-20 -bottom-20 w-80 h-80 rounded-full bg-tangerine/20 pointer-events-none"></div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
+        <div class="lg:col-span-6 space-y-5">
+          <span class="inline-block bg-sunnyLemon text-peelGreen text-xs font-extrabold uppercase tracking-widest px-3.5 py-1 rounded-full">Save 15% Automatically</span>
+          <h2 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl leading-tight">
+            Build Your Chilled Box — Hydration on Autopilot
+          </h2>
+          <p class="text-citrusMist/90 text-sm sm:text-base leading-relaxed">
+            Keep your fridge stocked with cold-pressed Philippine juices and sparkling coolers. Choose your box size and recurring schedule—skip, swap flavors, or pause anytime.
+          </p>
+          <ul class="space-y-2 text-xs sm:text-sm text-sunnyLemon font-semibold">
+            <li class="flex items-center gap-2"><span>✓</span> Instant 15% subscriber savings on every chilled drop</li>
+            <li class="flex items-center gap-2"><span>✓</span> Pressed the morning of delivery with insulated ice packs</li>
+            <li class="flex items-center gap-2"><span>✓</span> Free chilled delivery unlocked on 12-Bottle Boxes</li>
+          </ul>
+        </div>
+
+        <!-- Interactive Chilled Box Configurator -->
+        <div class="lg:col-span-6 bg-suncream text-peelGreen rounded-3xl p-6 sm:p-8 shadow-xl space-y-5">
+          <!-- Box Size Selector -->
+          <div>
+            <label class="block text-xs font-extrabold uppercase tracking-wider text-peelGreenLight mb-2">1. Select Chilled Box Size</label>
+            <div class="grid grid-cols-2 gap-3" id="subSizeGroup">
+              <button type="button" data-size="6-Bottle Box" data-price="790" data-orig="930" class="sub-size-btn active border-2 border-peelGreen bg-peelGreen text-suncream rounded-2xl p-3.5 text-left transition">
+                <span class="block text-sm font-extrabold">6-Bottle Box</span>
+                <span class="block text-xs opacity-90 mt-0.5">₱790 / delivery</span>
+              </button>
+              <button type="button" data-size="12-Bottle Box" data-price="1490" data-orig="1760" class="sub-size-btn border-2 border-leafBorder bg-citrusMist hover:border-peelGreen/50 text-peelGreen rounded-2xl p-3.5 text-left transition">
+                <span class="block text-sm font-extrabold">12-Bottle Box</span>
+                <span class="block text-xs text-peelGreenLight mt-0.5">₱1,490 / delivery</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Delivery Frequency Toggle -->
+          <div>
+            <label class="block text-xs font-extrabold uppercase tracking-wider text-peelGreenLight mb-2">2. Delivery Schedule</label>
+            <div class="grid grid-cols-2 gap-3" id="subCadenceGroup">
+              <button type="button" data-cadence="Weekly Delivery" class="sub-cadence-btn active border-2 border-tangerine bg-tangerine text-white rounded-xl py-2.5 px-3 text-xs sm:text-sm font-extrabold transition">
+                Weekly
+              </button>
+              <button type="button" data-cadence="Bi-Weekly Delivery" class="sub-cadence-btn border-2 border-leafBorder bg-citrusMist hover:border-tangerine/50 text-peelGreen rounded-xl py-2.5 px-3 text-xs sm:text-sm font-extrabold transition">
+                Bi-Weekly
+              </button>
+            </div>
+          </div>
+
+          <!-- Curated Mix Selector -->
+          <div>
+            <label for="subMixSelect" class="block text-xs font-extrabold uppercase tracking-wider text-peelGreenLight mb-2">3. Flavor Lineup</label>
+            <select id="subMixSelect" class="w-full bg-citrusMist border border-leafBorder rounded-xl px-4 py-3 text-sm font-bold text-peelGreen focus:outline-none focus:ring-2 focus:ring-tangerine">
+              <option value="Sunshine Signature Variety Mix">Sunshine Signature Variety Mix</option>
+              <option value="All Cold-Pressed Citrus & Tropicals">All Cold-Pressed Citrus &amp; Tropicals</option>
+              <option value="Sparkling Coolers & Botanical Teas">Sparkling Coolers &amp; Botanical Teas</option>
+              <option value="Morning Immunity (Calamansi & Ginger)">Morning Immunity (Calamansi &amp; Ginger)</option>
+            </select>
+          </div>
+
+          <!-- Summary & Start Subscription CTA -->
+          <div class="pt-3 border-t border-leafBorder flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <span class="text-xs text-peelGreenLight block">Subscriber Price (Save 15%)</span>
+              <div class="flex items-baseline gap-2">
+                <span id="subDisplayPrice" class="font-display font-black text-2xl text-peelGreen">₱790.00</span>
+                <span id="subDisplayOrig" class="text-xs text-peelGreenLight line-through">₱930.00</span>
+              </div>
+            </div>
+            <button type="button" onclick="addSubscriptionToCart()" class="bg-tangerine hover:bg-tangerineDark text-white font-extrabold text-sm px-6 py-3.5 rounded-full shadow-md transition active:scale-95">
+              Add Chilled Box
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Brand Story & Why Sunsip Section -->
+  <section id="our-story" class="py-16 sm:py-24 bg-warmSand/70 border-t border-leafBorder">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center">
+        <span class="text-xs font-extrabold uppercase tracking-widest text-tangerine">Why Sunsip Refreshment</span>
+        <h2 class="font-display font-black text-3xl sm:text-4xl text-peelGreen mt-2">Real Philippine Fruit. Zero Shortcuts.</h2>
+        <p class="mt-4 text-peelGreenLight text-sm sm:text-base leading-relaxed">
+          We started Sunsip in Davao &amp; Metro Manila with one simple rule: bottled drinks should taste just like slicing open fresh orchard fruit on a sunny morning—never syrupy, never heat-pasteurized into flatness.
+        </p>
+      </div>
+
+      <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-suncream border border-leafBorder rounded-3xl p-7 shadow-citrus">
+          <div class="w-12 h-12 rounded-2xl bg-sunnyLemon/40 text-peelGreen flex items-center justify-center text-2xl mb-4">🍊</div>
+          <h3 class="font-display font-extrabold text-lg text-peelGreen">100% Philippine Orchard Fruits</h3>
+          <p class="text-xs sm:text-sm text-peelGreenLight mt-2 leading-relaxed">
+            Sourced directly from partner farms in Guimaras, Davao, and Batangas at peak ripeness.
+          </p>
+        </div>
+
+        <div class="bg-suncream border border-leafBorder rounded-3xl p-7 shadow-citrus">
+          <div class="w-12 h-12 rounded-2xl bg-coralPop/20 text-peelGreen flex items-center justify-center text-2xl mb-4">🚫</div>
+          <h3 class="font-display font-extrabold text-lg text-peelGreen">Zero Artificial Preservatives</h3>
+          <p class="text-xs sm:text-sm text-peelGreenLight mt-2 leading-relaxed">
+            No concentrates, synthetic dyes, or refined cane syrups—sweetened only with fruit and raw honey.
+          </p>
+        </div>
+
+        <div class="bg-suncream border border-leafBorder rounded-3xl p-7 shadow-citrus">
+          <div class="w-12 h-12 rounded-2xl bg-tangerine/20 text-peelGreen flex items-center justify-center text-2xl mb-4">❄️</div>
+          <h3 class="font-display font-extrabold text-lg text-peelGreen">Cold-Pressed Freshness</h3>
+          <p class="text-xs sm:text-sm text-peelGreenLight mt-2 leading-relaxed">
+            Hydraulic cold-pressing locks in natural Vitamin C, live enzymes, and crisp aromatic zest.
+          </p>
+        </div>
+
+        <div class="bg-suncream border border-leafBorder rounded-3xl p-7 shadow-citrus">
+          <div class="w-12 h-12 rounded-2xl bg-peelGreen/15 text-peelGreen flex items-center justify-center text-2xl mb-4">♻️</div>
+          <h3 class="font-display font-extrabold text-lg text-peelGreen">Eco-Friendly Glass Bottles</h3>
+          <p class="text-xs sm:text-sm text-peelGreenLight mt-2 leading-relaxed">
+            Bottled in recyclable amber-tinted and flint glass—return 6 empty bottles on your next order for ₱50 credit!
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Clean Footer -->
+  <footer class="bg-peelGreen text-suncream border-t border-peelGreenLight">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
+        <!-- Brand & Newsletter (5 cols) -->
+        <div class="lg:col-span-5 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-sunnyLemon text-peelGreen flex items-center justify-center font-display font-black text-xl">S</div>
+            <span class="font-display font-black text-2xl text-suncream">Sunsip Refreshment</span>
+          </div>
+          <p class="text-sm text-citrusMist/85 leading-relaxed max-w-md">
+            Cold-pressed Philippine juices, sparkling coolers, and botanical iced teas delivered ice-chilled. Subscribe for 10% off your first order.
+          </p>
+          <form id="newsletterForm" class="flex flex-col sm:flex-row gap-2.5 pt-2 max-w-md">
+            <input
+              type="email"
+              id="newsletterEmail"
+              required
+              placeholder="Enter your email address..."
+              class="flex-1 bg-peelGreenLight/70 border border-sunnyLemon/30 rounded-full px-4 py-3 text-sm text-suncream placeholder-citrusMist/60 focus:outline-none focus:ring-2 focus:ring-sunnyLemon"
+            />
+            <button type="submit" class="bg-sunnyLemon hover:bg-tangerine hover:text-white text-peelGreen font-extrabold text-xs uppercase tracking-wider px-6 py-3 rounded-full transition shrink-0">
+              Get 10% Off
+            </button>
+          </form>
+        </div>
+
+        <!-- Delivery Coverage Info (4 cols) -->
+        <div class="lg:col-span-4">
+          <h4 class="font-display font-extrabold text-lg text-sunnyLemon mb-4">Chilled Delivery Coverage</h4>
+          <ul class="space-y-2.5 text-sm text-citrusMist/90">
+            <li>🧊 <strong>Metro Manila:</strong> Same-day chilled rider (Order before 2 PM)</li>
+            <li>🧊 <strong>Davao City &amp; Panabo:</strong> Same-day insulated van delivery</li>
+            <li>🚚 <strong>Free Delivery:</strong> Orders ₱1,200+ (₱99 flat rate below ₱1,200)</li>
+            <li>📱 <strong>Concierge:</strong> +63 (917) 630-8821 • hello@sunsip.ph</li>
+          </ul>
+        </div>
+
+        <!-- Shop & Social Links (3 cols) -->
+        <div class="lg:col-span-3">
+          <h4 class="font-display font-extrabold text-lg text-sunnyLemon mb-4">Explore &amp; Connect</h4>
+          <ul class="space-y-2.5 text-sm text-citrusMist/90">
+            <li><a href="#drink-menu" onclick="filterByCategory('All')" class="hover:text-sunnyLemon transition">Shop All Refreshments</a></li>
+            <li><a href="#sip-quiz" class="hover:text-sunnyLemon transition">Find Your Sip Quiz</a></li>
+            <li><a href="#subscriptions" class="hover:text-sunnyLemon transition">Weekly Chilled Box</a></li>
+            <li class="pt-2 flex items-center gap-3">
+              <a href="#drink-menu" class="px-3 py-1.5 rounded-full bg-peelGreenLight text-xs font-bold hover:bg-tangerine transition">Instagram</a>
+              <a href="#drink-menu" class="px-3 py-1.5 rounded-full bg-peelGreenLight text-xs font-bold hover:bg-tangerine transition">TikTok</a>
+              <a href="#drink-menu" class="px-3 py-1.5 rounded-full bg-peelGreenLight text-xs font-bold hover:bg-tangerine transition">Facebook</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-12 pt-6 border-t border-peelGreenLight flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-citrusMist/75">
+        <p>© 2026 Sunsip Refreshment Philippines. All rights reserved.</p>
+        <p>Cold-Pressed Daily • Metro Manila &amp; Davao Chilled Delivery</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 9a. Interactive 'Find Your Sip' Modal (Triggered from Header or Hero) -->
+  <div id="quizModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+    <div onclick="closeQuizModal()" class="fixed inset-0 bg-peelGreen/65 backdrop-blur-sm"></div>
+    <div class="relative z-10 bg-suncream border-2 border-leafBorder rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <button type="button" onclick="closeQuizModal()" class="absolute right-5 top-5 w-9 h-9 rounded-full bg-citrusMist border border-leafBorder text-peelGreen hover:bg-peelGreen hover:text-suncream flex items-center justify-center text-sm font-extrabold" aria-label="Close quiz">✕</button>
+      <span class="inline-block bg-sunnyLemon/50 text-peelGreen text-[11px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full">2-Step Sip Quiz</span>
+      <h3 class="font-display font-black text-2xl sm:text-3xl text-peelGreen mt-2">Match Your Refreshment Mood</h3>
+      <p class="text-xs sm:text-sm text-peelGreenLight mt-1">Select a mood and fizz level to see our top chilled pick.</p>
+
+      <div class="mt-5 space-y-4">
+        <div>
+          <label class="block text-xs font-extrabold uppercase tracking-wider text-peelGreenLight mb-2">1. Pick Your Mood</label>
+          <div class="grid grid-cols-2 gap-2">
+            <button type="button" onclick="setQuizMood('Zesty & Energizing')" data-mood="Zesty & Energizing" class="modal-mood-btn border-2 border-peelGreen bg-peelGreen text-suncream rounded-xl p-2.5 text-xs font-extrabold text-left">⚡ Zesty &amp; Energizing</button>
+            <button type="button" onclick="setQuizMood('Crisp & Hydrating')" data-mood="Crisp & Hydrating" class="modal-mood-btn border-2 border-leafBorder bg-white text-peelGreen rounded-xl p-2.5 text-xs font-extrabold text-left">💧 Crisp &amp; Hydrating</button>
+            <button type="button" onclick="setQuizMood('Fruity & Sweet')" data-mood="Fruity & Sweet" class="modal-mood-btn border-2 border-leafBorder bg-white text-peelGreen rounded-xl p-2.5 text-xs font-extrabold text-left">🥭 Fruity &amp; Sweet</button>
+            <button type="button" onclick="setQuizMood('Herbal & Calm')" data-mood="Herbal & Calm" class="modal-mood-btn border-2 border-leafBorder bg-white text-peelGreen rounded-xl p-2.5 text-xs font-extrabold text-left">🌺 Herbal &amp; Calm</button>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-extrabold uppercase tracking-wider text-peelGreenLight mb-2">2. Sweetness &amp; Fizz</label>
+          <div class="grid grid-cols-3 gap-2">
+            <button type="button" onclick="setQuizFizz('Sparkling & Bubbly')" data-fizz="Sparkling & Bubbly" class="modal-fizz-btn border-2 border-tangerine bg-tangerine text-white rounded-xl p-2.5 text-xs font-extrabold">Sparkling</button>
+            <button type="button" onclick="setQuizFizz('Still & Pure Pressed')" data-fizz="Still & Pure Pressed" class="modal-fizz-btn border-2 border-leafBorder bg-white text-peelGreen rounded-xl p-2.5 text-xs font-extrabold">Still Pressed</button>
+            <button type="button" onclick="setQuizFizz('Lightly Honey-Sweet')" data-fizz="Lightly Honey-Sweet" class="modal-fizz-btn border-2 border-leafBorder bg-white text-peelGreen rounded-xl p-2.5 text-xs font-extrabold">Honey-Sweet</button>
+          </div>
+        </div>
+
+        <div class="bg-warmSand border-2 border-sunnyLemon rounded-2xl p-4 flex items-center justify-between gap-4">
+          <div>
+            <span class="text-[10px] font-extrabold uppercase tracking-widest text-tangerine">Recommended Bottle</span>
+            <h4 id="modalQuizTitle" class="font-display font-black text-xl text-peelGreen">Calamansi Honey Fizz</h4>
+            <p id="modalQuizNotes" class="text-xs text-peelGreenLight">Batangas Calamansi • Wildflower Honey</p>
+          </div>
+          <span id="modalQuizPrice" class="font-display font-black text-xl text-peelGreen shrink-0">₱145.00</span>
+        </div>
+
+        <button type="button" onclick="addQuizMatchToCart(); closeQuizModal();" class="w-full bg-tangerine hover:bg-tangerineDark text-white font-extrabold text-sm py-3.5 rounded-full shadow-md transition">
+          + Add Recommended Sip to Cart
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick-View Ingredients & Nutrition Modal -->
+  <div id="quickViewModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+    <div onclick="closeQuickView()" class="fixed inset-0 bg-peelGreen/65 backdrop-blur-sm"></div>
+    <div class="relative z-10 bg-suncream border-2 border-leafBorder rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <button type="button" class="absolute right-5 top-5 w-9 h-9 rounded-full bg-citrusMist border border-leafBorder text-peelGreen hover:bg-peelGreen hover:text-suncream flex items-center justify-center text-sm font-extrabold js-close-quick-view" aria-label="Close modal">✕</button>
+      <div id="quickViewContent">
+        <!-- Populated dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. Slide-Over Shopping Cart Drawer -->
+  <div id="cartOverlay" class="fixed inset-0 z-50 hidden">
+    <div onclick="toggleCartDrawer(false)" class="fixed inset-0 bg-peelGreen/60 backdrop-blur-sm transition-opacity"></div>
+    <aside class="fixed right-0 top-0 bottom-0 w-full max-w-md bg-suncream shadow-2xl border-l border-leafBorder flex flex-col z-10">
+      <!-- Drawer Header -->
+      <div class="px-6 py-5 border-b border-leafBorder flex items-center justify-between bg-citrusMist">
+        <div>
+          <h3 class="font-display font-black text-xl text-peelGreen">Your Chilled Cooler</h3>
+          <p class="text-xs text-peelGreenLight">Packed with insulated ice packs</p>
+        </div>
+        <button type="button" onclick="toggleCartDrawer(false)" class="w-9 h-9 rounded-full bg-suncream border border-leafBorder flex items-center justify-center text-peelGreen hover:bg-peelGreen hover:text-suncream transition" aria-label="Close Cart">✕</button>
+      </div>
+
+      <!-- Live Free-Shipping Progress Bar toward ₱1,200 -->
+      <div class="px-6 py-3.5 bg-warmSand border-b border-leafBorder">
+        <p id="shippingProgressText" class="text-xs font-bold text-peelGreen mb-2">
+          Add <span class="text-tangerine font-extrabold">₱1,200.00</span> more for <span class="underline">FREE Chilled Delivery</span>!
+        </p>
+        <div class="w-full h-2.5 bg-white rounded-full overflow-hidden border border-leafBorder">
+          <div id="shippingProgressBar" class="h-full bg-tangerine transition-all duration-300" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- Cart Items List -->
+      <div id="cartItemsContainer" class="flex-1 overflow-y-auto p-6 space-y-4">
+        <!-- Injected dynamically -->
+      </div>
+
+      <!-- Cart Footer -->
+      <div class="p-6 border-t border-leafBorder bg-citrusMist space-y-4">
+        <div class="space-y-1.5 text-sm">
+          <div class="flex justify-between text-peelGreenLight">
+            <span>Subtotal</span>
+            <span id="cartSubtotal" class="font-bold text-peelGreen">₱0.00</span>
+          </div>
+          <div class="flex justify-between text-peelGreenLight">
+            <span>Chilled Delivery (MM &amp; Davao)</span>
+            <span id="cartShippingCost" class="font-bold text-peelGreen">₱99.00</span>
+          </div>
+          <div class="flex justify-between text-base font-extrabold text-peelGreen pt-2 border-t border-leafBorder">
+            <span>Estimated Total</span>
+            <span id="cartTotal" class="font-display text-xl">₱0.00</span>
+          </div>
+        </div>
+        <button id="checkoutBtn" type="button" onclick="openCheckoutModal()" disabled class="w-full bg-peelGreen disabled:opacity-40 hover:bg-tangerine text-suncream font-extrabold py-3.5 px-6 rounded-full shadow-md transition">
+          Checkout Chilled Order
+        </button>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Simulated Checkout & Philippine Peso Receipt Modal -->
+  <div id="checkoutModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+    <div onclick="closeCheckoutModal()" class="fixed inset-0 bg-peelGreen/65 backdrop-blur-sm"></div>
+    <div class="relative z-10 bg-suncream border-2 border-leafBorder rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl text-center">
+      <div class="w-14 h-14 rounded-full bg-sunnyLemon/50 text-peelGreen flex items-center justify-center mx-auto mb-3 text-2xl font-black">☀️</div>
+      <span class="text-[11px] font-extrabold uppercase tracking-widest text-tangerine">Sunsip Order Receipt</span>
+      <h3 class="font-display font-black text-2xl text-peelGreen mt-1">Salamat! Your Cooler is Packing</h3>
+      <p class="text-xs sm:text-sm text-peelGreenLight mt-2 leading-relaxed">
+        We’re cold-pressing and chilling your <strong class="text-peelGreen">Sunsip Refreshment</strong> order now for dispatch.
+      </p>
+      <div id="checkoutReceiptBox" class="mt-4 bg-citrusMist border border-leafBorder rounded-2xl p-4 text-left text-xs space-y-1.5">
+        <!-- Receipt injected dynamically -->
+      </div>
+
+      <button type="button" onclick="completeDemoOrder()" class="mt-6 w-full bg-peelGreen hover:bg-tangerine text-suncream font-extrabold text-sm py-3.5 rounded-full transition">
+        Done &amp; Continue Shopping
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="bg-peelGreen text-suncream px-5 py-3.5 rounded-2xl shadow-citrus-lg border border-sunnyLemon/40 flex items-center gap-3 text-sm font-bold">
+      <span class="text-sunnyLemon text-lg">🍋</span>
+      <span id="toastMessage">Added to your chilled cooler!</span>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!-- 9a. Interactive 'Find Your Sip' Modal (Triggered from Header or Hero) -->
+<div id="quizModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+  <div onclick="closeQuizModal()" class="fixed inset-0 bg-peelGreen/65 backdrop-blur-xs"></div>
+  <div class="relative z-10 bg-suncream border-2 border-leafBorder rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
+    <button type="button" onclick="closeQuizModal()" class="absolute right-5 top-5 w-9 h-9 rounded-full bg-citrusMist border border-leafBorder text-peelGreen hover:bg-peelGreen hover:text-suncream flex items-center justify-center text-sm font-extrabold" aria-label="Close quiz">✕</button>
+    <span class="inline-block bg-sunnyLemon/50 text-peelGreen text-[11px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full">2-Step Sip Quiz</span>
+    <h3 class="font-display font-black text-2xl sm:text-3xl text-peelGreen mt-2">Match Your Refreshment Mood</h3>
+    <p class="text-xs sm:text-sm text-peelGreenLight mt-1">Select a mood and fizz level to see our top chilled pick.</p>
+
+    <div class="mt-5 space-y-4">
+      <div>
+        <label class="block text-xs font-extrabold uppercase tracking-wider text-peelGreenLight mb-2">1. Pick Your Mood</label>
+        <div class="grid grid-cols-2 gap-2">
+          <button type="button" onclick="setQuizMood('Zesty & Energizing')" data-mood="Zesty & Energizing" class="modal-mood-btn border-2 border-peelGreen bg-peelGreen text-suncream rounded-xl p-2.5 text-xs font-extrabold text-left">⚡ Zesty &amp; Energizing</button>
+          <button type="button" onclick="setQuizMood('Crisp & Hydrating')" data-mood="Crisp & Hydrating" class="modal-mood-btn border-2 border-leafBorder bg-white text-peelGreen rounded-xl p-2.5 text-xs font-extrabold text-left">💧 Crisp &amp; Hydrating</button>
+          <button type="button" onclick="setQuizMood('Fruity & Sweet')" data-mood="Fruity & Sweet" class="modal-mood-btn border-2 border-leafBorder bg-white text-peelGreen rounded-xl p-2.5 text-xs font-extrabold text-left">🥭 Fruity &amp; Sweet</button>
+          <button type="button" onclick="setQuizMood('Herbal & Calm')" data-mood="Herbal & Calm" class="modal-mood-btn border-2 border-leafBorder bg-white text-peelGreen rounded-xl p-2.5 text-xs font-extrabold text-left">🌺 Herbal &amp; Calm</button>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-extrabold uppercase tracking-wider text-peelGreenLight mb-2">2. Sweetness &amp; Fizz</label>
+        <div class="grid grid-cols-3 gap-2">
+          <button type="button" onclick="setQuizFizz('Sparkling & Bubbly')" data-fizz="Sparkling & Bubbly" class="modal-fizz-btn border-2 border-tangerine bg-tangerine text-white rounded-xl p-2.5 text-xs font-extrabold">Sparkling</button>
+          <button type="button" onclick="setQuizFizz('Still & Pure Pressed')" data-fizz="Still & Pure Pressed" class="modal-fizz-btn border-2 border-leafBorder bg-white text-peelGreen rounded-xl p-2.5 text-xs font-extrabold">Still Pressed</button>
+          <button type="button" onclick="setQuizFizz('Lightly Honey-Sweet')" data-fizz="Lightly Honey-Sweet" class="modal-fizz-btn border-2 border-leafBorder bg-white text-peelGreen rounded-xl p-2.5 text-xs font-extrabold">Honey-Sweet</button>
+        </div>
+      </div>
+
+      <div class="bg-warmSand border-2 border-sunnyLemon rounded-2xl p-4 flex items-center justify-between gap-4">
+        <div>
+          <span class="text-[10px] font-extrabold uppercase tracking-widest text-tangerine">Recommended Bottle</span>
+          <h4 id="modalQuizTitle" class="font-display font-black text-xl text-peelGreen">Calamansi Honey Fizz</h4>
+          <p id="modalQuizNotes" class="text-xs text-peelGreenLight">Batangas Calamansi • Wildflower Honey</p>
+        </div>
+        <span id="modalQuizPrice" class="font-display font-black text-xl text-peelGreen shrink-0">₱145.00</span>
+      </div>
+
+      <button type="button" onclick="addQuizMatchToCart(); closeQuizModal();" class="w-full bg-tangerine hover:bg-tangerineDark text-white font-extrabold text-sm py-3.5 rounded-full shadow-md transition">
+        + Add Recommended Sip to Cart
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Quick-View Ingredients & Nutrition Modal -->
+<div id="quickViewModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+  <div onclick="closeQuickView()" class="fixed inset-0 bg-peelGreen/65 backdrop-blur-xs"></div>
+  <div class="relative z-10 bg-suncream border-2 border-leafBorder rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
+    <button type="button" onclick="closeQuickView()" class="absolute right-5 top-5 w-9 h-9 rounded-full bg-citrusMist border border-leafBorder text-peelGreen hover:bg-peelGreen hover:text-suncream flex items-center justify-center text-sm font-extrabold" aria-label="Close modal">✕</button>
+    <div id="quickViewContent">
+      <!-- Populated dynamically -->
+    </div>
+  </div>
+</div>
+
+<!-- 8. Slide-Over Shopping Cart Drawer -->
+<div id="cartOverlay" class="fixed inset-0 z-50 hidden">
+  <div onclick="toggleCartDrawer(false)" class="fixed inset-0 bg-peelGreen/60 backdrop-blur-xs transition-opacity"></div>
+  <aside class="fixed right-0 top-0 bottom-0 w-full max-w-md bg-suncream shadow-2xl border-l border-leafBorder flex flex-col z-10">
+    <!-- Drawer Header -->
+    <div class="px-6 py-5 border-b border-leafBorder flex items-center justify-between bg-citrusMist">
+      <div>
+        <h3 class="font-display font-black text-xl text-peelGreen">Your Chilled Cooler</h3>
+        <p class="text-xs text-peelGreenLight">Packed with insulated ice packs</p>
+      </div>
+      <button type="button" onclick="toggleCartDrawer(false)" class="w-9 h-9 rounded-full bg-suncream border border-leafBorder flex items-center justify-center text-peelGreen hover:bg-peelGreen hover:text-suncream transition" aria-label="Close Cart">✕</button>
+    </div>
+
+    <!-- Live Free-Shipping Progress Bar toward ₱1,200 -->
+    <div class="px-6 py-3.5 bg-warmSand border-b border-leafBorder">
+      <p id="shippingProgressText" class="text-xs font-bold text-peelGreen mb-2">
+        Add <span class="text-tangerine font-extrabold">₱1,200.00</span> more for <span class="underline">FREE Chilled Delivery</span>!
+      </p>
+      <div class="w-full h-2.5 bg-white rounded-full overflow-hidden border border-leafBorder">
+        <div id="shippingProgressBar" class="h-full bg-tangerine transition-all duration-300" style="width: 0%"></div>
+      </div>
+    </div>
+
+    <!-- Cart Items List -->
+    <div id="cartItemsContainer" class="flex-1 overflow-y-auto p-6 space-y-4">
+      <!-- Injected dynamically -->
+    </div>
+
+    <!-- Cart Footer -->
+    <div class="p-6 border-t border-leafBorder bg-citrusMist space-y-4">
+      <div class="space-y-1.5 text-sm">
+        <div class="flex justify-between text-peelGreenLight">
+          <span>Subtotal</span>
+          <span id="cartSubtotal" class="font-bold text-peelGreen">₱0.00</span>
+        </div>
+        <div class="flex justify-between text-peelGreenLight">
+          <span>Chilled Delivery (MM &amp; Davao)</span>
+          <span id="cartShippingCost" class="font-bold text-peelGreen">₱99.00</span>
+        </div>
+        <div class="flex justify-between text-base font-extrabold text-peelGreen pt-2 border-t border-leafBorder">
+          <span>Estimated Total</span>
+          <span id="cartTotal" class="font-display text-xl">₱0.00</span>
+        </div>
+      </div>
+      <button id="checkoutBtn" type="button" onclick="openCheckoutModal()" disabled class="w-full bg-peelGreen disabled:opacity-40 hover:bg-tangerine text-suncream font-extrabold py-3.5 px-6 rounded-full shadow-md transition">
+        Checkout Chilled Order
+      </button>
+    </div>
+  </aside>
+</div>
+
+<!-- Simulated Checkout & Philippine Peso Receipt Modal -->
+<div id="checkoutModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+  <div onclick="closeCheckoutModal()" class="fixed inset-0 bg-peelGreen/65 backdrop-blur-xs"></div>
+  <div class="relative z-10 bg-suncream border-2 border-leafBorder rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl text-center">
+    <div class="w-14 h-14 rounded-full bg-sunnyLemon/50 text-peelGreen flex items-center justify-center mx-auto mb-3 text-2xl font-black">☀️</div>
+    <span class="text-[11px] font-extrabold uppercase tracking-widest text-tangerine">Sunsip Order Receipt</span>
+    <h3 class="font-display font-black text-2xl text-peelGreen mt-1">Salamat! Your Cooler is Packing</h3>
+    <p class="text-xs sm:text-sm text-peelGreenLight mt-2 leading-relaxed">
+      We’re cold-pressing and chilling your <strong class="text-peelGreen">Sunsip Refreshment</strong> order now for dispatch.
+    </p>
+    <div id="checkoutReceiptBox" class="mt-4 bg-citrusMist border border-leafBorder rounded-2xl p-4 text-left text-xs space-y-1.5">
+      <!-- Receipt injected dynamically -->
+    </div>
+
+    <button type="button" onclick="completeDemoOrder()" class="mt-6 w-full bg-peelGreen hover:bg-tangerine text-suncream font-extrabold text-sm py-3.5 rounded-full transition">
+      Done &amp; Continue Shopping
+    </button>
+  </div>
+</div>
