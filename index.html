@@ -74,11 +74,10 @@
             <span id="cartBadge" class="bg-tangerine text-white text-xs font-extrabold w-5 h-5 rounded-full flex items-center justify-center">0</span>
           </button>
 
-          <a href="login.html" class="hidden sm:inline-flex items-center justify-center gap-2 bg-warmSand hover:bg-sunnyLemon/40 text-peelGreen border border-sunnyLemon px-4 sm:px-5 py-2.5 rounded-full text-sm font-extrabold transition">
-            Sign In
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
+<div class="hidden sm:inline-flex items-center justify-center bg-warmSand hover:bg-sunnyLemon/40 text-peelGreen border border-sunnyLemon px-4 sm:px-5 py-2.5 rounded-full text-sm font-extrabold transition" id="authHeader">
+  <span id="userName" class="text-peelGreen font-extrabold"></span>
+  <button type="button" id="orderHistoryBtn" class="bg-tangerine hover:bg-tangerineDark text-white font-extrabold text-sm py-2.5 px-5 rounded-full shadow-citrus transition hidden">Order History</button>
+</div>
           </a>
           <a href="signup.html" class="hidden sm:inline-flex items-center justify-center gap-2 bg-tangerine hover:bg-tangerineDark text-white px-4 sm:px-5 py-2.5 rounded-full text-sm font-extrabold shadow-sm transition active:scale-95">
             Sign Up
