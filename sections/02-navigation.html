@@ -5,7 +5,7 @@
 
       <!-- Custom Sunsip Refreshment Radiant Sun-and-Citrus SVG Logo -->
       <a href="#" class="flex items-center gap-3 group shrink-0">
-        <img src="jpgs/sunsip-logo.png" class="w-12 h-12 sm:w-14 sm:h-14 transition-transform duration-300 group-hover:rotate-6 group-hover:scale-105" alt="Sunsip Logo" />
+        <img src="assets/images/sunsip-logo.png" class="w-12 h-12 sm:w-14 sm:h-14 transition-transform duration-300 group-hover:rotate-6 group-hover:scale-105" alt="Sunsip Logo" />
         <div>
           <span class="font-display font-black text-xl sm:text-2xl tracking-tight text-peelGreen block leading-none">Sunsip</span>
           <span class="text-[11px] uppercase tracking-widest text-tangerine font-extrabold">Refreshment PH</span>
@@ -36,7 +36,7 @@
 
       <!-- Quiz Trigger, Cart Button & Mobile Menu Toggle -->
       <div class="flex items-center gap-2.5">
-        <button type="button" onclick="openQuizModal()" class="hidden sm:inline-flex items-center gap-1.5 bg-warmSand hover:bg-sunnyLemon/40 text-peelGreen border border-sunnyLemon px-3.5 py-2 rounded-full text-xs font-extrabold transition">
+        <button type="button" class="hidden sm:inline-flex items-center gap-1.5 bg-warmSand hover:bg-sunnyLemon/40 text-peelGreen border border-sunnyLemon px-3.5 py-2 rounded-full text-xs font-extrabold transition js-open-quiz-modal">
           <span>🍋 Sip Quiz</span>
         </button>
 
@@ -47,6 +47,14 @@
           <span>Cart</span>
           <span id="cartBadge" class="bg-tangerine text-white text-xs font-extrabold w-5 h-5 rounded-full flex items-center justify-center">0</span>
         </button>
+
+<div class="hidden sm:inline-flex items-center justify-center bg-warmSand hover:bg-sunnyLemon/40 text-peelGreen border border-sunnyLemon px-4 sm:px-5 py-2.5 rounded-full text-sm font-extrabold transition" id="authHeader">
+  <span id="userName" class="text-peelGreen font-extrabold"></span>
+  <button type="button" id="orderHistoryBtn" class="bg-tangerine hover:bg-tangerineDark text-white font-extrabold text-sm py-2.5 px-5 rounded-full shadow-citrus transition hidden">Order History</button>
+</div>
+          <a href="signup.html" class="hidden sm:inline-flex items-center justify-center gap-2 bg-tangerine hover:bg-tangerineDark text-white px-4 sm:px-5 py-2.5 rounded-full text-sm font-extrabold shadow-sm transition active:scale-95">
+            Sign Up
+          </a>
 
         <button id="mobileMenuBtn" type="button" class="lg:hidden p-2.5 rounded-xl border border-leafBorder text-peelGreen hover:bg-citrusMist" aria-label="Open Menu">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
@@ -74,6 +82,8 @@
         <a href="#drink-menu" onclick="filterByCategory('Party Packs'); closeMobileMenu();" class="px-3.5 py-2.5 rounded-xl hover:bg-citrusMist">Bundles</a>
         <a href="#our-story" onclick="closeMobileMenu()" class="px-3.5 py-2.5 rounded-xl hover:bg-citrusMist">Our Story</a>
         <a href="#subscriptions" onclick="closeMobileMenu()" class="px-3.5 py-2.5 rounded-xl hover:bg-citrusMist">Subscriptions</a>
+          <a href="login.html" onclick="closeMobileMenu()" class="px-3.5 py-2.5 rounded-xl hover:bg-citrusMist border border-leafBorder text-tangerine font-extrabold">Sign In</a>
+          <a href="signup.html" onclick="closeMobileMenu()" class="px-3.5 py-2.5 rounded-xl bg-tangerine text-white font-extrabold shadow-sm">Sign Up</a>
       </div>
     </div>
   </div>

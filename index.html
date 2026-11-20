@@ -77,11 +77,14 @@
 <div class="hidden sm:inline-flex items-center justify-center bg-warmSand hover:bg-sunnyLemon/40 text-peelGreen border border-sunnyLemon px-4 sm:px-5 py-2.5 rounded-full text-sm font-extrabold transition" id="authHeader">
   <span id="userName" class="text-peelGreen font-extrabold"></span>
   <button type="button" id="orderHistoryBtn" class="bg-tangerine hover:bg-tangerineDark text-white font-extrabold text-sm py-2.5 px-5 rounded-full shadow-citrus transition hidden">Order History</button>
+  <button type="button" data-action="signout" class="hidden ml-2 bg-peelGreen hover:bg-tangerine text-suncream font-extrabold text-sm py-2.5 px-5 rounded-full shadow-citrus transition active:scale-95">Sign Out</button>
 </div>
-          </a>
-          <a href="signup.html" class="hidden sm:inline-flex items-center justify-center gap-2 bg-tangerine hover:bg-tangerineDark text-white px-4 sm:px-5 py-2.5 rounded-full text-sm font-extrabold shadow-sm transition active:scale-95">
-            Sign Up
-          </a>
+<a href="signup.html" id="signupLink" class="hidden sm:inline-flex items-center justify-center gap-2 bg-tangerine hover:bg-tangerineDark text-white px-4 sm:px-5 py-2.5 rounded-full text-sm font-extrabold shadow-sm transition active:scale-95">
+  Sign Up
+</a>
+<a href="login.html" id="signinLink" class="hidden sm:inline-flex items-center justify-center gap-2 bg-warmSand hover:bg-sunnyLemon/40 text-peelGreen border border-sunnyLemon px-4 sm:px-5 py-2.5 rounded-full text-sm font-extrabold transition">
+  Sign In
+</a>
 
           <button id="mobileMenuBtn" type="button" class="lg:hidden p-2.5 rounded-xl border border-leafBorder text-peelGreen hover:bg-citrusMist" aria-label="Open Menu">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
@@ -366,9 +369,12 @@
               </div>
               <span id="inlineQuizMatchPrice" class="font-display font-black text-2xl text-peelGreen">₱145.00</span>
             </div>
-            <button type="button" onclick="addQuizMatchToCart()" class="mt-4 w-full bg-peelGreen hover:bg-tangerine text-suncream font-extrabold text-sm py-3.5 px-5 rounded-full shadow-sm transition active:scale-95">
-              + Add Match to Cart
-            </button>
+<button type="button" onclick="addQuizMatchToCart()" class="mt-4 w-full bg-peelGreen hover:bg-tangerine text-suncream font-extrabold text-sm py-3.5 px-5 rounded-full shadow-sm transition active:scale-95">
+  + Add Match to Cart
+</button>
+<button type="button" onclick="filterByQuizMatch()" class="mt-3 w-full bg-warmSand hover:bg-sunnyLemon/40 text-peelGreen border border-sunnyLemon font-extrabold text-sm py-3 px-5 rounded-full transition active:scale-95">
+  View Matching Drinks in Menu
+</button>
           </div>
         </div>
       </div>
@@ -602,9 +608,12 @@
           <span id="modalQuizPrice" class="font-display font-black text-xl text-peelGreen shrink-0">₱145.00</span>
         </div>
 
-        <button type="button" onclick="addQuizMatchToCart(); closeQuizModal();" class="w-full bg-tangerine hover:bg-tangerineDark text-white font-extrabold text-sm py-3.5 rounded-full shadow-md transition">
-          + Add Recommended Sip to Cart
-        </button>
+<button type="button" onclick="addQuizMatchToCart(); closeQuizModal();" class="w-full bg-tangerine hover:bg-tangerineDark text-white font-extrabold text-sm py-3.5 rounded-full shadow-md transition">
+  + Add Recommended Sip to Cart
+</button>
+<button type="button" onclick="filterByQuizMatch(); closeQuizModal();" class="mt-3 w-full bg-warmSand hover:bg-sunnyLemon/40 text-peelGreen border border-sunnyLemon font-extrabold text-sm py-3 rounded-full transition active:scale-95">
+  View Matching Drinks in Menu
+</button>
       </div>
     </div>
   </div>
@@ -671,23 +680,178 @@
     </aside>
   </div>
 
-  <!-- Simulated Checkout & Philippine Peso Receipt Modal -->
+  <!-- Simulated Checkout & Philippine Peso Receipt Modal (Multi-Step) -->
   <div id="checkoutModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
     <div onclick="closeCheckoutModal()" class="fixed inset-0 bg-peelGreen/65 backdrop-blur-sm"></div>
-    <div class="relative z-10 bg-suncream border-2 border-leafBorder rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl text-center">
-      <div class="w-14 h-14 rounded-full bg-sunnyLemon/50 text-peelGreen flex items-center justify-center mx-auto mb-3 text-2xl font-black">☀️</div>
-      <span class="text-[11px] font-extrabold uppercase tracking-widest text-tangerine">Sunsip Order Receipt</span>
-      <h3 class="font-display font-black text-2xl text-peelGreen mt-1">Salamat! Your Cooler is Packing</h3>
-      <p class="text-xs sm:text-sm text-peelGreenLight mt-2 leading-relaxed">
-        We’re cold-pressing and chilling your <strong class="text-peelGreen">Sunsip Refreshment</strong> order now for dispatch.
-      </p>
-      <div id="checkoutReceiptBox" class="mt-4 bg-citrusMist border border-leafBorder rounded-2xl p-4 text-left text-xs space-y-1.5">
-        <!-- Receipt injected dynamically -->
+    <div class="relative z-10 bg-suncream border-2 border-leafBorder rounded-3xl max-w-md w-full p-0 sm:p-0 shadow-2xl max-h-[90vh] flex flex-col overflow-hidden">
+      <div class="px-6 py-4 border-b border-leafBorder flex items-center justify-between">
+        <h3 class="font-display font-black text-lg text-peelGreen">Checkout</h3>
+        <div class="flex gap-1 text-xs">
+          <div id="checkoutStep1" class="checkout-step w-5 h-5 rounded-full bg-tangerine flex items-center justify-center text-white font-bold text-[10px] shadow-sm">1</div>
+          <div id="checkoutStep2" class="checkout-step w-5 h-5 rounded-full bg-leafBorder text-peelGreen flex items-center justify-center text-[10px]">2</div>
+          <div id="checkoutStep3" class="checkout-step w-5 h-5 rounded-full bg-leafBorder text-peelGreen flex items-center justify-center text-[10px]">3</div>
+        </div>
       </div>
 
-      <button type="button" onclick="completeDemoOrder()" class="mt-6 w-full bg-peelGreen hover:bg-tangerine text-suncream font-extrabold text-sm py-3.5 rounded-full transition">
-        Done &amp; Continue Shopping
-      </button>
+      <!-- Step 1: Delivery Info -->
+      <div id="checkoutStep1Panel" class="checkout-panel flex-1 overflow-y-auto p-6 sm:p-8 space-y-5">
+        <p class="text-xs font-extrabold uppercase tracking-widest text-tangerine mb-1">Step 1 of 3</p>
+        <h4 class="font-display font-black text-xl text-peelGreen mb-1">Delivery Details</h4>
+        <p class="text-peelGreenLight text-sm mb-4">Where should we deliver your chilled cooler?</p>
+
+        <form id="checkoutDeliveryForm" class="space-y-4">
+          <div>
+            <label class="block text-xs font-extrabold uppercase tracking-wider text-peelGreenLight mb-2">Full Name</label>
+            <input type="text" id="checkoutName" required placeholder="Juan Dela Cruz" class="w-full bg-citrusMist border border-leafBorder rounded-xl px-4 py-3 text-sm font-bold text-peelGreen focus:outline-none focus:ring-2 focus:ring-tangerine focus:bg-white transition" />
+          </div>
+          <div>
+            <label class="block text-xs font-extrabold uppercase tracking-wider text-peelGreenLight mb-2">Delivery City</label>
+            <select id="checkoutCity" required class="w-full bg-citrusMist border border-leafBorder rounded-xl px-4 py-3 text-sm font-bold text-peelGreen focus:outline-none focus:ring-2 focus:ring-tangerine focus:bg-white transition">
+              <option value="">Select your city</option>
+              <option value="Metro Manila">Metro Manila</option>
+              <option value="Davao">Davao City</option>
+            </select>
+            <p id="checkoutCityNote" class="text-[10px] text-peelGreenLight mt-1 hidden">Free chilled delivery available for orders ₱1,200+.</p>
+          </div>
+          <div>
+            <label class="block text-xs font-extrabold uppercase tracking-wider text-peelGreenLight mb-2">Contact Number</label>
+            <input type="tel" id="checkoutPhone" required placeholder="+63 917 000 0000" class="w-full bg-citrusMist border border-leafBorder rounded-xl px-4 py-3 text-sm font-bold text-peelGreen focus:outline-none focus:ring-2 focus:ring-tangerine focus:bg-white transition" />
+          </div>
+          <div id="checkoutAddressGroup">
+            <label class="block text-xs font-extrabold uppercase tracking-wider text-peelGreenLight mb-2">Barangay / Street Address</label>
+            <textarea id="checkoutAddress" required rows="2" placeholder="123 Mango St, Brgy. ..." class="w-full bg-citrusMist border border-leafBorder rounded-xl px-4 py-3 text-sm font-bold text-peelGreen focus:outline-none focus:ring-2 focus:ring-tangerine focus:bg-white transition"></textarea>
+          </div>
+
+          <div class="pt-4 flex justify-end gap-3">
+            <button type="button" onclick="checkoutPrevStep()" class="hidden text-peelGreenLight font-extrabold px-4 py-2 rounded-full hover:bg-citrusMist transition">Back</button>
+            <button type="button" onclick="checkoutNextStep(1)" id="checkoutBtnStep1" class="w-auto bg-peelGreen hover:bg-tangerine text-suncream font-extrabold text-sm px-6 py-3 rounded-full shadow-citrus transition active:scale-95">Next →</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Step 2: Payment Method -->
+      <div id="checkoutStep2Panel" class="checkout-panel hidden flex-1 overflow-y-auto p-6 sm:p-8 space-y-5">
+        <p class="text-xs font-extrabold uppercase tracking-widest text-tangerine mb-1">Step 2 of 3</p>
+        <h4 class="font-display font-black text-xl text-peelGreen mb-1">Choose Payment</h4>
+        <p class="text-peelGreenLight text-sm mb-4">Pay securely for your chilled order.</p>
+
+        <div id="checkoutPaymentOptions" class="space-y-3">
+          <button type="button" onclick="selectPayment('gcash')" id="payment-gcash" class="payment-option w-full flex items-center justify-between gap-3 px-4 py-3.5 rounded-2xl border-2 border-tangerine bg-tangerine/10 text-peelGreen font-extrabold transition shadow-sm">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-tangerine flex items-center justify-center text-white font-bold text-xs">GC</div>
+              <span>GCash</span>
+            </div>
+            <span class="text-xs font-bold text-tangerine">QR / Reference</span>
+          </button>
+          <button type="button" onclick="selectPayment('maya')" id="payment-maya" class="payment-option w-full flex items-center justify-between gap-3 px-4 py-3.5 rounded-2xl border-2 border-leafBorder bg-white text-peelGreen font-extrabold transition hover:border-tangerine/50">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-tangerine flex items-center justify-center text-white font-bold text-xs">M</div>
+              <span>Maya</span>
+            </div>
+            <span class="text-xs font-bold text-peelGreenLight">QR / Reference</span>
+          </button>
+          <button type="button" onclick="selectPayment('card')" id="payment-card" class="payment-option w-full flex items-center justify-between gap-3 px-4 py-3.5 rounded-2xl border-2 border-leafBorder bg-white text-peelGreen font-extrabold transition hover:border-tangerine/50">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-peelGreen flex items-center justify-center text-white font-bold text-xs">••</div>
+              <span>Credit / Debit Card</span>
+            </div>
+            <span class="text-xs font-bold text-peelGreenLight">Secure Processing</span>
+          </button>
+          <button type="button" onclick="selectPayment('cod')" id="payment-cod" class="payment-option w-full flex items-center justify-between gap-3 px-4 py-3.5 rounded-2xl border-2 border-leafBorder bg-white text-peelGreen font-extrabold transition hover:border-tangerine/50">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-sunnyLemon flex items-center justify-center text-peelGreen font-bold text-xs">💵</div>
+              <span>Cash on Delivery</span>
+            </div>
+            <span class="text-xs font-bold text-peelGreenLight">Pay upon receipt</span>
+          </button>
+        </div>
+
+        <div id="checkoutPaymentDetails" class="hidden mt-4 bg-citrusMist border border-leafBorder rounded-2xl p-4 space-y-3">
+          <div id="checkoutGcashInfo" class="payment-detail hidden space-y-2">
+            <p class="text-xs font-extrabold uppercase tracking-wider text-tangerine">GCash Instructions</p>
+            <p class="text-xs text-peelGreenLight">Send payment to <span class="font-bold text-peelGreen">0917-630-8821</span> via GCash.</p>
+            <p class="text-xs text-peelGreenLight">Reference: <span id="checkoutGcashRef" class="font-bold text-tangerine">SUN-XXXXXX</span></p>
+            <p class="text-[10px] text-peelGreenLight">Screenshot your receipt and show it to the rider on delivery.</p>
+          </div>
+          <div id="checkoutMayaInfo" class="payment-detail hidden space-y-2">
+            <p class="text-xs font-extrabold uppercase tracking-wider text-tangerine">Maya Instructions</p>
+            <p class="text-xs text-peelGreenLight">Send payment to <span class="font-bold text-peelGreen">0917-630-8821</span> via Maya.</p>
+            <p class="text-xs text-peelGreenLight">Reference: <span id="checkoutMayaRef" class="font-bold text-tangerine">SUN-XXXXXX</span></p>
+          </div>
+          <div id="checkoutCardInfo" class="payment-detail hidden space-y-2">
+            <p class="text-xs font-extrabold uppercase tracking-wider text-tangerine">Card Details</p>
+            <div class="grid grid-cols-2 gap-3">
+              <input type="text" id="checkoutCardNumber" placeholder="Card Number" class="bg-white border border-leafBorder rounded-xl px-4 py-3 text-sm font-bold text-peelGreen focus:outline-none focus:ring-2 focus:ring-tangerine" maxlength="19" />
+              <input type="text" id="checkoutCardExpiry" placeholder="MM/YY" class="bg-white border border-leafBorder rounded-xl px-4 py-3 text-sm font-bold text-peelGreen focus:outline-none focus:ring-2 focus:ring-tangerine" maxlength="5" />
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <input type="text" id="checkoutCardCvv" placeholder="CVV" class="bg-white border border-leafBorder rounded-xl px-4 py-3 text-sm font-bold text-peelGreen focus:outline-none focus:ring-2 focus:ring-tangerine" maxlength="3" />
+              <input type="text" id="checkoutCardName" placeholder="Name on Card" class="bg-white border border-leafBorder rounded-xl px-4 py-3 text-sm font-bold text-peelGreen focus:outline-none focus:ring-2 focus:ring-tangerine" />
+            </div>
+          </div>
+          <div id="checkoutCodInfo" class="payment-detail hidden space-y-2">
+            <p class="text-xs font-extrabold uppercase tracking-wider text-tangerine">Cash on Delivery</p>
+            <p class="text-xs text-peelGreenLight">Prepare exact cash amount. Rider will bring a printed receipt.</p>
+            <p class="text-xs text-peelGreenLight">Available for Metro Manila and Davao deliveries only.</p>
+          </div>
+        </div>
+
+        <div class="pt-4 flex justify-between gap-3">
+          <button type="button" onclick="checkoutPrevStep()" class="text-peelGreenLight font-extrabold px-4 py-2 rounded-full hover:bg-citrusMist transition">Back</button>
+          <button type="button" onclick="checkoutNextStep(2)" id="checkoutBtnStep2" class="w-auto bg-peelGreen hover:bg-tangerine text-suncream font-extrabold text-sm px-6 py-3 rounded-full shadow-citrus transition active:scale-95 opacity-50 pointer-events-none" disabled>Next →</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Order Confirmation -->
+      <div id="checkoutStep3Panel" class="checkout-panel hidden flex-1 overflow-y-auto p-6 sm:p-8 space-y-5">
+        <p class="text-xs font-extrabold uppercase tracking-widest text-tangerine mb-1">Step 3 of 3</p>
+        <h4 class="font-display font-black text-xl text-peelGreen mb-1">Review &amp; Confirm</h4>
+        <p class="text-peelGreenLight text-sm mb-4">Review your order before placing it.</p>
+
+        <div class="mb-4">
+          <p class="text-xs font-extrabold uppercase tracking-wider text-tangerine mb-2">Order Summary</p>
+          <div id="checkoutOrderItems" class="space-y-2 mb-3">
+            <!-- Items injected -->
+          </div>
+          <div class="flex justify-between text-peelGreenLight text-sm pt-2 border-t border-leafBorder">
+            <span>Subtotal</span>
+            <span id="checkoutSubtotal" class="font-bold text-peelGreen">₱0.00</span>
+          </div>
+          <div class="flex justify-between text-peelGreenLight text-sm">
+            <span>Chilled Delivery</span>
+            <span id="checkoutShipping" class="font-bold text-peelGreen">₱99.00</span>
+          </div>
+          <div class="flex justify-between font-extrabold text-base text-peelGreen pt-1 border-t border-leafBorder">
+            <span>Total</span>
+            <span id="checkoutTotal" class="font-display text-xl text-tangerine">₱0.00</span>
+          </div>
+        </div>
+
+        <div id="checkoutOrderMeta" class="mb-4 bg-citrusMist border border-leafBorder rounded-2xl p-3 space-y-1 text-xs">
+          <!-- Meta injected -->
+        </div>
+
+        <div class="pt-4 flex justify-between gap-3">
+          <button type="button" onclick="checkoutPrevStep()" class="text-peelGreenLight font-extrabold px-4 py-2 rounded-full hover:bg-citrusMist transition">Back</button>
+          <button type="button" onclick="placeOrder()" id="checkoutBtnPlaceOrder" class="w-auto bg-tangerine hover:bg-tangerineDark text-white font-extrabold text-sm px-6 py-3 rounded-full shadow-citrus-lg transition active:scale-95">Place Order</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order History Modal -->
+  <div id="orderHistoryModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+    <div onclick="closeOrderHistoryModal()" class="fixed inset-0 bg-peelGreen/65 backdrop-blur-sm"></div>
+    <div class="relative z-10 bg-suncream border-2 border-leafBorder rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <button type="button" onclick="closeOrderHistoryModal()" class="absolute right-5 top-5 w-9 h-9 rounded-full bg-citrusMist border border-leafBorder text-peelGreen hover:bg-peelGreen hover:text-suncream flex items-center justify-center text-sm font-extrabold" aria-label="Close Order History">✕</button>
+      <div class="text-center mb-6">
+        <span class="inline-block bg-sunnyLemon/40 text-peelGreen text-[11px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full mb-3">Order History</span>
+        <h3 class="font-display font-black text-2xl sm:text-3xl text-peelGreen">Your Chilled Orders</h3>
+        <p id="orderHistoryEmpty" class="text-peelGreenLight text-sm mt-2 hidden">No orders yet. Start shopping to see your order history here.</p>
+      </div>
+      <div id="orderHistoryList" class="space-y-3">
+        <!-- Orders injected dynamically -->
+      </div>
     </div>
   </div>
 

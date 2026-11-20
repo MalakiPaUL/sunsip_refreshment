@@ -104,6 +104,88 @@ products.forEach(p => {
   selectedSizes[p.id] = p.isPackOnly ? '6-Bottle Box (330ml)' : '330ml Bottle';
 });
 
+// --- localStorage persistence ---
+const STORAGE_KEYS = {
+  CART: 'sunsip_cart',
+  USER: 'sunsip_user',
+  QUIZ_MATCH: 'sunsip_quiz_match',
+  ORDERS: 'sunsip_orders',
+};
+
+let currentUser = null;
+let quizMatchId = null;
+
+export function loadState() {
+  try {
+    const savedCart = localStorage.getItem(STORAGE_KEYS.CART);
+    if (savedCart) cart = JSON.parse(savedCart);
+    const savedUser = localStorage.getItem(STORAGE_KEYS.USER);
+    if (savedUser) {
+      currentUser = JSON.parse(savedUser);
+      renderAuthHeader();
+    }
+    const savedQuizMatch = localStorage.getItem(STORAGE_KEYS.QUIZ_MATCH);
+    if (savedQuizMatch) quizMatchId = savedQuizMatch;
+  } catch (e) {
+    console.warn('Failed to load state from localStorage', e);
+  }
+}
+
+export function saveCart() {
+  try { localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify(cart)); } catch (e) {}
+}
+
+export function saveUser(user) {
+  currentUser = user;
+  try { localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(user)); } catch (e) {}
+  renderAuthHeader();
+}
+
+export function logout() {
+  currentUser = null;
+  try { localStorage.removeItem(STORAGE_KEYS.USER); } catch (e) {}
+  renderAuthHeader();
+  showToast('Signed out');
+}
+
+export function saveQuizMatchId(productId) {
+  quizMatchId = productId;
+  try { localStorage.setItem(STORAGE_KEYS.QUIZ_MATCH, productId); } catch (e) {}
+}
+
+export function getCurrentUser() {
+  return currentUser;
+}
+
+export function isLoggedIn() {
+  return !!currentUser;
+}
+
+export function renderAuthHeader() {
+  const authHeader = document.getElementById('authHeader');
+  const userName = document.getElementById('userName');
+  const orderHistoryBtn = document.getElementById('orderHistoryBtn');
+  const signupLink = document.getElementById('signupLink');
+  const signinLink = document.getElementById('signinLink');
+  const signoutBtn = document.querySelector('[data-action="signout"]');
+
+  if (currentUser) {
+    if (authHeader) authHeader.classList.remove('hidden');
+    if (userName) userName.textContent = currentUser.name;
+    if (orderHistoryBtn) orderHistoryBtn.classList.remove('hidden');
+    if (signoutBtn) signoutBtn.classList.remove('hidden');
+    if (signupLink) signupLink.classList.add('hidden');
+    if (signinLink) signinLink.classList.add('hidden');
+  } else {
+    if (authHeader) authHeader.classList.add('hidden');
+    if (userName) userName.textContent = '';
+    if (orderHistoryBtn) orderHistoryBtn.classList.add('hidden');
+    if (signoutBtn) signoutBtn.classList.add('hidden');
+    if (signupLink) signupLink.classList.remove('hidden');
+    if (signinLink) signinLink.classList.remove('hidden');
+  }
+}
+
 export function getProductPrice(product) {
   if (product.isPackOnly) return product.basePrice;
   const chosen = selectedSizes[product.id];
@@ -388,6 +470,8 @@ export function updateQuizMatch() {
   document.getElementById('modalQuizNotes').textContent = match.flavorNotes;
   document.getElementById('modalQuizPrice').textContent = formatPHP(match.basePrice);
 
+  saveQuizMatchId(match.id);
+
   return match;
 }
 
@@ -421,7 +505,25 @@ export function setQuizFizz(fizz) {
   updateQuizMatch();
 }
 
-export export function addQuizMatchToCart() {
+export function filterByQuizMatch() {
+  if (!quizMatchId) return;
+  const product = products.find(p => p.id === quizMatchId);
+  if (!product) return;
+
+  // Save match id for persistence
+  saveQuizMatchId(quizMatchId);
+
+  // Filter by matched category
+  filterByCategory(product.category);
+
+  // Highlight the matched product by scrolling to menu and setting a temporary search
+  const el = document.getElementById('drink-menu');
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+
+  showToast(`Showing ${product.category} drinks matching your sip quiz`);
+}
+
+export function addQuizMatchToCart() {
   const match = updateQuizMatch();
   addToCart(match.id, '330ml Bottle', match.basePrice, match.name);
 }
@@ -496,6 +598,7 @@ export function addToCart(productId, customVariant = null, customPrice = null, c
   }
 
   updateCartUI();
+  saveCart();
   showToast(`Chilled & added: ${name}`);
 }
 
@@ -505,11 +608,13 @@ export function updateItemQty(key, delta) {
   cart[idx].qty += delta;
   if (cart[idx].qty <= 0) cart.splice(idx, 1);
   updateCartUI();
+  saveCart();
 }
 
 function removeCartItem(key) {
   cart = cart.filter(item => item.key !== key);
   updateCartUI();
+  saveCart();
 }
 
 function updateCartUI() {
@@ -585,41 +690,319 @@ function toggleCartDrawer(open) {
   document.body.style.overflow = open ? 'hidden' : '';
 }
 
-// Simulated Checkout & Itemized Philippine Peso Receipt
-function openCheckoutModal() {
-  toggleCartDrawer(false);
-  const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-  const shipping = subtotal >= 1200 ? 0 : 99;
-  const orderNum = 'SUN-' + Math.floor(100000 + Math.random() * 900000);
+// Simulated Checkout & Itemized Philippine Peso Receipt (Multi-Step)
+let checkoutState = {
+  step: 1,
+  payment: null,
+  delivery: { name: '', city: '', phone: '', address: '' },
+};
 
-  document.getElementById('checkoutReceiptBox').innerHTML = `
-    <div class="flex justify-between font-extrabold text-peelGreen pb-1.5 border-b border-leafBorder">
-      <span>Order #${orderNum}</span>
-      <span class="text-tangerine">Chilled Dispatch</span>
-    </div>
-    ${cart.map(i => `
-      <div class="flex justify-between text-peelGreenLight">
-        <span class="truncate pr-2">${i.qty}× ${i.name} (${i.variant})</span>
-        <span class="shrink-0 font-bold text-peelGreen">${formatPHP(i.price * i.qty)}</span>
-      </div>
-    `).join('')}
-    <div class="flex justify-between text-peelGreenLight pt-1 border-t border-leafBorder/60">
-      <span>Chilled Delivery</span>
-      <span>${shipping === 0 ? 'FREE' : formatPHP(shipping)}</span>
-    </div>
-    <div class="flex justify-between font-extrabold text-sm text-peelGreen pt-1.5 border-t border-leafBorder">
-      <span>Total Paid (PHP)</span>
-      <span class="font-display text-base text-tangerine">${formatPHP(subtotal + shipping)}</span>
-    </div>
-  `;
+export function openCheckoutModal() {
+  toggleCartDrawer(false);
+  checkoutState.step = 1;
+  checkoutState.payment = null;
+  checkoutState.delivery = { name: '', city: '', phone: '', address: '' };
+
+  document.querySelectorAll('.checkout-panel').forEach(p => p.classList.add('hidden'));
+  document.querySelectorAll('.checkout-step').forEach((s, i) => {
+    s.className = i === 0 ? 'checkout-step w-5 h-5 rounded-full bg-tangerine flex items-center justify-center text-white font-bold text-[10px] shadow-sm' : 'checkout-step w-5 h-5 rounded-full bg-leafBorder text-peelGreen flex items-center justify-center text-[10px]';
+  });
+  document.getElementById('checkoutStep1Panel').classList.remove('hidden');
+  document.getElementById('checkoutStep1').className = 'checkout-step w-5 h-5 rounded-full bg-tangerine flex items-center justify-center text-white font-bold text-[10px] shadow-sm';
+
+  document.getElementById('checkoutDeliveryForm').reset();
+  document.getElementById('checkoutPaymentDetails').classList.add('hidden');
+  document.querySelectorAll('.payment-option').forEach(b => {
+    b.className = 'payment-option w-full flex items-center justify-between gap-3 px-4 py-3.5 rounded-2xl border-2 border-leafBorder bg-white text-peelGreen font-extrabold transition hover:border-tangerine/50';
+  });
+  document.getElementById('checkoutBtnStep2').classList.add('opacity-50', 'pointer-events-none');
+  document.getElementById('checkoutBtnStep2').disabled = true;
+
+  renderCheckoutStep3();
 
   const modal = document.getElementById('checkoutModal');
   modal.classList.remove('hidden');
   modal.classList.add('flex');
 }
 
-function closeCheckoutModal() {
+export function closeCheckoutModal() {
   const modal = document.getElementById('checkoutModal');
+  modal.classList.add('hidden');
+  modal.classList.remove('flex');
+}
+
+export function checkoutNextStep(fromStep) {
+  if (fromStep === 1) {
+    const form = document.getElementById('checkoutDeliveryForm');
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    checkoutState.delivery.name = document.getElementById('checkoutName').value;
+    checkoutState.delivery.city = document.getElementById('checkoutCity').value;
+    checkoutState.delivery.phone = document.getElementById('checkoutPhone').value;
+    checkoutState.delivery.address = document.getElementById('checkoutAddress').value;
+
+    const cityNote = document.getElementById('checkoutCityNote');
+    if (checkoutState.delivery.city) {
+      cityNote.classList.remove('hidden');
+    }
+  } else if (fromStep === 2) {
+    if (!checkoutState.payment) {
+      showToast('Please select a payment method.');
+      return;
+    }
+  }
+
+  checkoutState.step = fromStep + 1;
+  document.querySelectorAll('.checkout-panel').forEach(p => p.classList.add('hidden'));
+  document.getElementById(`checkoutStep${checkoutState.step}Panel`).classList.remove('hidden');
+
+  document.querySelectorAll('.checkout-step').forEach((s, i) => {
+    const active = i < checkoutState.step;
+    s.className = active ? 'checkout-step w-5 h-5 rounded-full bg-tangerine flex items-center justify-center text-white font-bold text-[10px] shadow-sm' : 'checkout-step w-5 h-5 rounded-full bg-leafBorder text-peelGreen flex items-center justify-center text-[10px]';
+  });
+
+  if (checkoutState.step === 3) {
+    renderCheckoutStep3();
+  }
+}
+
+export function checkoutPrevStep() {
+  if (checkoutState.step <= 1) return;
+  checkoutState.step -= 1;
+  document.querySelectorAll('.checkout-panel').forEach(p => p.classList.add('hidden'));
+  document.getElementById(`checkoutStep${checkoutState.step}Panel`).classList.remove('hidden');
+
+  document.querySelectorAll('.checkout-step').forEach((s, i) => {
+    const active = i < checkoutState.step;
+    s.className = active ? 'checkout-step w-5 h-5 rounded-full bg-tangerine flex items-center justify-center text-white font-bold text-[10px] shadow-sm' : 'checkout-step w-5 h-5 rounded-full bg-leafBorder text-peelGreen flex items-center justify-center text-[10px]';
+  });
+}
+
+export function selectPayment(method) {
+  checkoutState.payment = method;
+  document.querySelectorAll('.payment-option').forEach(b => {
+    const isSelected = b.id === `payment-${method}`;
+    if (isSelected) {
+      b.className = 'payment-option w-full flex items-center justify-between gap-3 px-4 py-3.5 rounded-2xl border-2 border-tangerine bg-tangerine/10 text-peelGreen font-extrabold transition shadow-sm';
+    } else {
+      b.className = 'payment-option w-full flex items-center justify-between gap-3 px-4 py-3.5 rounded-2xl border-2 border-leafBorder bg-white text-peelGreen font-extrabold transition hover:border-tangerine/50';
+    }
+  });
+
+  document.getElementById('checkoutPaymentDetails').classList.remove('hidden');
+  document.querySelectorAll('.payment-detail').forEach(d => d.classList.add('hidden'));
+  const detail = document.getElementById(`checkout${method.charAt(0).toUpperCase() + method.slice(1)}Info`);
+  if (detail) detail.classList.remove('hidden');
+
+  const ref = 'SUN-' + Math.floor(100000 + Math.random() * 900000);
+  document.getElementById('checkoutGcashRef').textContent = ref;
+  document.getElementById('checkoutMayaRef').textContent = ref;
+
+  document.getElementById('checkoutBtnStep2').classList.remove('opacity-50', 'pointer-events-none');
+  document.getElementById('checkoutBtnStep2').disabled = false;
+}
+
+function renderCheckoutStep3() {
+  const container = document.getElementById('checkoutOrderItems');
+  const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+  const shipping = subtotal >= 1200 ? 0 : 99;
+
+  container.innerHTML = cart.map(i => `
+    <div class="flex justify-between items-center text-sm text-peelGreenLight">
+      <span class="truncate pr-2">${i.qty}× ${i.name}</span>
+      <span class="shrink-0 font-bold text-peelGreen">${formatPHP(i.price * i.qty)}</span>
+    </div>
+  `).join('');
+
+  document.getElementById('checkoutSubtotal').textContent = formatPHP(subtotal);
+  document.getElementById('checkoutShipping').textContent = shipping === 0 ? 'FREE' : formatPHP(shipping);
+  document.getElementById('checkoutTotal').textContent = formatPHP(subtotal + shipping);
+
+  const meta = document.getElementById('checkoutOrderMeta');
+  meta.innerHTML = `
+    <div class="flex justify-between"><span>Delivery City</span><span class="font-bold text-peelGreen">${checkoutState.delivery.city}</span></div>
+    <div class="flex justify-between"><span>Payment Method</span><span class="font-bold text-peelGreen">${checkoutState.payment.charAt(0).toUpperCase() + checkoutState.payment.slice(1)}</span></div>
+    <div class="flex justify-between"><span>Order Total</span><span class="font-bold text-tangerine">${formatPHP(subtotal + shipping)}</span></div>
+  `;
+}
+
+export function placeOrder() {
+  const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+  const shipping = subtotal >= 1200 ? 0 : 99;
+  const total = subtotal + shipping;
+  const orderNum = 'SUN-' + Math.floor(100000 + Math.random() * 900000);
+  const orderDate = new Date().toISOString();
+
+  const order = {
+    id: orderNum,
+    date: orderDate,
+    city: checkoutState.delivery.city,
+    payment: checkoutState.payment,
+    items: [...cart],
+    subtotal,
+    shipping,
+    total,
+    status: 'Chilled & Dispatched',
+  };
+
+  // Save to order history
+  let orders = [];
+  try { orders = JSON.parse(localStorage.getItem(STORAGE_KEYS.ORDERS) || '[]'); } catch (e) {}
+  orders.push(order);
+  try { localStorage.setItem(STORAGE_KEYS.ORDERS, JSON.stringify(orders)); } catch (e) {}
+
+  // Attach to user if logged in
+  if (currentUser) {
+    if (!currentUser.orders) currentUser.orders = [];
+    currentUser.orders.push(order);
+    saveUser(currentUser);
+  }
+
+  // Clear cart
+  cart = [];
+  updateCartUI();
+  saveCart();
+
+  // Show receipt in modal step 3 (reuse as receipt view)
+  closeCheckoutModal();
+  showOrderReceipt(order);
+}
+
+export function showOrderReceipt(order) {
+  const modal = document.getElementById('checkoutModal');
+
+  const dateStr = new Date(order.date).toLocaleString('en-PH', { timeZone: 'Asia/Manila' });
+  const paymentLabel = order.payment.charAt(0).toUpperCase() + order.payment.slice(1);
+
+  const itemsHtml = order.items.map(i => `
+    <div class="flex justify-between text-peelGreenLight text-xs mb-1">
+      <span class="truncate pr-2">${i.qty}× ${i.name}</span>
+      <span class="shrink-0 font-bold text-peelGreen">${formatPHP(i.price * i.qty)}</span>
+    </div>
+  `).join('');
+
+  const receiptHtml = `
+    <div class="flex justify-between font-extrabold text-peelGreen pb-1.5 border-b border-leafBorder">
+      <span>Order #${order.id}</span>
+      <span class="text-tangerine">${order.status}</span>
+    </div>
+    <div class="flex justify-between text-peelGreenLight text-xs mb-2">
+      <span>Date</span><span>${dateStr}</span>
+    </div>
+    <div class="flex justify-between text-peelGreenLight text-xs mb-2">
+      <span>City</span><span>${order.city}</span>
+    </div>
+    <div class="flex justify-between text-peelGreenLight text-xs mb-3">
+      <span>Payment</span><span>${paymentLabel}</span>
+    </div>
+    ${itemsHtml}
+    <div class="flex justify-between text-peelGreenLight text-xs pt-2 border-t border-leafBorder/60 mb-3">
+      <span>Total Paid (PHP)</span>
+      <span class="font-bold text-tangerine">${formatPHP(order.total)}</span>
+    </div>
+  `;
+
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+
+  // Replace panel content with receipt
+  document.querySelectorAll('.checkout-panel').forEach(p => p.classList.add('hidden'));
+  const step3 = document.getElementById('checkoutStep3Panel');
+  step3.classList.remove('hidden');
+  step3.innerHTML = `
+    <div class="text-center space-y-4">
+      <div class="w-16 h-16 rounded-full bg-sunnyLemon/50 text-peelGreen flex items-center justify-center mx-auto text-2xl font-black mb-2">☀️</div>
+      <h3 class="font-display font-black text-xl text-peelGreen">Order Confirmed!</h3>
+      <p class="text-peelGreenLight text-sm">Your chilled cooler is being packed for dispatch.</p>
+      <div id="checkoutReceiptBox" class="mt-4 bg-citrusMist border border-leafBorder rounded-2xl p-4 text-left text-xs space-y-1.5">
+        ${receiptHtml}
+      </div>
+    </div>
+    <div class="pt-6 flex justify-center gap-3">
+      <button type="button" onclick="printReceipt('${order.id}')" class="bg-peelGreen hover:bg-tangerine text-suncream font-extrabold text-sm px-6 py-3 rounded-full shadow-citrus transition active:scale-95">Print Receipt</button>
+      <button type="button" onclick="closeCheckoutModal()" class="bg-leafBorder hover:bg-leafBorder/50 text-peelGreen font-extrabold text-sm px-6 py-3 rounded-full transition active:scale-95">Continue Shopping</button>
+    </div>
+  `;
+
+  showToast(`Order ${order.id} placed!`);
+}
+
+export function printReceipt(orderId) {
+  const printContents = document.getElementById('checkoutReceiptBox').innerHTML;
+  const popup = window.open('', '_blank', 'width=600,height=800');
+  popup.document.write(`
+    <html><head><title>Sunsip Receipt #${orderId}</title>
+    <style>
+      body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #1B4332; padding: 20px; }
+      .header { text-align: center; border-bottom: 2px solid #1B4332; padding-bottom: 10px; margin-bottom: 20px; }
+      .logo { font-weight: 900; font-size: 24px; letter-spacing: -0.5px; }
+      table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+      td { padding: 6px 0; border-bottom: 1px solid #D8E6DC; }
+      .total { font-weight: 900; font-size: 18px; color: #F97316; border-top: 2px solid #1B4332; padding-top: 10px; }
+      .footer { font-size: 11px; color: #2D6A4F; text-align: center; margin-top: 30px; }
+      @media print { body { padding: 0; } }
+    </style>
+    </head><body onload="window.print(); window.close();">
+    <div class="header">
+      <div class="logo">Sunsip Refreshment</div>
+      <div style="font-size:11px;color:#2D6A4F">Order Receipt #${orderId} • Cold-Pressed Philippine Juices</div>
+    </div>
+    ${printContents}
+    <div class="footer">Thank you for choosing Sunsip Refreshment! Delivered ice-chilled to Metro Manila &amp; Davao.</div>
+    </body></html>
+  `);
+  popup.document.close();
+}
+
+// Order History
+export function openOrderHistoryModal() {
+  const list = document.getElementById('orderHistoryList');
+  const empty = document.getElementById('orderHistoryEmpty');
+
+  let orders = [];
+  try { orders = JSON.parse(localStorage.getItem(STORAGE_KEYS.ORDERS) || '[]'); } catch (e) {}
+
+  if (currentUser && currentUser.orders) {
+    orders = [...orders, ...currentUser.orders];
+  }
+
+  if (orders.length === 0) {
+    empty.classList.remove('hidden');
+    list.innerHTML = '';
+  } else {
+    empty.classList.add('hidden');
+    const sorted = [...orders].sort((a, b) => new Date(b.date) - new Date(a.date));
+    list.innerHTML = sorted.map(order => {
+      const dateStr = new Date(order.date).toLocaleString('en-PH', { timeZone: 'Asia/Manila', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+      const itemsText = order.items.map(i => `${i.qty}× ${i.name}`).join(', ');
+      return `
+        <div class="bg-white border border-leafBorder rounded-xl p-4">
+          <div class="flex justify-between items-start mb-2">
+            <div>
+              <span class="font-display font-extrabold text-sm text-peelGreen">#${order.id}</span>
+              <span class="ml-2 text-[10px] font-extrabold px-2 py-0.5 rounded bg-leafBorder text-peelGreen">${order.status}</span>
+            </div>
+            <span class="text-xs text-peelGreenLight">${dateStr}</span>
+          </div>
+          <div class="text-xs text-peelGreenLight mb-2">${itemsText}</div>
+          <div class="flex justify-between text-sm">
+            <span class="text-peelGreenLight">Total</span>
+            <span class="font-bold text-tangerine">${formatPHP(order.total)}</span>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  const modal = document.getElementById('orderHistoryModal');
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+}
+
+export function closeOrderHistoryModal() {
+  const modal = document.getElementById('orderHistoryModal');
   modal.classList.add('hidden');
   modal.classList.remove('flex');
 }
@@ -627,6 +1010,7 @@ function closeCheckoutModal() {
 function completeDemoOrder() {
   cart = [];
   updateCartUI();
+  saveCart();
   closeCheckoutModal();
   showToast('Salamat! Your chilled Sunsip cooler is on the way.');
 }
@@ -691,4 +1075,23 @@ document.querySelectorAll('button.js-close-quick-view').forEach(btn => {
 
 document.querySelectorAll('button.js-explore-refreshments').forEach(btn => {
   btn.addEventListener('click', () => toggleCartDrawer(false));
+});
+
+// Initialize persisted state
+loadState();
+
+// Auth header event delegation
+document.body.addEventListener('click', e => {
+  if (e.target.id === 'orderHistoryBtn') {
+    e.preventDefault();
+    openOrderHistoryModal();
+  }
+  if (e.target.closest('#signInBtn, [data-action="signin"]')) {
+    e.preventDefault();
+    window.location.href = 'login.html';
+  }
+  if (e.target.closest('#signOutBtn, [data-action="signout"]')) {
+    e.preventDefault();
+    logout();
+  }
 });

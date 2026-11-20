@@ -167,6 +167,10 @@
         btn.innerHTML = original;
         btn.disabled = false;
         const firstName = document.getElementById('signupFirstName').value;
+        const lastName = document.getElementById('signupLastName').value;
+        const email = document.getElementById('signupEmail').value;
+        const user = { name: `${firstName} ${lastName}`, email };
+        localStorage.setItem('sunsip_user', JSON.stringify(user));
         alert(`Welcome to Sunsip, ${firstName}! Your account is ready.`);
         window.location.href = 'index.html';
       }, 1500);
