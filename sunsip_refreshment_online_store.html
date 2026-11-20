@@ -595,7 +595,7 @@
           <span id="modalQuizPrice" class="font-display font-black text-xl text-peelGreen shrink-0">₱145.00</span>
         </div>
 
-        <button type="button" onclick="addQuizMatchToCart(); closeQuizModal();" class="w-full bg-tangerine hover:bg-tangerineDark text-white font-extrabold text-sm py-3.5 rounded-full shadow-md transition">
+        <button type="button" onclick="addQuizMatchToCart(); closeQuizModal();" class="w-full bg-tangerine hover:bg-tangerineDark text-white font-extrabold text-sm py-3.5 rounded-full shadow-md transition js-add-quiz-cart">
           + Add Recommended Sip to Cart
         </button>
       </div>
@@ -606,7 +606,7 @@
   <div id="quickViewModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
     <div onclick="closeQuickView()" class="fixed inset-0 bg-peelGreen/65 backdrop-blur-xs"></div>
     <div class="relative z-10 bg-suncream border-2 border-leafBorder rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
-      <button type="button" onclick="closeQuickView()" class="absolute right-5 top-5 w-9 h-9 rounded-full bg-citrusMist border border-leafBorder text-peelGreen hover:bg-peelGreen hover:text-suncream flex items-center justify-center text-sm font-extrabold" aria-label="Close modal">✕</button>
+      <button type="button" onclick="closeQuickView()" class="absolute right-5 top-5 w-9 h-9 rounded-full bg-citrusMist border border-leafBorder text-peelGreen hover:bg-peelGreen hover:text-suncream flex items-center justify-center text-sm font-extrabold js-close-quick-view" aria-label="Close modal">✕</button>
       <div id="quickViewContent">
         <!-- Populated dynamically -->
       </div>
@@ -623,7 +623,7 @@
           <h3 class="font-display font-black text-xl text-peelGreen">Your Chilled Cooler</h3>
           <p class="text-xs text-peelGreenLight">Packed with insulated ice packs</p>
         </div>
-        <button type="button" onclick="toggleCartDrawer(false)" class="w-9 h-9 rounded-full bg-suncream border border-leafBorder flex items-center justify-center text-peelGreen hover:bg-peelGreen hover:text-suncream transition" aria-label="Close Cart">✕</button>
+        <button type="button" onclick="toggleCartDrawer(false)" class="w-9 h-9 rounded-full bg-suncream border border-leafBorder flex items-center justify-center text-peelGreen hover:bg-peelGreen hover:text-suncream transition js-toggle-cart-drawer" aria-label="Close Cart">✕</button>
       </div>
 
       <!-- Live Free-Shipping Progress Bar toward ₱1,200 -->
@@ -1261,7 +1261,7 @@
             <div class="w-16 h-16 rounded-full bg-warmSand border border-sunnyLemon flex items-center justify-center mx-auto text-2xl">🍹</div>
             <p class="font-display font-extrabold text-xl text-peelGreen">Your chilled cooler is empty</p>
             <p class="text-xs text-peelGreenLight max-w-xs mx-auto">Add ₱1,200 worth of cold-pressed juices and coolers for free chilled delivery in Metro Manila &amp; Davao.</p>
-            <button type="button" onclick="toggleCartDrawer(false)" class="mt-2 inline-block bg-peelGreen text-suncream text-xs font-extrabold px-5 py-2.5 rounded-full">Explore Refreshments</button>
+            <button type="button" class="mt-2 inline-block bg-peelGreen text-suncream text-xs font-extrabold px-5 py-2.5 rounded-full js-explore-refreshments">Explore Refreshments</button>
           </div>
         `;
         return;

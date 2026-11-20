@@ -1,10 +1,10 @@
 // Format numbers in Philippine Pesos (₱)
-function formatPHP(amount) {
+export function formatPHP(amount) {
   return '₱' + amount.toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
 // 6 Curated Philippine-Inspired Refreshment Products
-const products = [
+export const products = [
   {
     id: 'calamansi-honey-fizz',
     name: 'Calamansi Honey Fizz',
@@ -86,25 +86,25 @@ const products = [
 ];
 
 // Size Options & Multipliers
-const sizeOptions = [
+export const sizeOptions = [
   { label: '330ml Bottle', multiplier: 1.0 },
   { label: '500ml Bottle', multiplier: 1.35 },
   { label: '6-Pack', multiplier: 5.4 }
 ];
 
 // App State
-let activeCategory = 'All';
-let searchQuery = '';
-let selectedSizes = {};
-let cart = []; // { key, id, name, variant, price, qty }
-let quizState = { mood: 'Zesty & Energizing', fizz: 'Sparkling & Bubbly' };
-let subState = { size: '6-Bottle Box', price: 790, orig: 930, cadence: 'Weekly Delivery' };
+export let activeCategory = 'All';
+export let searchQuery = '';
+export let selectedSizes = {};
+export let cart = []; // { key, id, name, variant, price, qty }
+export let quizState = { mood: 'Zesty & Energizing', fizz: 'Sparkling & Bubbly' };
+export let subState = { size: '6-Bottle Box', price: 790, orig: 930, cadence: 'Weekly Delivery' };
 
 products.forEach(p => {
   selectedSizes[p.id] = p.isPackOnly ? '6-Bottle Box (330ml)' : '330ml Bottle';
 });
 
-function getProductPrice(product) {
+export function getProductPrice(product) {
   if (product.isPackOnly) return product.basePrice;
   const chosen = selectedSizes[product.id];
   const opt = sizeOptions.find(s => s.label === chosen) || sizeOptions[0];
@@ -112,7 +112,7 @@ function getProductPrice(product) {
 }
 
 // Custom Illustrated Chilled Bottle / Party Box SVG
-function getDrinkSVG(product, sizeClass = 'w-40 h-48') {
+export function getDrinkSVG(product, sizeClass = 'w-40 h-48') {
   if (product.isPackOnly) {
     return `
       <svg viewBox="0 0 220 220" class="${sizeClass} mx-auto drop-shadow-md transition-transform duration-300 group-hover:scale-105" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -161,7 +161,7 @@ function getDrinkSVG(product, sizeClass = 'w-40 h-48') {
 }
 
 // Render Product Grid
-function renderProducts() {
+export function renderProducts() {
   const grid = document.getElementById('productGrid');
   const emptyState = document.getElementById('emptyState');
   const searchBanner = document.getElementById('searchStatusBanner');
@@ -266,17 +266,14 @@ function renderProducts() {
   }).join('');
 }
 
-function selectSize(productId, sizeLabel) {
+export function selectSize(productId, sizeLabel) {
   selectedSizes[productId] = sizeLabel;
   renderProducts();
 }
 
 // Category Filter Logic
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => filterByCategory(btn.dataset.filter));
-});
 
-function filterByCategory(category) {
+export function filterByCategory(category) {
   activeCategory = category;
   document.querySelectorAll('.filter-btn').forEach(b => {
     const isActive = b.dataset.filter === category;
@@ -306,7 +303,7 @@ searchDesktop.addEventListener('input', e => handleSearch(e.target.value));
 searchMobile.addEventListener('input', e => handleSearch(e.target.value));
 clearSearchDesktop.addEventListener('click', () => handleSearch(''));
 
-function resetFilters() {
+export function resetFilters() {
   handleSearch('');
   filterByCategory('All');
 }
@@ -314,11 +311,10 @@ function resetFilters() {
 // Mobile Menu
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
-mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-function closeMobileMenu() { mobileMenu.classList.add('hidden'); }
+export function closeMobileMenu() { mobileMenu.classList.add('hidden'); }
 
 // Quick-View Modal
-function openQuickView(productId) {
+export function openQuickView(productId) {
   const product = products.find(p => p.id === productId);
   if (!product) return;
   const currentPrice = getProductPrice(product);
@@ -353,14 +349,14 @@ function openQuickView(productId) {
   modal.classList.add('flex');
 }
 
-function closeQuickView() {
+export function closeQuickView() {
   const modal = document.getElementById('quickViewModal');
   modal.classList.add('hidden');
   modal.classList.remove('flex');
 }
 
 // 2-Step 'Find Your Sip' Mood Quiz Logic (Synced Inline + Modal)
-function updateQuizMatch() {
+export function updateQuizMatch() {
   let match = products[0]; // Calamansi Honey Fizz
   let reason = 'Zesty Batangas calamansi lifted with crisp bubbles and a touch of raw honey for instant afternoon revival.';
 
@@ -410,7 +406,7 @@ function setQuizMood(mood) {
   updateQuizMatch();
 }
 
-function setQuizFizz(fizz) {
+export function setQuizFizz(fizz) {
   quizState.fizz = fizz;
   document.querySelectorAll('.inline-fizz-btn, .modal-fizz-btn').forEach(btn => {
     const key = btn.dataset.fizz || btn.textContent.trim();
@@ -425,26 +421,18 @@ function setQuizFizz(fizz) {
   updateQuizMatch();
 }
 
-document.querySelectorAll('.inline-mood-btn').forEach(btn => {
-  btn.addEventListener('click', () => setQuizMood(btn.dataset.mood));
-});
-
-document.querySelectorAll('.inline-fizz-btn').forEach(btn => {
-  btn.addEventListener('click', () => setQuizFizz(btn.dataset.fizz));
-});
-
-function addQuizMatchToCart() {
+export export function addQuizMatchToCart() {
   const match = updateQuizMatch();
   addToCart(match.id, '330ml Bottle', match.basePrice, match.name);
 }
 
-function openQuizModal() {
+export function openQuizModal() {
   const modal = document.getElementById('quizModal');
   modal.classList.remove('hidden');
   modal.classList.add('flex');
 }
 
-function closeQuizModal() {
+export function closeQuizModal() {
   const modal = document.getElementById('quizModal');
   modal.classList.add('hidden');
   modal.classList.remove('flex');
@@ -485,7 +473,7 @@ document.querySelectorAll('.sub-cadence-btn').forEach(btn => {
   });
 });
 
-function addSubscriptionToCart() {
+export function addSubscriptionToCart() {
   const mix = document.getElementById('subMixSelect').value;
   const title = `Chilled Subscription (${subState.size} • ${subState.cadence})`;
   addToCart('chilled-sub', mix, subState.price, title);
@@ -493,7 +481,7 @@ function addSubscriptionToCart() {
 }
 
 // Cart Operations
-function addToCart(productId, customVariant = null, customPrice = null, customName = null) {
+export function addToCart(productId, customVariant = null, customPrice = null, customName = null) {
   const product = products.find(p => p.id === productId);
   const variant = customVariant || (product ? selectedSizes[product.id] : '330ml Bottle');
   const price = customPrice !== null ? customPrice : getProductPrice(product);
@@ -511,7 +499,7 @@ function addToCart(productId, customVariant = null, customPrice = null, customNa
   showToast(`Chilled & added: ${name}`);
 }
 
-function updateItemQty(key, delta) {
+export function updateItemQty(key, delta) {
   const idx = cart.findIndex(item => item.key === key);
   if (idx === -1) return;
   cart[idx].qty += delta;
@@ -664,7 +652,43 @@ function showToast(msg) {
   }, 3200);
 }
 
-// Initialize Storefront
-renderProducts();
-updateCartUI();
-updateQuizMatch();
+// Event Listeners
+document.querySelectorAll('button[aria-label="Open Cart"]').forEach(btn => {
+  btn.addEventListener('click', () => toggleCartDrawer(true));
+});
+
+document.querySelectorAll('button[aria-label="Close Cart"]').forEach(btn => {
+  btn.addEventListener('click', () => toggleCartDrawer(false));
+});
+
+document.querySelectorAll('button[aria-label="Close quiz"]').forEach(btn => {
+  btn.addEventListener('click', closeQuizModal);
+});
+
+document.querySelectorAll('button[aria-label="Close modal"]').forEach(btn => {
+  btn.addEventListener('click', closeQuickView);
+});
+
+document.querySelectorAll('button[aria-label="Open Menu"]').forEach(btn => {
+  btn.addEventListener('click', closeMobileMenu);
+});
+
+document.querySelectorAll('button.modal-mood-btn, button.modal-fizz-btn').forEach(btn => {
+  if (btn.dataset.mood) {
+    btn.addEventListener('click', () => setQuizMood(btn.dataset.mood));
+  } else if (btn.dataset.fizz) {
+    btn.addEventListener('click', () => setQuizFizz(btn.dataset.fizz));
+  }
+});
+
+document.querySelectorAll('button.js-add-quiz-cart').forEach(btn => {
+  btn.addEventListener('click', addQuizMatchToCart);
+});
+
+document.querySelectorAll('button.js-close-quick-view').forEach(btn => {
+  btn.addEventListener('click', closeQuickView);
+});
+
+document.querySelectorAll('button.js-explore-refreshments').forEach(btn => {
+  btn.addEventListener('click', () => toggleCartDrawer(false));
+});

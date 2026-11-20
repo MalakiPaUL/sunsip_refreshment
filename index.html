@@ -62,11 +62,11 @@
 
         <!-- Quiz Trigger, Cart Button & Mobile Menu Toggle -->
         <div class="flex items-center gap-2.5">
-          <button type="button" onclick="openQuizModal()" class="hidden sm:inline-flex items-center gap-1.5 bg-warmSand hover:bg-sunnyLemon/40 text-peelGreen border border-sunnyLemon px-3.5 py-2 rounded-full text-xs font-extrabold transition">
+          <button type="button" class="hidden sm:inline-flex items-center gap-1.5 bg-warmSand hover:bg-sunnyLemon/40 text-peelGreen border border-sunnyLemon px-3.5 py-2 rounded-full text-xs font-extrabold transition js-open-quiz-modal">
             <span>🍋 Sip Quiz</span>
           </button>
 
-          <button type="button" onclick="toggleCartDrawer(true)" class="relative inline-flex items-center gap-2 bg-peelGreen hover:bg-peelGreenLight text-suncream px-4 sm:px-5 py-2.5 rounded-full text-sm font-extrabold shadow-sm transition active:scale-95" aria-label="Open Cart">
+          <button type="button" class="relative inline-flex items-center gap-2 bg-peelGreen hover:bg-peelGreenLight text-suncream px-4 sm:px-5 py-2.5 rounded-full text-sm font-extrabold shadow-sm transition active:scale-95 js-toggle-cart" aria-label="Open Cart">
             <svg class="w-4 h-4 text-sunnyLemon" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
               <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>
             </svg>
@@ -614,7 +614,7 @@
   <div id="quickViewModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
     <div onclick="closeQuickView()" class="fixed inset-0 bg-peelGreen/65 backdrop-blur-xs"></div>
     <div class="relative z-10 bg-suncream border-2 border-leafBorder rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
-      <button type="button" onclick="closeQuickView()" class="absolute right-5 top-5 w-9 h-9 rounded-full bg-citrusMist border border-leafBorder text-peelGreen hover:bg-peelGreen hover:text-suncream flex items-center justify-center text-sm font-extrabold" aria-label="Close modal">✕</button>
+      <button type="button" class="absolute right-5 top-5 w-9 h-9 rounded-full bg-citrusMist border border-leafBorder text-peelGreen hover:bg-peelGreen hover:text-suncream flex items-center justify-center text-sm font-extrabold js-close-quick-view" aria-label="Close modal">✕</button>
       <div id="quickViewContent">
         <!-- Populated dynamically -->
       </div>
