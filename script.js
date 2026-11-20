@@ -1095,3 +1095,182 @@ document.body.addEventListener('click', e => {
     logout();
   }
 });
+
+// --- Accessibility: Focus Management & Keyboard Navigation ---
+let lastFocusedElement = null;
+const FOCUSABLE_SELECTORS = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+function getFocusableElements(container) {
+  return Array.from(container.querySelectorAll(FOCUSABLE_SELECTORS)).filter(el => !el.disabled && el.offsetParent !== null);
+}
+
+function trapFocus(modal) {
+  const focusables = getFocusableElements(modal);
+  if (focusables.length === 0) return;
+
+  const first = focusables[0];
+  const last = focusables[focusables.length - 1];
+
+  modal.addEventListener('keydown', function handleFocusTrap(e) {
+    if (!modal.classList.contains('flex') || modal.classList.contains('hidden')) {
+      modal.removeEventListener('keydown', handleFocusTrap);
+      return;
+    }
+    if (e.key !== 'Tab') return;
+    e.preventDefault();
+    if (e.shiftKey) {
+      if (document.activeElement === first || document.activeElement === modal) last.focus();
+      else first.focus();
+    } else {
+      if (document.activeElement === last) first.focus();
+      else last.focus();
+    }
+  });
+}
+
+function saveFocus() {
+  lastFocusedElement = document.activeElement || document.body;
+}
+
+function restoreFocus() {
+  if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+    lastFocusedElement.focus();
+  }
+  lastFocusedElement = null;
+}
+
+function closeAllOverlays() {
+  toggleCartDrawer(false);
+  closeMobileMenu();
+  closeQuizModal();
+  closeQuickView();
+  closeCheckoutModal();
+  closeOrderHistoryModal();
+}
+
+// Global Escape key listener
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    const cartOverlay = document.getElementById('cartOverlay');
+    const quizModal = document.getElementById('quizModal');
+    const quickViewModal = document.getElementById('quickViewModal');
+    const checkoutModal = document.getElementById('checkoutModal');
+    const orderHistoryModal = document.getElementById('orderHistoryModal');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    const isOpen = el => el && !el.classList.contains('hidden');
+    if (isOpen(cartOverlay) || isOpen(quizModal) || isOpen(quickViewModal) || isOpen(checkoutModal) || isOpen(orderHistoryModal) || isOpen(mobileMenu)) {
+      e.preventDefault();
+      closeAllOverlays();
+      restoreFocus();
+    }
+  }
+});
+
+// --- Mobile Menu ARIA state ---
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+
+function toggleMobileMenu() {
+  const isOpen = !mobileMenu.classList.contains('hidden');
+  if (isOpen) {
+    closeMobileMenu();
+  } else {
+    mobileMenu.classList.remove('hidden');
+    saveFocus();
+  }
+  mobileMenuBtn.setAttribute('aria-expanded', String(!isOpen));
+}
+
+export function closeMobileMenu() {
+  mobileMenu.classList.add('hidden');
+  mobileMenuBtn.setAttribute('aria-expanded', 'false');
+  restoreFocus();
+}
+
+// Wire mobile menu button click (covers both inline and JS-bound)
+mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+// --- Cart Drawer focus management ---
+const _toggleCartDrawer = toggleCartDrawer;
+function toggleCartDrawer(open) {
+  const overlay = document.getElementById('cartOverlay');
+  if (open) {
+    saveFocus();
+    overlay.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    trapFocus(overlay);
+    const closeBtn = overlay.querySelector('[aria-label="Close Cart"]');
+    if (closeBtn) closeBtn.focus();
+  } else {
+    overlay.classList.add('hidden');
+    document.body.style.overflow = '';
+    restoreFocus();
+  }
+}
+
+// --- Quick View Modal focus management ---
+const _openQuickView = openQuickView;
+openQuickView = function(productId) {
+  saveFocus();
+  _openQuickView.call(this, productId);
+  const modal = document.getElementById('quickViewModal');
+  trapFocus(modal);
+  const closeBtn = modal.querySelector('[aria-label="Close modal"]');
+  if (closeBtn) closeBtn.focus();
+};
+
+const _closeQuickView = closeQuickView;
+closeQuickView = function() {
+  _closeQuickView.call(this);
+  restoreFocus();
+};
+
+// --- Quiz Modal focus management ---
+const _openQuizModal = openQuizModal;
+openQuizModal = function() {
+  saveFocus();
+  _openQuizModal.call(this);
+  const modal = document.getElementById('quizModal');
+  trapFocus(modal);
+  const closeBtn = modal.querySelector('[aria-label="Close quiz"]');
+  if (closeBtn) closeBtn.focus();
+};
+
+const _closeQuizModal = closeQuizModal;
+closeQuizModal = function() {
+  _closeQuizModal.call(this);
+  restoreFocus();
+};
+
+// --- Checkout Modal focus management ---
+const _openCheckoutModal = openCheckoutModal;
+openCheckoutModal = function() {
+  saveFocus();
+  _openCheckoutModal.call(this);
+  const modal = document.getElementById('checkoutModal');
+  trapFocus(modal);
+};
+
+const _closeCheckoutModal = closeCheckoutModal;
+closeCheckoutModal = function() {
+  _closeCheckoutModal.call(this);
+  restoreFocus();
+};
+
+// --- Order History Modal focus management ---
+const _openOrderHistoryModal = openOrderHistoryModal;
+openOrderHistoryModal = function() {
+  saveFocus();
+  _openOrderHistoryModal.call(this);
+  const modal = document.getElementById('orderHistoryModal');
+  trapFocus(modal);
+  const closeBtn = modal.querySelector('[aria-label="Close Order History"]');
+  if (closeBtn) closeBtn.focus();
+};
+
+const _closeOrderHistoryModal = closeOrderHistoryModal;
+closeOrderHistoryModal = function() {
+  _closeOrderHistoryModal.call(this);
+  restoreFocus();
+};

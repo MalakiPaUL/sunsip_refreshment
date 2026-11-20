@@ -1,3 +1,6 @@
 /* Sunsip Refreshment - Custom Styles */
 /* All design tokens are configured via tailwind.config in index.html head */
 /* Add any component-specific custom CSS here if needed */
+
+/* Accessibility: WCAG AA-compliant orange for small text on light backgrounds */
+.text-tangerineAccessible { color: #C2410C; }

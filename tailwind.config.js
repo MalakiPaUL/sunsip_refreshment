@@ -15,6 +15,7 @@ module.exports = {
         peelGreenLight: '#2D6A4F',
         tangerine: '#F97316',
         tangerineDark: '#EA580C',
+        tangerineAccessible: '#C2410C',
         sunnyLemon: '#FACC15',
         coralPop: '#FB7185',
         leafBorder: '#D8E6DC',

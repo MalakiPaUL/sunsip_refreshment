@@ -19,7 +19,7 @@
 
   <!-- 1. Top Announcement Bar -->
   <div class="bg-peelGreen text-suncream text-xs sm:text-sm py-2.5 px-4 text-center font-semibold tracking-wide">
-    <span>🧊 Free chilled delivery in Metro Manila &amp; Davao for orders </span>
+    <span><span aria-hidden="true">🧊</span> Free chilled delivery in Metro Manila &amp; Davao for orders </span>
     <span class="text-sunnyLemon font-extrabold">₱1,200+</span>
     <span class="hidden sm:inline"> • Same-day dispatch before 2 PM</span>
   </div>
@@ -34,7 +34,7 @@
           <img src="assets/images/sunsip-logo.png" class="w-12 h-12 sm:w-14 sm:h-14 transition-transform duration-300 group-hover:rotate-6 group-hover:scale-105" alt="Sunsip Logo" />
           <div>
             <span class="font-display font-black text-xl sm:text-2xl tracking-tight text-peelGreen block leading-none">Sunsip</span>
-            <span class="text-[11px] uppercase tracking-widest text-tangerine font-extrabold">Refreshment PH</span>
+            <span class="text-[11px] uppercase tracking-widest text-tangerineAccessible font-extrabold">Refreshment PH</span>
           </div>
         </a>
 
@@ -71,7 +71,7 @@
               <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>
             </svg>
             <span>Cart</span>
-            <span id="cartBadge" class="bg-tangerine text-white text-xs font-extrabold w-5 h-5 rounded-full flex items-center justify-center">0</span>
+            <span id="cartBadge" class="bg-tangerine text-white text-xs font-extrabold w-5 h-5 rounded-full flex items-center justify-center" aria-live="polite" aria-label="Cart items">0</span>
           </button>
 
 <div class="hidden sm:inline-flex items-center justify-center bg-warmSand hover:bg-sunnyLemon/40 text-peelGreen border border-sunnyLemon px-4 sm:px-5 py-2.5 rounded-full text-sm font-extrabold transition" id="authHeader">
@@ -86,7 +86,7 @@
   Sign In
 </a>
 
-          <button id="mobileMenuBtn" type="button" class="lg:hidden p-2.5 rounded-xl border border-leafBorder text-peelGreen hover:bg-citrusMist" aria-label="Open Menu">
+          <button id="mobileMenuBtn" type="button" class="lg:hidden p-2.5 rounded-xl border border-leafBorder text-peelGreen hover:bg-citrusMist" aria-label="Open Menu" aria-expanded="false" aria-controls="mobileMenu">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
             </svg>
@@ -112,7 +112,7 @@
           <a href="#drink-menu" onclick="filterByCategory('Party Packs'); closeMobileMenu();" class="px-3.5 py-2.5 rounded-xl hover:bg-citrusMist">Bundles</a>
           <a href="#our-story" onclick="closeMobileMenu()" class="px-3.5 py-2.5 rounded-xl hover:bg-citrusMist">Our Story</a>
           <a href="#subscriptions" onclick="closeMobileMenu()" class="px-3.5 py-2.5 rounded-xl hover:bg-citrusMist">Subscriptions</a>
-          <a href="login.html" onclick="closeMobileMenu()" class="px-3.5 py-2.5 rounded-xl hover:bg-citrusMist border border-leafBorder text-tangerine font-extrabold">Sign In</a>
+          <a href="login.html" onclick="closeMobileMenu()" class="px-3.5 py-2.5 rounded-xl hover:bg-citrusMist border border-leafBorder text-tangerineAccessible font-extrabold">Sign In</a>
           <a href="signup.html" onclick="closeMobileMenu()" class="px-3.5 py-2.5 rounded-xl bg-tangerine text-white font-extrabold shadow-sm">Sign Up</a>
         </div>
       </div>
@@ -158,15 +158,15 @@
           <!-- Trust Highlights -->
           <div class="mt-9 pt-6 border-t border-leafBorder flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2.5 text-xs sm:text-sm font-bold text-peelGreen">
             <span class="inline-flex items-center gap-2">
-              <span class="w-6 h-6 rounded-full bg-sunnyLemon/50 flex items-center justify-center text-xs">❄️</span>
+              <span class="w-6 h-6 rounded-full bg-sunnyLemon/50 flex items-center justify-center text-xs" aria-hidden="true">❄️</span>
               Delivered Ice-Chilled
             </span>
             <span class="inline-flex items-center gap-2">
-              <span class="w-6 h-6 rounded-full bg-coralPop/25 flex items-center justify-center text-xs">🌿</span>
+              <span class="w-6 h-6 rounded-full bg-coralPop/25 flex items-center justify-center text-xs" aria-hidden="true">🌿</span>
               Zero Refined Sugar
             </span>
             <span class="inline-flex items-center gap-2">
-              <span class="w-6 h-6 rounded-full bg-peelGreen/15 flex items-center justify-center text-xs">♻️</span>
+              <span class="w-6 h-6 rounded-full bg-peelGreen/15 flex items-center justify-center text-xs" aria-hidden="true">♻️</span>
               Reusable Glass Bottles
             </span>
           </div>
@@ -262,7 +262,7 @@
   <section id="drink-menu" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
       <div>
-        <span class="text-xs font-extrabold uppercase tracking-widest text-tangerine">Pressed Every Morning</span>
+        <span class="text-xs font-extrabold uppercase tracking-widest text-tangerineAccessible">Pressed Every Morning</span>
         <h2 class="font-display font-black text-3xl sm:text-4xl text-peelGreen mt-1">Chilled Refreshment Menu</h2>
         <p class="text-peelGreenLight mt-2 max-w-xl text-sm sm:text-base">
           Crafted with sun-ripened Guimaras mangoes, Davao pomelos, and Batangas calamansi. Pick your bottle size or tap any bottle for ingredients &amp; nutrition.
@@ -281,8 +281,8 @@
 
     <!-- Active Search Status Banner -->
     <div id="searchStatusBanner" class="hidden mb-6 bg-warmSand border border-sunnyLemon rounded-2xl px-5 py-3 flex items-center justify-between">
-      <p class="text-sm text-peelGreen">Showing refreshments matching "<span id="searchQueryDisplay" class="font-extrabold"></span>"</p>
-      <button type="button" onclick="resetFilters()" class="text-xs font-extrabold text-tangerine hover:underline">Reset Filters</button>
+      <p class="text-sm text-peelGreen">Showing refreshments matching "<span id="searchQueryDisplay" class="font-extrabold" aria-live="polite"></span>"</p>
+      <button type="button" onclick="resetFilters()" class="text-xs font-extrabold text-tangerineAccessible hover:underline">Reset Filters</button>
     </div>
 
     <!-- Product Grid -->
@@ -356,7 +356,7 @@
 
           <!-- Right: Live Recommended Drink Card -->
           <div class="lg:col-span-5 bg-warmSand border-2 border-sunnyLemon rounded-3xl p-6 text-center">
-            <span class="text-[11px] font-extrabold uppercase tracking-widest text-tangerine">Your Perfect Sunsip Match</span>
+            <span class="text-[11px] font-extrabold uppercase tracking-widest text-tangerineAccessible">Your Perfect Sunsip Match</span>
             <h3 id="inlineQuizMatchTitle" class="font-display font-black text-2xl text-peelGreen mt-1">Calamansi Honey Fizz</h3>
             <p id="inlineQuizMatchNotes" class="text-xs font-bold text-peelGreenLight mt-1">Sparkling Cooler • Batangas Calamansi, Wildflower Honey, Sparkling Water</p>
             <p id="inlineQuizMatchReason" class="text-xs text-peelGreen mt-3 leading-relaxed">
@@ -466,7 +466,7 @@
   <section id="our-story" class="py-16 sm:py-24 bg-warmSand/70 border-t border-leafBorder">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl mx-auto text-center">
-        <span class="text-xs font-extrabold uppercase tracking-widest text-tangerine">Why Sunsip Refreshment</span>
+        <span class="text-xs font-extrabold uppercase tracking-widest text-tangerineAccessible">Why Sunsip Refreshment</span>
         <h2 class="font-display font-black text-3xl sm:text-4xl text-peelGreen mt-2">Real Philippine Fruit. Zero Shortcuts.</h2>
         <p class="mt-4 text-peelGreenLight text-sm sm:text-base leading-relaxed">
           We started Sunsip in Davao &amp; Metro Manila with one simple rule: bottled drinks should taste just like slicing open fresh orchard fruit on a sunny morning—never syrupy, never heat-pasteurized into flatness.
@@ -540,8 +540,8 @@
         <div class="lg:col-span-4">
           <h4 class="font-display font-extrabold text-lg text-sunnyLemon mb-4">Chilled Delivery Coverage</h4>
           <ul class="space-y-2.5 text-sm text-citrusMist/90">
-            <li>🧊 <strong>Metro Manila:</strong> Same-day chilled rider (Order before 2 PM)</li>
-            <li>🧊 <strong>Davao City &amp; Panabo:</strong> Same-day insulated van delivery</li>
+            <li><span aria-hidden="true">🧊</span> <strong>Metro Manila:</strong> Same-day chilled rider (Order before 2 PM)</li>
+            <li><span aria-hidden="true">🧊</span> <strong>Davao City &amp; Panabo:</strong> Same-day insulated van delivery</li>
             <li>🚚 <strong>Free Delivery:</strong> Orders ₱1,200+ (₱99 flat rate below ₱1,200)</li>
             <li>📱 <strong>Concierge:</strong> +63 (917) 630-8821 • hello@sunsip.ph</li>
           </ul>
@@ -601,7 +601,7 @@
 
         <div class="bg-warmSand border-2 border-sunnyLemon rounded-2xl p-4 flex items-center justify-between gap-4">
           <div>
-            <span class="text-[10px] font-extrabold uppercase tracking-widest text-tangerine">Recommended Bottle</span>
+            <span class="text-[10px] font-extrabold uppercase tracking-widest text-tangerineAccessible">Recommended Bottle</span>
             <h4 id="modalQuizTitle" class="font-display font-black text-xl text-peelGreen">Calamansi Honey Fizz</h4>
             <p id="modalQuizNotes" class="text-xs text-peelGreenLight">Batangas Calamansi • Wildflower Honey</p>
           </div>
@@ -645,7 +645,7 @@
       <!-- Live Free-Shipping Progress Bar toward ₱1,200 -->
       <div class="px-6 py-3.5 bg-warmSand border-b border-leafBorder">
         <p id="shippingProgressText" class="text-xs font-bold text-peelGreen mb-2">
-          Add <span class="text-tangerine font-extrabold">₱1,200.00</span> more for <span class="underline">FREE Chilled Delivery</span>!
+          Add <span class="text-tangerineAccessible font-extrabold">₱1,200.00</span> more for <span class="underline">FREE Chilled Delivery</span>!
         </p>
         <div class="w-full h-2.5 bg-white rounded-full overflow-hidden border border-leafBorder">
           <div id="shippingProgressBar" class="h-full bg-tangerine transition-all duration-300" style="width: 0%"></div>
@@ -695,7 +695,7 @@
 
       <!-- Step 1: Delivery Info -->
       <div id="checkoutStep1Panel" class="checkout-panel flex-1 overflow-y-auto p-6 sm:p-8 space-y-5">
-        <p class="text-xs font-extrabold uppercase tracking-widest text-tangerine mb-1">Step 1 of 3</p>
+        <p class="text-xs font-extrabold uppercase tracking-widest text-tangerineAccessible mb-1">Step 1 of 3</p>
         <h4 class="font-display font-black text-xl text-peelGreen mb-1">Delivery Details</h4>
         <p class="text-peelGreenLight text-sm mb-4">Where should we deliver your chilled cooler?</p>
 
@@ -731,7 +731,7 @@
 
       <!-- Step 2: Payment Method -->
       <div id="checkoutStep2Panel" class="checkout-panel hidden flex-1 overflow-y-auto p-6 sm:p-8 space-y-5">
-        <p class="text-xs font-extrabold uppercase tracking-widest text-tangerine mb-1">Step 2 of 3</p>
+        <p class="text-xs font-extrabold uppercase tracking-widest text-tangerineAccessible mb-1">Step 2 of 3</p>
         <h4 class="font-display font-black text-xl text-peelGreen mb-1">Choose Payment</h4>
         <p class="text-peelGreenLight text-sm mb-4">Pay securely for your chilled order.</p>
 
@@ -741,7 +741,7 @@
               <div class="w-8 h-8 rounded-full bg-tangerine flex items-center justify-center text-white font-bold text-xs">GC</div>
               <span>GCash</span>
             </div>
-            <span class="text-xs font-bold text-tangerine">QR / Reference</span>
+            <span class="text-xs font-bold text-tangerineAccessible">QR / Reference</span>
           </button>
           <button type="button" onclick="selectPayment('maya')" id="payment-maya" class="payment-option w-full flex items-center justify-between gap-3 px-4 py-3.5 rounded-2xl border-2 border-leafBorder bg-white text-peelGreen font-extrabold transition hover:border-tangerine/50">
             <div class="flex items-center gap-3">
@@ -768,18 +768,18 @@
 
         <div id="checkoutPaymentDetails" class="hidden mt-4 bg-citrusMist border border-leafBorder rounded-2xl p-4 space-y-3">
           <div id="checkoutGcashInfo" class="payment-detail hidden space-y-2">
-            <p class="text-xs font-extrabold uppercase tracking-wider text-tangerine">GCash Instructions</p>
+            <p class="text-xs font-extrabold uppercase tracking-wider text-tangerineAccessible">GCash Instructions</p>
             <p class="text-xs text-peelGreenLight">Send payment to <span class="font-bold text-peelGreen">0917-630-8821</span> via GCash.</p>
-            <p class="text-xs text-peelGreenLight">Reference: <span id="checkoutGcashRef" class="font-bold text-tangerine">SUN-XXXXXX</span></p>
+            <p class="text-xs text-peelGreenLight">Reference: <span id="checkoutGcashRef" class="font-bold text-tangerineAccessible">SUN-XXXXXX</span></p>
             <p class="text-[10px] text-peelGreenLight">Screenshot your receipt and show it to the rider on delivery.</p>
           </div>
           <div id="checkoutMayaInfo" class="payment-detail hidden space-y-2">
-            <p class="text-xs font-extrabold uppercase tracking-wider text-tangerine">Maya Instructions</p>
+            <p class="text-xs font-extrabold uppercase tracking-wider text-tangerineAccessible">Maya Instructions</p>
             <p class="text-xs text-peelGreenLight">Send payment to <span class="font-bold text-peelGreen">0917-630-8821</span> via Maya.</p>
-            <p class="text-xs text-peelGreenLight">Reference: <span id="checkoutMayaRef" class="font-bold text-tangerine">SUN-XXXXXX</span></p>
+            <p class="text-xs text-peelGreenLight">Reference: <span id="checkoutMayaRef" class="font-bold text-tangerineAccessible">SUN-XXXXXX</span></p>
           </div>
           <div id="checkoutCardInfo" class="payment-detail hidden space-y-2">
-            <p class="text-xs font-extrabold uppercase tracking-wider text-tangerine">Card Details</p>
+            <p class="text-xs font-extrabold uppercase tracking-wider text-tangerineAccessible">Card Details</p>
             <div class="grid grid-cols-2 gap-3">
               <input type="text" id="checkoutCardNumber" placeholder="Card Number" class="bg-white border border-leafBorder rounded-xl px-4 py-3 text-sm font-bold text-peelGreen focus:outline-none focus:ring-2 focus:ring-tangerine" maxlength="19" />
               <input type="text" id="checkoutCardExpiry" placeholder="MM/YY" class="bg-white border border-leafBorder rounded-xl px-4 py-3 text-sm font-bold text-peelGreen focus:outline-none focus:ring-2 focus:ring-tangerine" maxlength="5" />
@@ -790,7 +790,7 @@
             </div>
           </div>
           <div id="checkoutCodInfo" class="payment-detail hidden space-y-2">
-            <p class="text-xs font-extrabold uppercase tracking-wider text-tangerine">Cash on Delivery</p>
+            <p class="text-xs font-extrabold uppercase tracking-wider text-tangerineAccessible">Cash on Delivery</p>
             <p class="text-xs text-peelGreenLight">Prepare exact cash amount. Rider will bring a printed receipt.</p>
             <p class="text-xs text-peelGreenLight">Available for Metro Manila and Davao deliveries only.</p>
           </div>
@@ -804,12 +804,12 @@
 
       <!-- Step 3: Order Confirmation -->
       <div id="checkoutStep3Panel" class="checkout-panel hidden flex-1 overflow-y-auto p-6 sm:p-8 space-y-5">
-        <p class="text-xs font-extrabold uppercase tracking-widest text-tangerine mb-1">Step 3 of 3</p>
+        <p class="text-xs font-extrabold uppercase tracking-widest text-tangerineAccessible mb-1">Step 3 of 3</p>
         <h4 class="font-display font-black text-xl text-peelGreen mb-1">Review &amp; Confirm</h4>
         <p class="text-peelGreenLight text-sm mb-4">Review your order before placing it.</p>
 
         <div class="mb-4">
-          <p class="text-xs font-extrabold uppercase tracking-wider text-tangerine mb-2">Order Summary</p>
+          <p class="text-xs font-extrabold uppercase tracking-wider text-tangerineAccessible mb-2">Order Summary</p>
           <div id="checkoutOrderItems" class="space-y-2 mb-3">
             <!-- Items injected -->
           </div>
@@ -858,7 +858,7 @@
   <!-- Toast Notification -->
   <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
     <div class="bg-peelGreen text-suncream px-5 py-3.5 rounded-2xl shadow-citrus-lg border border-sunnyLemon/40 flex items-center gap-3 text-sm font-bold">
-      <span class="text-sunnyLemon text-lg">🍋</span>
+      <span class="text-sunnyLemon text-lg" aria-hidden="true">🍋</span>
       <span id="toastMessage">Added to your chilled cooler!</span>
     </div>
   </div>
