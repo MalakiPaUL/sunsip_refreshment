@@ -3,86 +3,34 @@
   return '₱' + amount.toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
-// 6 Curated Philippine-Inspired Refreshment Products
- const products = [
-  {
-    id: 'calamansi-honey-fizz',
-    name: 'Calamansi Honey Fizz',
-    category: 'Sparkling Coolers',
-    badge: 'Best Seller',
-    flavorNotes: 'Batangas Calamansi • Wildflower Honey • Crisp Fizz',
-    basePrice: 145.00,
-    bottleColor: '#FACC15',
-    accentColor: '#F97316',
-    isPackOnly: false,
-    ingredients: 'Cold-pressed Batangas calamansi juice (28%), Bukidnon raw wildflower honey, triple-filtered sparkling mountain water, calamansi peel oil.',
-    nutrition: '68 kcal • 14g Natural Honey Sugars • 140% Daily Vitamin C • 0g Fat'
-  },
-  {
-    id: 'davao-pomelo-mint',
-    name: 'Davao Pomelo & Mint Splash',
-    category: 'Cold-Pressed Juices',
-    badge: 'Hydrating',
-    flavorNotes: 'Pink Davao Pomelo • Garden Spearmint • Lime Zest',
-    basePrice: 165.00,
-    bottleColor: '#FB7185',
-    accentColor: '#1B4332',
-    isPackOnly: false,
-    ingredients: '100% cold-pressed Davao ruby pomelo juice, crushed Tagaytay spearmint leaves, splash of dayap lime juice.',
-    nutrition: '75 kcal • 16g Fruit Sugars • High Potassium & Electrolytes • 0g Added Sugar'
-  },
-  {
-    id: 'guimaras-mango-sunset',
-    name: 'Guimaras Mango Sunset',
-    category: 'Cold-Pressed Juices',
-    badge: 'Fan Favorite',
-    flavorNotes: 'Sweet Guimaras Mango • Valencia Orange • Passionfruit',
-    basePrice: 175.00,
-    bottleColor: '#F97316',
-    accentColor: '#FACC15',
-    isPackOnly: false,
-    ingredients: 'Cold-pressed Guimaras Carabao mango puree, fresh Valencia orange juice, wild Mindanao passionfruit pulp.',
-    nutrition: '110 kcal • 22g Natural Fruit Sugars • Rich in Vitamin A & C • 0g Preservatives'
-  },
-  {
-    id: 'hibiscus-berry-cooler',
-    name: 'Hibiscus Berry Cooler',
-    category: 'Botanical Iced Teas',
-    badge: 'Caffeine-Free',
-    flavorNotes: 'Organic Roselle Hibiscus • Benguet Strawberry • Lemon',
-    basePrice: 150.00,
-    bottleColor: '#E11D48',
-    accentColor: '#FACC15',
-    isPackOnly: false,
-    ingredients: 'Slow-steeped Philippine roselle hibiscus petals, cold-pressed La Trinidad strawberries, lemon juice, organic coco nectar.',
-    nutrition: '55 kcal • 11g Coco Nectar • Rich in Antioxidants & Anthocyanins • 0mg Caffeine'
-  },
-  {
-    id: 'pineapple-ginger-zest',
-    name: 'Pineapple Ginger Zest',
-    category: 'Cold-Pressed Juices',
-    badge: 'Immunity Boost',
-    flavorNotes: 'Bukidnon Queen Pineapple • Native Ginger • Turmeric',
-    basePrice: 160.00,
-    bottleColor: '#EAB308',
-    accentColor: '#2D6A4F',
-    isPackOnly: false,
-    ingredients: 'Cold-pressed Bukidnon sweet pineapple, raw native ginger root (8%), fresh yellow turmeric juice, pinch of black pepper.',
-    nutrition: '85 kcal • 18g Natural Fruit Sugars • Anti-inflammatory Gingerol • 0g Added Sugar'
-  },
-  {
-    id: 'barkada-taster-box',
-    name: 'Sunsip Barkada 6-Bottle Taster Box',
-    category: 'Party Packs',
-    badge: 'Save ₱90',
-    flavorNotes: 'All 5 Signature Flavors + Bonus Calamansi Ginger Shot',
-    basePrice: 850.00,
-    bottleColor: '#2D6A4F',
-    accentColor: '#F97316',
-    isPackOnly: true,
-    ingredients: 'Includes 1× Calamansi Honey Fizz, 1× Davao Pomelo & Mint, 1× Guimaras Mango Sunset, 1× Hibiscus Berry Cooler, 1× Pineapple Ginger Zest, plus 1× Bonus 330ml Bottle.',
-    nutrition: 'Assorted 330ml Glass Bottles • Delivered in an Insulated Sunsip Carrier Box'
-  }
+// 6 Curated Philippine-Inspired Refreshment Products (loaded from js/products.js)
+let products = [];
+
+if (typeof PRODUCTS !== 'undefined') {
+  const categoryColors = {
+    'Cold-Pressed Juices': { bottle: '#FACC15', accent: '#1B4332' },
+    'Botanical Coolers': { bottle: '#FB7185', accent: '#2D6A4F' },
+    'Sparkling Refreshers': { bottle: '#FACC15', accent: '#F97316' },
+    'Party Packs': { bottle: '#2D6A4F', accent: '#F97316' },
+  };
+
+  products = PRODUCTS.map(p => {
+    const colors = categoryColors[p.category] || { bottle: '#FACC15', accent: '#1B4332' };
+    return {
+      id: p.id,
+      name: p.name,
+      category: p.category,
+      badge: p.badge,
+      flavorNotes: p.tags.join(' • '),
+      basePrice: p.price,
+      bottleColor: colors.bottle,
+      accentColor: colors.accent,
+      isPackOnly: p.isBundle || false,
+      ingredients: p.description,
+      nutrition: p.calories,
+    };
+  });
+}
 ];
 
 // Size Options & Multipliers
@@ -439,24 +387,24 @@ const mobileMenu = document.getElementById('mobileMenu');
 
 // 2-Step 'Find Your Sip' Mood Quiz Logic (Synced Inline + Modal)
  function updateQuizMatch() {
-  let match = products[0]; // Calamansi Honey Fizz
-  let reason = 'Zesty Batangas calamansi lifted with crisp bubbles and a touch of raw honey for instant afternoon revival.';
+  let match = products[0]; // Mindoro Calamansi & Wildflower Honey
+  let reason = 'Zesty native calamansi balanced with raw highland wildflower honey and cold mountain spring water for instant afternoon revival.';
 
   if (quizState.mood === 'Herbal & Calm') {
-    match = products.find(p => p.id === 'hibiscus-berry-cooler');
-    reason = 'Caffeine-free organic roselle hibiscus steeped with Benguet strawberries for a soothing botanical cool-down.';
+    match = products.find(p => p.id === 'ref-davao-mangosteen-hibiscus');
+    reason = 'Deep ruby mangosteen cold-pressed with steeped gumamela (hibiscus) petals for a floral, antioxidant-rich sip.';
   } else if (quizState.mood === 'Crisp & Hydrating') {
-    match = products.find(p => p.id === 'davao-pomelo-mint');
-    reason = 'Juicy pink Davao pomelo paired with cooling Tagaytay spearmint to replenish electrolytes fast.';
+    match = products.find(p => p.id === 'ref-davao-pomelo-mint');
+    reason = 'Juicy pink Davao suha (pomelo) segments muddled with crushed spearmint leaves and a splash of green lime.';
   } else if (quizState.mood === 'Fruity & Sweet') {
-    match = products.find(p => p.id === 'guimaras-mango-sunset');
-    reason = 'Lush, sun-ripened Guimaras Carabao mango blended with passionfruit for pure tropical sweetness.';
+    match = products.find(p => p.id === 'ref-guimaras-mango-passion');
+    reason = 'Sweet export-grade Guimaras Carabao mangoes cold-pressed with tangy purple passionfruit seeds.';
   } else if (quizState.fizz === 'Still & Pure Pressed') {
-    match = products.find(p => p.id === 'pineapple-ginger-zest');
-    reason = 'Cold-pressed Bukidnon pineapple with a bright native ginger & turmeric kick—zero bubbles, maximum zing.';
+    match = products.find(p => p.id === 'ref-bukidnon-pineapple-ginger');
+    reason = 'Sun-ripened Bukidnon MD2 pineapple pressed with fresh turmeric (luyang dilaw), ginger root, and sparkling fizz.';
   } else {
-    match = products.find(p => p.id === 'calamansi-honey-fizz');
-    reason = 'Zesty Batangas calamansi lifted with crisp bubbles and a touch of raw honey for instant afternoon revival.';
+    match = products.find(p => p.id === 'ref-calamansi-honey-zest');
+    reason = 'Hand-squeezed native calamansi balanced with raw highland wildflower honey and cold mountain spring water.';
   }
 
   // Sync Inline Quiz Card
