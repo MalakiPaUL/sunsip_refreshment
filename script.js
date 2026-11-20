@@ -1065,6 +1065,19 @@ document.querySelectorAll('button.modal-mood-btn, button.modal-fizz-btn').forEac
   }
 });
 
+// Inline quiz mood/fizz buttons (section 4)
+document.querySelectorAll('button.inline-mood-btn').forEach(btn => {
+  btn.addEventListener('click', () => setQuizMood(btn.dataset.mood));
+});
+document.querySelectorAll('button.inline-fizz-btn').forEach(btn => {
+  btn.addEventListener('click', () => setQuizFizz(btn.dataset.fizz));
+});
+
+// Header Sip Quiz button
+document.querySelectorAll('button.js-open-quiz-modal').forEach(btn => {
+  btn.addEventListener('click', openQuizModal);
+});
+
 document.querySelectorAll('button.js-add-quiz-cart').forEach(btn => {
   btn.addEventListener('click', addQuizMatchToCart);
 });
