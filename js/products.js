@@ -127,11 +127,11 @@ const PRODUCTS = [
     image: 'assets/images/products/ref-batangas-dalandan-rosemary.svg',
   },
 
-  // --- PARTY PACKS & BUNDLES (2) ---
+  // --- BUNDLES (3) ---
   {
     id: 'pack-sunshine-sampler-6',
     name: 'Philippine Orchard Sampler (6 × 330ml)',
-    category: 'Party Packs',
+    category: 'Bundle',
     price: 780,
     origin: 'Assorted Regions',
     calories: '65–110 kcal / bottle',
@@ -144,7 +144,7 @@ const PRODUCTS = [
   {
     id: 'pack-fiesta-cooler-box-12',
     name: 'Barkada & Fiesta Cooler Box (12 × 330ml)',
-    category: 'Party Packs',
+    category: 'Bundle',
     price: 1490,
     origin: 'Assorted Regions',
     calories: '65–110 kcal / bottle',
@@ -153,5 +153,18 @@ const PRODUCTS = [
     isBundle: true,
     tags: ['bundle', 'party', 'fiesta', 'barkada', 'box', '12 pack', 'free delivery'],
     image: 'assets/images/products/pack-fiesta-cooler-box-12.svg',
+  },
+  {
+    id: 'pack-family-cooler-bundle-8',
+    name: 'Family Chilled Cooler Bundle (8 × 330ml)',
+    category: 'Bundle',
+    price: 1050,
+    origin: 'Assorted Regions',
+    calories: '65–110 kcal / bottle',
+    description: 'Eight assorted bottles perfect for family gatherings—mix of juices, coolers, and sparkling refreshers.',
+    badge: 'Family Size',
+    isBundle: true,
+    tags: ['bundle', 'family', 'pack', '8 bottles', 'assorted', 'gifting'],
+    image: 'assets/images/products/pack-family-cooler-bundle-8.svg',
   },
 ];

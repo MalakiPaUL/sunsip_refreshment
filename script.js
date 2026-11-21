@@ -11,6 +11,7 @@ if (typeof PRODUCTS !== 'undefined') {
     'Cold-Pressed Juices': { bottle: '#FACC15', accent: '#1B4332' },
     'Botanical Coolers': { bottle: '#FB7185', accent: '#2D6A4F' },
     'Sparkling Refreshers': { bottle: '#FACC15', accent: '#F97316' },
+    'Bundle': { bottle: '#FACC15', accent: '#F97316' },
     'Party Packs': { bottle: '#2D6A4F', accent: '#F97316' },
   };
 
