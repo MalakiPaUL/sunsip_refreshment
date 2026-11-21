@@ -30,7 +30,10 @@ function renderProductGrid(products) {
     return `
       <article class="bg-white border border-leafBorder rounded-3xl p-5 hover:shadow-citrus-lg transition shadow-sm">
         <div class="relative mb-4">
-          <svg width="120" height="120" viewBox="0 0 284 284" class="block mx-auto">
+          <img src="${product.image}" alt="${product.name}" width="120" height="120"
+            class="block mx-auto rounded-xl object-cover border-2 border-leafBorder"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <svg width="120" height="120" viewBox="0 0 284 284" class="block mx-auto hidden" style="display:none;">
             <defs>
               <linearGradient id="grad-${product.id}" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stop-color="${product.bottleColor}" />

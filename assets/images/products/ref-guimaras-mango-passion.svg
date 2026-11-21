@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">
+  <rect width="300" height="300" fill="#FFFDF7"/>
+  <rect x="90" y="40" width="120" height="220" rx="30" fill="#F97316" stroke="#1B4332" stroke-width="3"/>
+  <circle cx="150" cy="150" r="20" fill="#FACC15" stroke="#1B4332" stroke-width="2"/>
+  <text x="150" y="280" font-family="Arial,sans-serif" font-size="16" font-weight="bold" fill="#1B4332" text-anchor="middle">Guimaras Mango</text>
+</svg>

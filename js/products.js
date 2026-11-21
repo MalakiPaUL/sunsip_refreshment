@@ -12,6 +12,7 @@ const PRODUCTS = [
     description: 'Hand-squeezed native calamansi balanced with raw highland wildflower honey and cold mountain spring water.',
     badge: 'Best Seller',
     tags: ['calamansi', 'honey', 'citrus', 'classic', 'immunity', 'sour'],
+    image: 'assets/images/products/ref-calamansi-honey-zest.svg',
   },
   {
     id: 'ref-guimaras-mango-passion',
@@ -23,6 +24,7 @@ const PRODUCTS = [
     description: 'Sweet export-grade Guimaras Carabao mangoes cold-pressed with tangy purple passionfruit seeds.',
     badge: 'Orchard Pick',
     tags: ['mango', 'passionfruit', 'sweet', 'tropical', 'guimaras'],
+    image: 'assets/images/products/ref-guimaras-mango-passion.svg',
   },
   {
     id: 'ref-batanes-tubo-lemongrass',
@@ -34,6 +36,7 @@ const PRODUCTS = [
     description: 'Raw cold-pressed heirloom sugarcane juice balanced with bruised tanglad (lemongrass) and young ginger.',
     badge: 'Zero Refined Sugar',
     tags: ['sugarcane', 'tubo', 'lemongrass', 'tanglad', 'ginger', 'negros'],
+    image: 'assets/images/products/ref-batanes-tubo-lemongrass.svg',
   },
   {
     id: 'ref-sagada-orange-carrot',
@@ -45,6 +48,7 @@ const PRODUCTS = [
     description: 'Crisp mountain-grown Sagada oranges cold-pressed with sweet Cordilleran carrots and a pinch of turmeric.',
     badge: 'Morning Glow',
     tags: ['orange', 'carrot', 'sagada', 'benguet', 'turmeric', 'vitamin c'],
+    image: 'assets/images/products/ref-sagada-orange-carrot.svg',
   },
 
   // --- BOTANICAL COOLERS (3) ---
@@ -58,6 +62,7 @@ const PRODUCTS = [
     description: 'Juicy pink Davao suha (pomelo) segments muddled with crushed spearmint leaves and a splash of green lime.',
     badge: 'Davao Harvest',
     tags: ['pomelo', 'suha', 'mint', 'davao', 'botanical', 'refreshing'],
+    image: 'assets/images/products/ref-davao-pomelo-mint.svg',
   },
   {
     id: 'ref-davao-mangosteen-hibiscus',
@@ -69,6 +74,7 @@ const PRODUCTS = [
     description: 'Deep ruby mangosteen cold-pressed with steeped gumamela (hibiscus) petals for a floral, antioxidant-rich sip.',
     badge: 'Antioxidant Rich',
     tags: ['mangosteen', 'hibiscus', 'gumamela', 'davao', 'floral', 'botanical'],
+    image: 'assets/images/products/ref-davao-mangosteen-hibiscus.svg',
   },
   {
     id: 'ref-laguna-buko-pandan-lychee',
@@ -80,6 +86,7 @@ const PRODUCTS = [
     description: 'Freshly cracked young coconut water steeped with fragrant pandan leaves and whole sweet lychee fruit.',
     badge: 'Electrolyte Boost',
     tags: ['buko', 'coconut', 'pandan', 'lychee', 'laguna', 'hydrating'],
+    image: 'assets/images/products/ref-laguna-buko-pandan-lychee.svg',
   },
 
   // --- SPARKLING REFRESHERS (3) ---
@@ -93,6 +100,7 @@ const PRODUCTS = [
     description: 'Velvety soursop (guyabano) puree infused with aromatic pandan extract and crisp micro-bubbles.',
     badge: 'Fan Favorite',
     tags: ['guyabano', 'soursop', 'pandan', 'sparkling', 'fizz', 'bubbly'],
+    image: 'assets/images/products/ref-guyabano-pandan-fizz.svg',
   },
   {
     id: 'ref-bukidnon-pineapple-ginger',
@@ -104,6 +112,7 @@ const PRODUCTS = [
     description: 'Sun-ripened Bukidnon MD2 pineapple pressed with fresh turmeric (luyang dilaw), ginger root, and sparkling fizz.',
     badge: 'Immunity Boost',
     tags: ['pineapple', 'turmeric', 'ginger', 'sparkling', 'fizz', 'bukidnon'],
+    image: 'assets/images/products/ref-bukidnon-pineapple-ginger.svg',
   },
   {
     id: 'ref-batangas-dalandan-rosemary',
@@ -115,6 +124,7 @@ const PRODUCTS = [
     description: 'Zesty Philippine native tangerine (dalandan) brightened with garden rosemary sprigs and chilled sparkling water.',
     badge: 'Crisp & Zesty',
     tags: ['dalandan', 'tangerine', 'orange', 'rosemary', 'sparkling', 'fizz', 'batangas'],
+    image: 'assets/images/products/ref-batangas-dalandan-rosemary.svg',
   },
 
   // --- PARTY PACKS & BUNDLES (2) ---
@@ -129,6 +139,7 @@ const PRODUCTS = [
     badge: 'Save ₱70',
     isBundle: true,
     tags: ['bundle', 'party', 'pack', 'sampler', 'gift', 'assorted'],
+    image: 'assets/images/products/pack-sunshine-sampler-6.svg',
   },
   {
     id: 'pack-fiesta-cooler-box-12',
@@ -141,5 +152,6 @@ const PRODUCTS = [
     badge: 'Free Delivery + Save ₱190',
     isBundle: true,
     tags: ['bundle', 'party', 'fiesta', 'barkada', 'box', '12 pack', 'free delivery'],
+    image: 'assets/images/products/pack-fiesta-cooler-box-12.svg',
   },
 ];
